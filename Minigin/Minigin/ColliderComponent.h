@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
-#include "SDL.h"
+#include <SDL.h>
 #include <string>
 class TransformComponent;
 class ColliderComponent : public BaseComponent

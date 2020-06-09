@@ -1,13 +1,11 @@
-﻿  MiniginPCH.cpp
-  BaseComponent.cpp
+﻿  BaseComponent.cpp
   ColliderComponent.cpp
   Collision.cpp
   ControlComponent.cpp
   Font.cpp
   GameObject.cpp
   InputManager.cpp
-  Main.cpp
-  Minigin.cpp
+  MiniginPCH.cpp
   Renderer.cpp
   ResourceManager.cpp
   RigidbodyComponent.cpp
@@ -18,22 +16,17 @@
   TextObject.cpp
   Texture2D.cpp
   TextureComponent.cpp
-  Transform.cpp
-  Generating Code...
-  Compiling...
   TransformComponent.cpp
-  Generating Code...
-     Creating library C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Minigin.lib and object C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Minigin.exp
-  Minigin.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Minigin.exe
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
+  Minigin.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\x64\Debug\Minigin.lib
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_image\lib\x64\zlib1.dll
   6 File(s) copied
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
-  C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
   2 File(s) copied

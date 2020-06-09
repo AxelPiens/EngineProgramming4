@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "ColliderComponent.h"
 #include "TransformComponent.h"
-#include "Scene.h"
+
 ColliderComponent::ColliderComponent(std::string tag)
 	:m_Tag{tag},
 	m_Collider{0}

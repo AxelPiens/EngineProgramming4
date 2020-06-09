@@ -1,7 +1,6 @@
 #pragma once
 #include "SceneObject.h"
-#include "Transform.h"
-
+#include "Vector3.h"
 namespace dae
 {
 	class Font;
@@ -24,7 +23,7 @@ namespace dae
 	private:
 		bool m_NeedsUpdate;
 		std::string m_Text;
-		Transform m_Transform;
+		Vector3 m_Transform;
 		std::shared_ptr<Font> m_Font;
 		std::shared_ptr<Texture2D> m_Texture;
 	};
