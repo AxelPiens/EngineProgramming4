@@ -20,6 +20,7 @@ public:
 	const dae::Vector3& GetVelocity() const { return m_Velocity; };
 	void SetVelocity(const dae::Vector3& velocity) { m_Velocity = velocity; };
 	void SetVelocityY(float y) { m_Velocity.y = y; };
+	void SetVelocityX(float x) { m_Velocity.x = x; };
 	const dae::Vector3& GetPosition() const { return m_Position; }
 	const dae::Vector3& GetScale() const { return m_Scale; }
 	const dae::Vector3& GetRotation() const { return m_Rotation; }

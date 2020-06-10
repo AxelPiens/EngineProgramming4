@@ -18,13 +18,12 @@ void ControlComponent::Update(float deltaTime)
 
 	if (m_pGameObject->GetComponent<RigidbodyComponent>()->GetOnGround() == false)
 		velocity.y = 0;
-	else
-		if (velocity.y != 0)
-		{
-			m_pGameObject->GetComponent<RigidbodyComponent>()->SetIsJumping(true);
-			velocity.y *= 50;
-		}
-	m_pGameObject->GetComponent<TransformComponent>()->Move(velocity.x , velocity.y, velocity.z);
+	else if (velocity.y < 0)
+	{
+		m_pGameObject->GetComponent<RigidbodyComponent>()->SetIsJumping(true);
+		velocity.y *= 50;
+	}
+	m_pGameObject->GetComponent<TransformComponent>()->SetVelocity(velocity);
 }
 
 void ControlComponent::Render()

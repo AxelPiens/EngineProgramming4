@@ -18,6 +18,9 @@
 #include "ControlComponent.h"
 #include "SpriteComponent.h"
 #include "RigidbodyComponent.h"
+#include "Parser.h"
+#include "ProjectileComponent.h"
+
 using namespace std;
 using namespace std::chrono;
 
@@ -58,12 +61,12 @@ void dae::Minigin::LoadGame() const
 	scene.AddGameobject(go);
 
 	go = std::make_shared<GameObject>();
-	go->AddComponent(new SpriteComponent("sprites0SMALL.png", 32, 32, 8, 250));
-	go->AddComponent(new TransformComponent(32, 32, 15));
+	go->AddComponent(new SpriteComponent("sprites0SMALL.png", 32, 32, 0, 0, 8, 250, true));
+	go->AddComponent(new TransformComponent(32, 32, 200));
 	go->GetComponent<TransformComponent>()->Translate(200, 180, 0);
 	go->AddComponent(new ColliderComponent("player"));
 	go->AddComponent(new ControlComponent());
-	go->AddComponent(new RigidbodyComponent(10.0f, 50.0f));
+	go->AddComponent(new RigidbodyComponent(1.0f, 50.0f));
 	scene.AddGameobject(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
@@ -83,13 +86,42 @@ void dae::Minigin::LoadGame() const
 
 	scene.AddGameobject(to2);
 
-	auto wall = std::make_shared<GameObject>();
-	wall->AddComponent(new TransformComponent(100, 20, 5));
-	wall->GetComponent<TransformComponent>()->Translate(200, 400, 0);
-	wall->AddComponent(new SpriteComponent("White.png", 100, 20, 1,1));
-	wall->AddComponent(new ColliderComponent("wall"));
+	Parser parser{};
+	int levelNr = 2;
 
-	scene.AddGameobject(wall);
+	parser.ReadFile("../Data/SeperatedLevelData.dat", levelNr);
+	std::vector<int> levelData{};
+	parser.GetLevelData(levelData);
+	int posY = -16;
+	int moduloX = 0;
+	for (size_t i = 0; i < levelData.size(); i++)
+	{
+		moduloX = i % 32;
+		if (moduloX == 0)
+		{
+			posY += 16;
+		}
+		if (levelData[i] == 1)
+		{
+			auto brick = std::make_shared<GameObject>();
+			brick->AddComponent(new TransformComponent(8, 8, 0));
+			brick->GetComponent<TransformComponent>()->Translate(16 * moduloX, posY, 0);
+			brick->AddComponent(new SpriteComponent("blocks.png", 16, 16, ((levelNr) / 10) * 8, ((levelNr) % 10) * 8, 1, 1, false));
+			brick->AddComponent(new ColliderComponent("level"));
+			scene.AddGameobject(brick);
+
+		}
+
+	}
+
+	auto projectile = std::make_shared<GameObject>();
+	projectile->AddComponent(new TransformComponent(16, 16, 100));
+	projectile->GetComponent<TransformComponent>()->Translate(100, 400, 0);
+	projectile->AddComponent(new SpriteComponent("sprites1SMALL.png", 32, 32, 16*12, 0, 8, 50, true));
+	projectile->AddComponent(new ProjectileComponent(200, 1));
+	scene.AddGameobject(projectile);
+
+
 }
 
 void dae::Minigin::Cleanup()

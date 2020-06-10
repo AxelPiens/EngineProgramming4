@@ -4,7 +4,7 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include <SDL.h>
-SpriteComponent::SpriteComponent(const std::string path, int width, int height,  int nrFrames, int delay)
+SpriteComponent::SpriteComponent(const std::string path, int width, int height, int bottom, int left, int nrFrames, int delay, bool animated)
 	: m_Width{width}
 	, m_Height{height}
 	, m_Transform{nullptr}
@@ -12,12 +12,13 @@ SpriteComponent::SpriteComponent(const std::string path, int width, int height, 
 	, m_DestRect{0}
 	, m_Frames{nrFrames}
 	, m_Delay{delay}
+	, m_IsAnimated{animated}
 {
 	if(m_pGameObject)
 		m_Transform = m_pGameObject->GetComponent<TransformComponent>();
 
-	m_SrcRect.x = 0;
-	m_SrcRect.y = 0;
+	m_SrcRect.x = left;
+	m_SrcRect.y = bottom;
 	m_SrcRect.w = m_Width/2;
 	m_SrcRect.h = m_Height/2;
 	m_Texture = dae::ResourceManager::GetInstance().LoadTexture(path);
@@ -29,8 +30,8 @@ void SpriteComponent::Update(float deltaTime)
 
 	if (m_pGameObject)
 		m_Transform = m_pGameObject->GetComponent<TransformComponent>();
-
-	m_SrcRect.x = (m_SrcRect.w * static_cast<int>((SDL_GetTicks()/ m_Delay)% m_Frames));
+	if(m_IsAnimated)
+		m_SrcRect.x = (m_SrcRect.w * static_cast<int>((SDL_GetTicks()/ m_Delay)% m_Frames));
 
 	if (m_Transform)
 	{

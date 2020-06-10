@@ -15,9 +15,9 @@ void RigidbodyComponent::Update(float deltaTime)
 	if (!m_OnGround)
 	{
 		dae::Vector3 vel = m_pGameObject->GetComponent<TransformComponent>()->GetVelocity();
-		vel.y += m_AccelGrav * deltaTime;
+		vel.y += m_AccelGrav;
 		if (vel.y > m_MaxGrav)
-			vel.y = m_MaxGrav * deltaTime;
+			vel.y = m_MaxGrav ;
 		m_pGameObject->GetComponent<TransformComponent>()->SetVelocity(vel);
 	}
 }

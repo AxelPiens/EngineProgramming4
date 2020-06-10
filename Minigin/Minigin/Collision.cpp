@@ -1,14 +1,16 @@
 #include "MiniginPCH.h"
 #include "Collision.h"
 
+//recB is platforms
+//recA is player
 
 bool Collision::AABB(const SDL_Rect& recA, const SDL_Rect& recB)
 {
-	if (
-		recA.x + recA.w >= recB.x &&
+	//left check of platform
+	if (recA.x + recA.w >= recB.x &&
 		recB.x + recB.w >= recA.x &&
-		recA.y + recA.h >= recB.y &&
-		recB.y + recA.h >= recA.y)
+		recA.y <= recB.y + recB.h &&
+		recA.y + recA.h >= recB.y)
 	{
 		return true;
 	}

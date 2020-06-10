@@ -21,7 +21,7 @@ bool dae::InputManager::ProcessInput(dae::Vector3& vec)
 		{
 
 			if (e.key.keysym.sym == SDLK_w) {
-				vec.y = -1;
+				vec.y = -1.2f;
 			}
 			if (e.key.keysym.sym == SDLK_d) {
 				vec.x = 1;
