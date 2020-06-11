@@ -1,0 +1,38 @@
+﻿  BaseComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\BaseComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  ColliderComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\ColliderComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  Collision.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Collision.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  ControlComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\ControlComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  Font.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Font.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  GameObject.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\GameObject.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  InputManager.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\InputManager.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  MiniginPCH.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\MiniginPCH.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  Renderer.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Renderer.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  ResourceManager.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\ResourceManager.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  RigidbodyComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\RigidbodyComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  Scene.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Scene.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  SceneManager.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\SceneManager.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  SpriteComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\SpriteComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  TextComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\TextComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  TextObject.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\TextObject.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  Texture2D.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Texture2D.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  TextureComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\TextureComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory
+  TransformComponent.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\TransformComponent.cpp(1,10): fatal error C1083: Cannot open precompiled header file: 'x64\Release\Minigin.pch': No such file or directory

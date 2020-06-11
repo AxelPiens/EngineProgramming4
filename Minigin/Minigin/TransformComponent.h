@@ -11,6 +11,7 @@ public:
 	TransformComponent& operator=(TransformComponent&& other) noexcept = delete;
 	TransformComponent(float speed);
 	TransformComponent(int width, int height, float speed);
+	void Translate(dae::Vector3 vec);
 	void Translate(float x, float y, float z);
 	void Move(float x, float y, float z);
 	void Rotate(float x, float y, float z);

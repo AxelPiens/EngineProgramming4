@@ -5,6 +5,7 @@
 
 namespace dae
 {
+	class GameObject;
 	struct Vector3;
 	enum class ControllerButton
 	{
@@ -17,13 +18,15 @@ namespace dae
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
-		bool ProcessInput(dae::Vector3& vec);
+		bool ProcessInput(GameObject* object);
 		bool IsPressed(ControllerButton button) const;
 		bool IsQuitting() const { return m_Quit; };
 	private:
 		XINPUT_STATE m_CurrentState{};
 
 		bool m_Quit = false;
+		bool m_CanShoot = true;//change
+		int m_Number = 0;//change
 	};
 
 }

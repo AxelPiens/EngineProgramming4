@@ -10,7 +10,8 @@ namespace dae
 		void Update(float deltaTime) override;
 		void Render() const override;
 
-		GameObject() = default;
+		GameObject(const std::string& name)
+			: m_Name{ name } {};
 		virtual ~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -19,7 +20,7 @@ namespace dae
 
 		void AddComponent(BaseComponent* pComp);
 		void RemoveComponent(BaseComponent* pComp);
-
+		std::string GetName() { return m_Name; };
 		template <class T>
 		bool HasComponent()
 		{
@@ -55,6 +56,6 @@ namespace dae
 
 	private:
 		std::vector<BaseComponent*> m_pComponents;
-
+		std::string m_Name;
 	};
 }

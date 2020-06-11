@@ -16,7 +16,7 @@ void Parser::ReadFile(std::string path, int level)
     }
     std::cout << "reading file\n";
 
-    file.seekg(level * (100.f));
+    file.seekg(std::streamoff(level * (100)));
 
     for (int l = level; l < level+1; l++)
     {

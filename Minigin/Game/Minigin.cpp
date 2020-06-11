@@ -20,6 +20,7 @@
 #include "RigidbodyComponent.h"
 #include "Parser.h"
 #include "ProjectileComponent.h"
+#include "EnemyAIComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -52,40 +53,25 @@ void dae::Minigin::Initialize()
  */
 void dae::Minigin::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	auto& scene = SceneManager::GetInstance().CreateScene("Game");
 
-	auto go = std::make_shared<GameObject>();
+	auto go = std::make_shared<GameObject>("background");
 	go->AddComponent(new TextureComponent("background.jpg"));
 	go->AddComponent(new TransformComponent(5));
 	go->GetComponent<TransformComponent>()->Translate(0, 0, 0);
 	scene.AddGameobject(go);
 
-	go = std::make_shared<GameObject>();
+	//player
+	go = std::make_shared<GameObject>("player");
 	go->AddComponent(new SpriteComponent("sprites0SMALL.png", 32, 32, 0, 0, 8, 250, true));
-	go->AddComponent(new TransformComponent(32, 32, 200));
+	go->AddComponent(new TransformComponent(30, 32, 200));
 	go->GetComponent<TransformComponent>()->Translate(200, 180, 0);
 	go->AddComponent(new ColliderComponent("player"));
 	go->AddComponent(new ControlComponent());
-	go->AddComponent(new RigidbodyComponent(1.0f, 50.0f));
+	go->AddComponent(new RigidbodyComponent(1.0f, 50.0f, -150.f, 75.0f));
 	scene.AddGameobject(go);
 
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	auto to = std::make_shared<GameObject>();
-	to->AddComponent(new TextComponent());
-	to->GetComponent<TextComponent>()->SetFont(font);
-	to->GetComponent<TextComponent>()->SetPosition(10, 10);
-
-	scene.AddGameobject(to);
-
-
-	auto to2 = std::make_shared<GameObject>();
-	to2->AddComponent(new TextComponent());
-	to2->GetComponent<TextComponent>()->SetFont(font);
-	to2->GetComponent<TextComponent>()->SetText("PFF");
-	to2->GetComponent<TextComponent>()->SetPosition(300, 10);
-
-	scene.AddGameobject(to2);
-
+	//level
 	Parser parser{};
 	int levelNr = 2;
 
@@ -103,9 +89,9 @@ void dae::Minigin::LoadGame() const
 		}
 		if (levelData[i] == 1)
 		{
-			auto brick = std::make_shared<GameObject>();
+			auto brick = std::make_shared<GameObject>("level" + std::to_string(i));
 			brick->AddComponent(new TransformComponent(8, 8, 0));
-			brick->GetComponent<TransformComponent>()->Translate(16 * moduloX, posY, 0);
+			brick->GetComponent<TransformComponent>()->Translate(16.f * moduloX, float(posY), 0.f);
 			brick->AddComponent(new SpriteComponent("blocks.png", 16, 16, ((levelNr) / 10) * 8, ((levelNr) % 10) * 8, 1, 1, false));
 			brick->AddComponent(new ColliderComponent("level"));
 			scene.AddGameobject(brick);
@@ -114,14 +100,23 @@ void dae::Minigin::LoadGame() const
 
 	}
 
-	auto projectile = std::make_shared<GameObject>();
-	projectile->AddComponent(new TransformComponent(16, 16, 100));
-	projectile->GetComponent<TransformComponent>()->Translate(100, 400, 0);
-	projectile->AddComponent(new SpriteComponent("sprites1SMALL.png", 32, 32, 16*12, 0, 8, 50, true));
-	projectile->AddComponent(new ProjectileComponent(200, 1));
-	scene.AddGameobject(projectile);
+	//enemy
+	auto enemy = std::make_shared<GameObject>("enemy");
+	enemy->AddComponent(new TransformComponent(16, 16, 0));
+	enemy->GetComponent<TransformComponent>()->Translate( 50, 350, 0);
+	enemy->AddComponent(new EnemyAIComponent(50));
+	enemy->AddComponent(new SpriteComponent("sprites0SMALL.png", 32, 32, 4 * 16, 0, 8, 150, true));
+	enemy->AddComponent(new ColliderComponent("enemy"));
+	enemy->AddComponent(new RigidbodyComponent(0, 0, 0, 0));
+	scene.AddGameobject(enemy);
 
+	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	auto to = std::make_shared<GameObject>("FPS");
+	to->AddComponent(new TextComponent());
+	to->GetComponent<TextComponent>()->SetFont(font);
+	to->GetComponent<TextComponent>()->SetPosition(10, 10);
 
+	scene.AddGameobject(to);
 }
 
 void dae::Minigin::Cleanup()
@@ -157,6 +152,7 @@ void dae::Minigin::Run()
 			lastTime = currentTime;
 			doContinue = !input.IsQuitting();
 			sceneManager.Update(deltaTime);
+			auto scene = sceneManager.GetScene("Game");
 			renderer.Render();
 		}
 	}

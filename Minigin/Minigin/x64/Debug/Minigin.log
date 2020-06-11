@@ -1,22 +1,4 @@
-﻿  BaseComponent.cpp
-  ColliderComponent.cpp
-  Collision.cpp
-  ControlComponent.cpp
-  Font.cpp
-  GameObject.cpp
-  InputManager.cpp
-  MiniginPCH.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  RigidbodyComponent.cpp
-  Scene.cpp
-  SceneManager.cpp
-  SpriteComponent.cpp
-  TextComponent.cpp
-  TextObject.cpp
-  Texture2D.cpp
-  TextureComponent.cpp
-  TransformComponent.cpp
+﻿  InputManager.cpp
   Minigin.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\x64\Debug\Minigin.lib
   C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

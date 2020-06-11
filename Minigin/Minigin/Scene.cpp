@@ -6,6 +6,7 @@
 #include "ColliderComponent.h"
 #include "TransformComponent.h"
 #include "RigidbodyComponent.h"
+#include "..\Game\EnemyAIComponent.h" 
 #include <SDL.h>
 using namespace dae;
 
@@ -18,11 +19,33 @@ Scene::~Scene() = default;
 void Scene::AddGameobject(const std::shared_ptr<GameObject>& object)
 {
 	m_Objects.push_back(object);
+	if(object->GetName() == "FPS")
+		m_FPSObject = object;
 	if (object->HasComponent<ColliderComponent>())
 	{
-		if(object->GetComponent<ColliderComponent>()->GetTag() != "player")
+		if(object->GetComponent<ColliderComponent>()->GetTag() != "player" && object->GetComponent<ColliderComponent>()->GetTag() != "enemy")
 			m_Colliders.push_back(object->GetComponent<ColliderComponent>());
+		else
+			m_PlayerEnemyColliders.push_back(object);
 	}
+}
+
+void dae::Scene::RemoveGameObject(const std::string& name)
+{
+	for (std::shared_ptr<GameObject> obj : m_Objects)
+	{
+		if (obj)
+		{
+			if (obj->GetName() == name)
+			{
+				auto iterator = std::find(m_Objects.begin(), m_Objects.end(), obj);
+				m_Objects.erase(iterator);
+				obj = nullptr;
+
+			}
+		}
+	}
+
 }
 
 
@@ -42,50 +65,54 @@ void Scene::Update(float deltaTime)
 
 	for (auto coll : m_Colliders)
 	{
-		m_Objects[1]->GetComponent<ColliderComponent>()->GetTag();
-		if (m_Objects[1]->GetComponent<TransformComponent>()->GetVelocity().y >= 0)
+		for (auto moveColl : m_PlayerEnemyColliders)
 		{
-			if (Collision::AABB(m_Objects[1]->GetComponent<ColliderComponent>()->GetCollider(), coll->GetCollider())) //player colliding with something
+			moveColl->GetComponent<ColliderComponent>()->GetTag();
+			if (moveColl->GetComponent<TransformComponent>()->GetVelocity().y >= 0)
 			{
-				if (!m_Objects[1]->GetComponent<RigidbodyComponent>()->GetIsJumping())
+				if (Collision::AABB(moveColl->GetComponent<ColliderComponent>()->GetCollider(), coll->GetCollider())) //player colliding with something
 				{
+					if (!moveColl->GetComponent<RigidbodyComponent>()->GetIsJumping())
+					{
 
-					dae::Vector3 pos = m_Objects[1]->GetComponent<TransformComponent>()->GetPosition();
-					m_Objects[3]->GetComponent<TextComponent>()->SetText(std::to_string(int(m_Objects[1]->GetComponent<TransformComponent>()->GetVelocity().x)));
-					if (coll->GetCollider().y <= int(pos.y) + 2 && coll->GetCollider().y >= int(pos.y) - 2)
-					{
-						//m_Objects[3]->GetComponent<TextComponent>()->SetText("HIT");
-						if (coll->GetCollider().x - pos.x < 0 && m_Objects[1]->GetComponent<TransformComponent>()->GetVelocity().x < 0)
+						dae::Vector3 pos = moveColl->GetComponent<TransformComponent>()->GetPosition();
+						if (coll->GetCollider().y <= int(pos.y) + 2 && coll->GetCollider().y >= int(pos.y) - 2)
 						{
-							m_Objects[1]->GetComponent<TransformComponent>()->SetVelocityX(0);
+							if (coll->GetCollider().x - pos.x < 0 && moveColl->GetComponent<TransformComponent>()->GetVelocity().x < 0)
+							{
+								if (moveColl->HasComponent<EnemyAIComponent>())
+									moveColl->GetComponent < EnemyAIComponent>()->SetSpeedDirection(-1);
+								else
+									moveColl->GetComponent<TransformComponent>()->SetVelocityX(0);
+
+							}
+							else if (coll->GetCollider().x - pos.x > 0 && moveColl->GetComponent<TransformComponent>()->GetVelocity().x > 0)
+							{
+								if (moveColl->HasComponent<EnemyAIComponent>())
+									moveColl->GetComponent < EnemyAIComponent>()->SetSpeedDirection(-1);
+								else
+									moveColl->GetComponent<TransformComponent>()->SetVelocityX(0);
+							}
 						}
-						else if(coll->GetCollider().x - pos.x > 0 && m_Objects[1]->GetComponent<TransformComponent>()->GetVelocity().x > 0)
+						else
 						{
-							m_Objects[1]->GetComponent<TransformComponent>()->SetVelocityX(0);
+							moveColl->GetComponent<TransformComponent>()->SetVelocityY(0);
 						}
 					}
-					else
-					{
-						m_Objects[1]->GetComponent<TransformComponent>()->SetVelocityY(0);
-					}
+					onGround = true;
+					moveColl->GetComponent<RigidbodyComponent>()->SetIsJumping(false);
 				}
-				onGround = true;
-				m_Objects[1]->GetComponent<RigidbodyComponent>()->SetIsJumping(false);
-				break;
-			}
-			else
-			{
-				//m_Objects[3]->GetComponent<TextComponent>()->SetText("pff");
 			}
 		}
 	}
 	m_Objects[1]->GetComponent<RigidbodyComponent>()->SetOnGround(onGround);
 
-
-	m_Objects[2]->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));
+	if(m_FPSObject)
+		m_FPSObject->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));
 	for(auto& object : m_Objects)
 	{
-		object->Update(deltaTime);
+		if(object)
+			object->Update(deltaTime);
 	}
 
 }

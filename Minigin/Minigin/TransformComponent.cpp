@@ -24,6 +24,11 @@ TransformComponent::TransformComponent(int width, int height, float speed)
 {
 }
 
+void TransformComponent::Translate(dae::Vector3 vec)
+{
+	Translate(vec.x, vec.y, vec.z);
+}
+
 
 void TransformComponent::Translate(float x, float y, float z)
 {
@@ -56,8 +61,8 @@ void TransformComponent::Scale(float x, float y, float z)
 void TransformComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-	m_Position.x += m_Velocity.x * m_Speed * deltaTime;
-	m_Position.y += m_Velocity.y * m_Speed * deltaTime;
+	m_Position.x += m_Velocity.x * deltaTime;
+	m_Position.y += m_Velocity.y * deltaTime;
 
 }
 

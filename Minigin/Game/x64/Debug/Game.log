@@ -1,5 +1,3 @@
 ﻿  Minigin.cpp
-C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(108,71): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(108,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   ProjectileComponent.cpp
   Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\x64\Debug\Game.exe
