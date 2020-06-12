@@ -1,0 +1,19 @@
+﻿  EnemyAIComponent.cpp
+  Game.cpp
+  Main.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.h(19,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Minigin.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.h(19,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(164,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Parser.cpp
+  ProjectileComponent.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 808 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Release\Game.exe
+  0 File(s) copied
+  Parse Error
+  File not found - *.dll
+  0 File(s) copied
+  0 File(s) copied

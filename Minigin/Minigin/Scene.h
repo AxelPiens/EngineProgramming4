@@ -12,20 +12,27 @@ namespace dae
 		void AddGameobject(const std::shared_ptr<GameObject>& object);
 		void RemoveGameObject(const std::string& name);
 		void Update(float deltaTime);
+		std::vector < std::shared_ptr<GameObject>>& GetTriggers() { return m_Triggers; };
+		std::vector < ColliderComponent*>& GetColliders() { return m_Colliders; };
+		std::vector < std::shared_ptr<GameObject>>& GetPlayerEnemyColliders() { return m_PlayerEnemyColliders; };
 		void Render() const;
 		const std::string& GetName() const { return m_Name; };
+
 		~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
-
+		std::vector<std::shared_ptr<GameObject>> GetPlayers() { return m_Players; };
 	private: 
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
+		std::vector<std::shared_ptr<GameObject>> m_Players;
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};
 		std::vector < std::shared_ptr<GameObject>> m_PlayerEnemyColliders;
+		std::vector < std::shared_ptr<GameObject>> m_Triggers{};
+
 		std::vector < ColliderComponent*> m_Colliders;
 		static unsigned int m_IdCounter;
 		float m_FpsTimer = 0.0f;

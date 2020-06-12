@@ -12,10 +12,11 @@ public:
 	ColliderComponent& operator=(const ColliderComponent& other) = delete;
 	ColliderComponent& operator=(ColliderComponent&& other) noexcept = delete;
 
-	ColliderComponent(std::string tag);
+	ColliderComponent(std::string tag, bool isTrigger);
 	~ColliderComponent();
 	const std::string& GetTag()const { return m_Tag; };
 	const SDL_Rect& GetCollider() const { return m_Collider; };
+	bool GetIsTrigger() const { return m_IsTrigger; };
 
 protected:
 	void Update(float deltaTime) override;
@@ -23,5 +24,6 @@ protected:
 private:
 	SDL_Rect m_Collider;
 	std::string m_Tag;
+	bool m_IsTrigger = false;
 };
 

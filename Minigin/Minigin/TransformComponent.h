@@ -28,7 +28,7 @@ public:
 	const dae::Vector3& GetForward() const { return m_Forward; }
 	const dae::Vector3& GetUp() const { return m_Up; }
 	const dae::Vector3& GetRight() const { return m_Right; }
-	
+	int GetDirection() const { return m_Direction; };
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;
@@ -45,5 +45,6 @@ private:
 	int m_Width = 0;
 	float m_Speed = 5;
 	dae::Vector3 m_Velocity;
+	int m_Direction = 1;
 };
 

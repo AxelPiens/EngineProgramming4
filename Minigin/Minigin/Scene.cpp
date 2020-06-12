@@ -1,12 +1,10 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
-#include "TextComponent.h"
 #include "Collision.h"
-#include "ColliderComponent.h"
-#include "TransformComponent.h"
-#include "RigidbodyComponent.h"
+#include "Components.h"
 #include "..\Game\EnemyAIComponent.h" 
+#include "..\Game\ProjectileComponent.h"
 #include <SDL.h>
 using namespace dae;
 
@@ -24,9 +22,19 @@ void Scene::AddGameobject(const std::shared_ptr<GameObject>& object)
 	if (object->HasComponent<ColliderComponent>())
 	{
 		if(object->GetComponent<ColliderComponent>()->GetTag() != "player" && object->GetComponent<ColliderComponent>()->GetTag() != "enemy")
-			m_Colliders.push_back(object->GetComponent<ColliderComponent>());
+		{
+			if (object->GetComponent<ColliderComponent>()->GetIsTrigger())
+				m_Triggers.push_back(object);
+			else
+				m_Colliders.push_back(object->GetComponent<ColliderComponent>());
+
+		}
 		else
+		{
 			m_PlayerEnemyColliders.push_back(object);
+			if (object->GetComponent<ColliderComponent>()->GetTag() == "player")
+				m_Players.push_back(object);
+		}
 	}
 }
 
@@ -39,7 +47,14 @@ void dae::Scene::RemoveGameObject(const std::string& name)
 			if (obj->GetName() == name)
 			{
 				auto iterator = std::find(m_Objects.begin(), m_Objects.end(), obj);
-				m_Objects.erase(iterator);
+				if(iterator != m_Objects.end())
+					m_Objects.erase(iterator);
+				iterator = std::find(m_Triggers.begin(), m_Triggers.end(), obj);
+				if (iterator != m_Triggers.end())
+					m_Triggers.erase(iterator);
+				iterator = std::find(m_PlayerEnemyColliders.begin(), m_PlayerEnemyColliders.end(), obj);
+				if (iterator != m_PlayerEnemyColliders.end())
+					m_PlayerEnemyColliders.erase(iterator);
 				obj = nullptr;
 
 			}
@@ -59,53 +74,6 @@ void Scene::Update(float deltaTime)
 		m_FPSCount = 0;
 		m_FpsTimer -= 1.0f;
 	}
-
-	//Collision::AABB()
-	bool onGround = false;
-
-	for (auto coll : m_Colliders)
-	{
-		for (auto moveColl : m_PlayerEnemyColliders)
-		{
-			moveColl->GetComponent<ColliderComponent>()->GetTag();
-			if (moveColl->GetComponent<TransformComponent>()->GetVelocity().y >= 0)
-			{
-				if (Collision::AABB(moveColl->GetComponent<ColliderComponent>()->GetCollider(), coll->GetCollider())) //player colliding with something
-				{
-					if (!moveColl->GetComponent<RigidbodyComponent>()->GetIsJumping())
-					{
-
-						dae::Vector3 pos = moveColl->GetComponent<TransformComponent>()->GetPosition();
-						if (coll->GetCollider().y <= int(pos.y) + 2 && coll->GetCollider().y >= int(pos.y) - 2)
-						{
-							if (coll->GetCollider().x - pos.x < 0 && moveColl->GetComponent<TransformComponent>()->GetVelocity().x < 0)
-							{
-								if (moveColl->HasComponent<EnemyAIComponent>())
-									moveColl->GetComponent < EnemyAIComponent>()->SetSpeedDirection(-1);
-								else
-									moveColl->GetComponent<TransformComponent>()->SetVelocityX(0);
-
-							}
-							else if (coll->GetCollider().x - pos.x > 0 && moveColl->GetComponent<TransformComponent>()->GetVelocity().x > 0)
-							{
-								if (moveColl->HasComponent<EnemyAIComponent>())
-									moveColl->GetComponent < EnemyAIComponent>()->SetSpeedDirection(-1);
-								else
-									moveColl->GetComponent<TransformComponent>()->SetVelocityX(0);
-							}
-						}
-						else
-						{
-							moveColl->GetComponent<TransformComponent>()->SetVelocityY(0);
-						}
-					}
-					onGround = true;
-					moveColl->GetComponent<RigidbodyComponent>()->SetIsJumping(false);
-				}
-			}
-		}
-	}
-	m_Objects[1]->GetComponent<RigidbodyComponent>()->SetOnGround(onGround);
 
 	if(m_FPSObject)
 		m_FPSObject->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));

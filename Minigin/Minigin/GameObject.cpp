@@ -46,9 +46,13 @@ void dae::GameObject::RemoveComponent(BaseComponent* pComp)
 void dae::GameObject::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-	for(BaseComponent* pComp : m_pComponents)
+	if (m_pComponents.size() != 0)
 	{
-		pComp->Update(deltaTime);
+		for (BaseComponent* pComp : m_pComponents)
+		{
+			if (m_pComponents.size() != 0)
+				pComp->Update(deltaTime);
+		}
 	}
 }
 

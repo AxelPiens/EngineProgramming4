@@ -14,6 +14,7 @@ public:
 
 	SpriteComponent(const std::string path, int width, int height, int bottom, int left, int nrFrames, int delay, bool animated);
 	~SpriteComponent() = default;
+
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;

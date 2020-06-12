@@ -6,8 +6,6 @@ EnemyAIComponent::EnemyAIComponent(float speed)
 	:m_Speed{speed},
 	m_OldPos{0,0,0}
 {
-
-
 }
 
 void EnemyAIComponent::Update(float deltaTime)
