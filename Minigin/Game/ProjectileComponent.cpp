@@ -10,6 +10,8 @@ ProjectileComponent::ProjectileComponent(float range, float speed, float liveTim
 	, m_DistanceTraveled{0}
 	, m_DeathTime{liveTime}
 	, m_Direction{direction}
+	, m_ElapsedTime{0.0f}
+	, m_Number{0}
 {
 }
 

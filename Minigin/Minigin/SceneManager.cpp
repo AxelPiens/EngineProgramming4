@@ -33,3 +33,16 @@ dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 	m_Scenes.push_back(scene);
 	return *scene;
 }
+
+void dae::SceneManager::RemoveScene(const std::string& name)
+{
+	for (auto scene : m_Scenes)
+	{
+		if (scene->GetName() == name)
+		{
+			auto iterator = std::find(m_Scenes.begin(), m_Scenes.end(), scene);
+			if (iterator != m_Scenes.end())
+				m_Scenes.erase(iterator);
+		}
+	}
+}

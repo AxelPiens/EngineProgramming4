@@ -16,7 +16,7 @@ public:
 	bool GetOnGround() const { return m_OnGround; };
 	void SetIsJumping(bool isJumping) { m_IsJumping = isJumping; };
 	bool GetIsJumping() const { return m_IsJumping; };
-	void Jump();
+	bool Jump();
 	void Walk(float velX);
 protected:
 	void Update(float deltaTime) override;

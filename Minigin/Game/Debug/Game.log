@@ -1,3 +1,5 @@
 ﻿  EnemyAIComponent.cpp
-     Creating library C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Debug\Game.lib and object C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Debug\Game.exp
-  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Debug\Game.exe
+  Main.cpp
+  Minigin.cpp
+  ProjectileComponent.cpp
+LINK : fatal error LNK1104: cannot open file 'SDL2_mixer.obj'

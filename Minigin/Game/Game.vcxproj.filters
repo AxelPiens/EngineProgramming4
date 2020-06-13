@@ -39,6 +39,12 @@
     <ClCompile Include="EnemyAIComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="TrappedBubbleComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LiveComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -55,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="EnemyAIComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TrappedBubbleComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LiveComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

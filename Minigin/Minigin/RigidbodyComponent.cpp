@@ -9,13 +9,16 @@ RigidbodyComponent::RigidbodyComponent(float accelGrav, float maxGrav, float jum
 {
 }
 
-void RigidbodyComponent::Jump()
+bool RigidbodyComponent::Jump()
 {
 	if (!m_IsJumping)
 	{
 		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_JumpForce);
+		m_OnGround = false;
 		m_IsJumping = true;
+		return true;
 	}
+	return false;
 }
 
 void RigidbodyComponent::Walk(float velX)

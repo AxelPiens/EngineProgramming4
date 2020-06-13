@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "EnemyAIComponent.h"
 #include "TransformComponent.h"
+#include "RigidbodyComponent.h"
 
 EnemyAIComponent::EnemyAIComponent(float speed)
 	:m_Speed{speed},
@@ -10,7 +11,11 @@ EnemyAIComponent::EnemyAIComponent(float speed)
 
 void EnemyAIComponent::Update(float deltaTime)
 {
-	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
+	if(m_pGameObject->GetComponent<RigidbodyComponent>()->GetOnGround())
+		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
+	else
+		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed/6);
+
 }
 
 void EnemyAIComponent::Render()

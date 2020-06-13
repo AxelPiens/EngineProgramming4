@@ -12,9 +12,8 @@ public:
 	SpriteComponent& operator=(const SpriteComponent& other) = delete;
 	SpriteComponent& operator=(SpriteComponent&& other) noexcept = delete;
 
-	SpriteComponent(const std::string path, int width, int height, int bottom, int left, int nrFrames, int delay, bool animated);
+	SpriteComponent(const std::string& path, int width, int height, int bottom, int left, int nrFrames, int delay, bool animated);
 	~SpriteComponent() = default;
-
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;
@@ -27,5 +26,6 @@ private:
 	int m_Frames = 0;
 	int m_Delay = 100; //delay between frames in ms
 	bool m_IsAnimated = false;
+	void CheckState();
 };
 

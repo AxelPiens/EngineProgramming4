@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "InputManager.h"
 #include "RigidbodyComponent.h"
+#include "Command.h"
 ControlComponent::ControlComponent()
 {
 }
@@ -14,16 +15,17 @@ void ControlComponent::Update(float deltaTime)
 	dae::Vector3 velocity;
 
 	auto& input = dae::InputManager::GetInstance();
-	input.ProcessInput(m_pGameObject);
-
-	//if (m_pGameObject->GetComponent<RigidbodyComponent>()->GetOnGround() == false)
-	//	velocity.y = 0;
-	//else if (velocity.y < 0)
-	//{
-	//	m_pGameObject->GetComponent<RigidbodyComponent>()->SetIsJumping(true);
-	//	velocity.y *= 50;
-	//}
-	//m_pGameObject->GetComponent<TransformComponent>()->SetVelocity(velocity);
+	//input.ProcessInput(m_pGameObject);
+	bool isReleased = false;
+	dae::Command* pCommand = input.ProcessInput(isReleased);
+	if (!isReleased)
+	{
+		if (pCommand)
+			pCommand->Execute(m_pGameObject);
+	}
+	else
+		if (pCommand)
+			pCommand->Dexecute(m_pGameObject);
 }
 
 void ControlComponent::Render()

@@ -56,7 +56,6 @@ void dae::Scene::RemoveGameObject(const std::string& name)
 				if (iterator != m_PlayerEnemyColliders.end())
 					m_PlayerEnemyColliders.erase(iterator);
 				obj = nullptr;
-
 			}
 		}
 	}
