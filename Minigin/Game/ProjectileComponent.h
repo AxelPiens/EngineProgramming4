@@ -7,7 +7,7 @@ public:
 	ProjectileComponent(ProjectileComponent&& other) noexcept = delete;
 	ProjectileComponent& operator=(const ProjectileComponent& other) = delete;
 	ProjectileComponent& operator=(ProjectileComponent&& other) noexcept = delete;
-	ProjectileComponent(float range, float speed, float liveTime, int direction);
+	ProjectileComponent(float range, float speed, float liveTime, int direction, bool goingUp);
 	void SetNumber(int number) { m_Number = number; };
 	int GetNumber() { return m_Number; };
 protected:
@@ -21,5 +21,6 @@ private:
 	float m_DeathTime;
 	int m_Number;
 	int m_Direction;
+	bool m_IsGoingUp;
 };
 

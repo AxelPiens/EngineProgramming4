@@ -1,8 +1,8 @@
 #pragma once
 #include "Command.h"
-namespace dae
+namespace engine
 {
-	class WalkLeftCommand : public dae::Command
+	class WalkLeftCommand : public Command
 	{
 	public:
 		WalkLeftCommand() = default;

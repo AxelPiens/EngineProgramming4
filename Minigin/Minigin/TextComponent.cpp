@@ -6,18 +6,18 @@
 #include "Font.h"
 #include "Texture2D.h"
 
-dae::TextComponent::TextComponent()
+TextComponent::TextComponent()
 	:m_NeedsUpdate{false}
 {
 }
 
-void dae::TextComponent::SetText(const std::string& text)
+void TextComponent::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetPosition(float x, float y)
+void TextComponent::SetPosition(float x, float y)
 {
 	m_Position.x = x;
 	m_Position.y = y;
@@ -25,13 +25,13 @@ void dae::TextComponent::SetPosition(float x, float y)
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetFont(const std::shared_ptr<Font>& font)
+void TextComponent::SetFont(const std::shared_ptr<Font>& font)
 {
 	m_Font = font;
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::Render()
+void TextComponent::Render()
 {
 	if (m_Texture != nullptr)
 	{
@@ -41,7 +41,7 @@ void dae::TextComponent::Render()
 }
 
 
-void dae::TextComponent::Update(float deltaTime)
+void TextComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 	if (m_NeedsUpdate)

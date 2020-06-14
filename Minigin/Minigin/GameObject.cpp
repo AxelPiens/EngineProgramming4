@@ -6,7 +6,7 @@
 #include "TextComponent.h"
 #include "TransformComponent.h"
 
-dae::GameObject::~GameObject()
+engine::GameObject::~GameObject()
 {
 	for (BaseComponent* pComp : m_pComponents)
 	{
@@ -15,7 +15,7 @@ dae::GameObject::~GameObject()
 	}
 }
 
-void dae::GameObject::AddComponent(BaseComponent * pComp)
+void engine::GameObject::AddComponent(BaseComponent *pComp)
 {
 	//check if already in gameobject
 	for (auto* component : m_pComponents)
@@ -26,10 +26,11 @@ void dae::GameObject::AddComponent(BaseComponent * pComp)
 		}
 	}
 	m_pComponents.push_back(pComp);
+
 	pComp->m_pGameObject = this;
 }
 
-void dae::GameObject::RemoveComponent(BaseComponent* pComp)
+void engine::GameObject::RemoveComponent(BaseComponent* pComp)
 {
 	auto it = find(m_pComponents.begin(), m_pComponents.end(), pComp);
 
@@ -43,7 +44,7 @@ void dae::GameObject::RemoveComponent(BaseComponent* pComp)
 
 }
 
-void dae::GameObject::Update(float deltaTime)
+void engine::GameObject::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
 	if (m_pComponents.size() != 0)
@@ -56,7 +57,7 @@ void dae::GameObject::Update(float deltaTime)
 	}
 }
 
-void dae::GameObject::Render() const
+void engine::GameObject::Render() const
 {
 	for (BaseComponent* pComp : m_pComponents)
 	{

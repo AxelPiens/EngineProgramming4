@@ -1,9 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
 #include "Vector3.h"
-
-namespace dae
-{
 	class Font;
 	class Texture2D;
 	class TextComponent : public BaseComponent
@@ -24,9 +21,8 @@ namespace dae
 	private:
 		bool m_NeedsUpdate;
 		std::string m_Text;
-		Vector3 m_Position;
+		engine::Vector3 m_Position;
 		std::shared_ptr<Font> m_Font;
 		std::shared_ptr<Texture2D> m_Texture;
 	};
-}
 

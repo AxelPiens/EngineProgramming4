@@ -4,7 +4,7 @@
 //recB is platforms
 //recA is player
 
-bool Collision::AABB(const SDL_Rect& recA, const SDL_Rect& recB)
+bool engine::Collision::AABB(const SDL_Rect& recA, const SDL_Rect& recB)
 {
 	//left check of platform
 	if (recA.x + recA.w >= recB.x &&
@@ -17,7 +17,7 @@ bool Collision::AABB(const SDL_Rect& recA, const SDL_Rect& recB)
 	return false;
 }
 
-bool Collision::AABB(const ColliderComponent& colA, const ColliderComponent& colB)
+bool engine::Collision::AABB(const ColliderComponent& colA, const ColliderComponent& colB)
 {
 
 	if (AABB(colA.GetCollider(), colB.GetCollider()))

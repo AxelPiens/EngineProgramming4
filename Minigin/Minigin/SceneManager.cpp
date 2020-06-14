@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-void dae::SceneManager::Update(float deltaTime)
+void engine::SceneManager::Update(float deltaTime)
 {
 	for(auto& scene : m_Scenes)
 	{
@@ -10,14 +10,14 @@ void dae::SceneManager::Update(float deltaTime)
 	}
 }
 
-void dae::SceneManager::Render()
+void engine::SceneManager::Render()
 {
 	for (const auto& scene : m_Scenes)
 	{
 		scene->Render();
 	}
 }
-std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(const std::string& name)
+std::shared_ptr<engine::Scene> engine::SceneManager::GetScene(const std::string& name)
 {
 	for (auto scene : m_Scenes)
 	{
@@ -27,14 +27,14 @@ std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(const std::string& name)
 	return nullptr;
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+engine::Scene& engine::SceneManager::CreateScene(const std::string& name)
 {
 	const auto scene = std::shared_ptr<Scene>(new Scene(name));
 	m_Scenes.push_back(scene);
 	return *scene;
 }
 
-void dae::SceneManager::RemoveScene(const std::string& name)
+void engine::SceneManager::RemoveScene(const std::string& name)
 {
 	for (auto scene : m_Scenes)
 	{

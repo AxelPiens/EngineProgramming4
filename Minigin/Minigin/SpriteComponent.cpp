@@ -21,7 +21,7 @@ SpriteComponent::SpriteComponent(const std::string& path, int width, int height,
 	m_SrcRect.y = bottom;
 	m_SrcRect.w = m_Width/2;
 	m_SrcRect.h = m_Height/2;
-	m_Texture = dae::ResourceManager::GetInstance().LoadTexture(path);
+	m_Texture = engine::ResourceManager::GetInstance().LoadTexture(path);
 }
 
 void SpriteComponent::Update(float deltaTime)
@@ -49,50 +49,50 @@ void SpriteComponent::Update(float deltaTime)
 
 void SpriteComponent::Render()
 {
-	dae::Renderer::GetInstance().RenderTexture(*m_Texture, m_SrcRect , m_DestRect);
+	Renderer::GetInstance().RenderTexture(*m_Texture, m_SrcRect , m_DestRect);
 
 	//dae::Renderer::GetInstance().RenderTexture(*m_Texture, static_cast<float>(m_DestRect.x) , static_cast<float>(m_DestRect.y));
 }
 
 void SpriteComponent::CheckState()
 {
-	dae::PlayerStates playerState = m_pGameObject->GetPlayerState();
-	dae::EnemyStates enemyState = m_pGameObject->GetEnemyState();
+	engine::PlayerStates playerState = m_pGameObject->GetPlayerState();
+	engine::EnemyStates enemyState = m_pGameObject->GetEnemyState();
 
-	if (playerState != dae::PlayerStates::Nothing)
+	if (playerState != engine::PlayerStates::Nothing)
 	{
-		if (playerState == dae::PlayerStates::Idle)
+		if (playerState == engine::PlayerStates::Idle)
 		{
 			if (m_pGameObject->GetComponent<TransformComponent>()->GetDirection() > 0)
 				m_SrcRect.y = 560;
 			else
 				m_SrcRect.y = 576;
 		}
-		else if (playerState == dae::PlayerStates::WalkRight)
+		else if (playerState == engine::PlayerStates::WalkRight)
 			m_SrcRect.y = 0;
-		else if (playerState == dae::PlayerStates::WalkLeft)
+		else if (playerState == engine::PlayerStates::WalkLeft)
 			m_SrcRect.y = 16;
-		else if (playerState == dae::PlayerStates::ShootRight)
+		else if (playerState == engine::PlayerStates::ShootRight)
 			m_SrcRect.y = 320;
-		else if (playerState == dae::PlayerStates::ShootLeft)
+		else if (playerState == engine::PlayerStates::ShootLeft)
 			m_SrcRect.y = 352;
-		else if (playerState == dae::PlayerStates::Death)
+		else if (playerState == engine::PlayerStates::Death)
 			m_SrcRect.y = 544;
 	}
-	else if (enemyState != dae::EnemyStates::Nothing)
+	else if (enemyState != engine::EnemyStates::Nothing)
 	{
-		if (m_pGameObject->GetEnemyType() == dae::EnemyType::ZenChan)
+		if (m_pGameObject->GetEnemyType() == engine::EnemyType::ZenChan)
 		{
-			if (enemyState == dae::EnemyStates::WalkRight)
+			if (enemyState == engine::EnemyStates::WalkRight)
 				m_SrcRect.y = 64;
-			else if (enemyState == dae::EnemyStates::WalkLeft)
+			else if (enemyState == engine::EnemyStates::WalkLeft)
 				m_SrcRect.y = 80;
 		}
-		else if (m_pGameObject->GetEnemyType() == dae::EnemyType::Mighta)
+		else if (m_pGameObject->GetEnemyType() == engine::EnemyType::Mighta)
 		{
-			if (enemyState == dae::EnemyStates::WalkRight)
+			if (enemyState == engine::EnemyStates::WalkRight)
 				m_SrcRect.y = 240;
-			else if (enemyState == dae::EnemyStates::WalkLeft)
+			else if (enemyState == engine::EnemyStates::WalkLeft)
 				m_SrcRect.y = 256;
 		}
 	}

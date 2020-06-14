@@ -24,7 +24,7 @@ TransformComponent::TransformComponent(int width, int height, float speed)
 {
 }
 
-void TransformComponent::Translate(dae::Vector3 vec)
+void TransformComponent::Translate(engine::Vector3 vec)
 {
 	Translate(vec.x, vec.y, vec.z);
 }
@@ -60,7 +60,7 @@ void TransformComponent::Scale(float x, float y, float z)
 
 void TransformComponent::Update(float deltaTime)
 {
-	if (m_pGameObject->GetPlayerState() != dae::PlayerStates::Death)
+	if (m_pGameObject->GetPlayerState() != engine::PlayerStates::Death)
 	{
 		if (m_Velocity.x < 0)
 			m_Direction = -1;

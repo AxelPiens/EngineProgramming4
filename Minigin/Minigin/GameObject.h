@@ -2,7 +2,7 @@
 #include "SceneObject.h"
 class BaseComponent;
 
-namespace dae
+namespace engine
 {
 
 	enum class PlayerStates
@@ -29,6 +29,12 @@ namespace dae
 		Mighta,
 		Nothing
 	};
+	enum class FoodType
+	{
+		Melon,
+		Fries,
+		Nothing
+	};
 
 	class GameObject : public SceneObject 
 	{
@@ -36,11 +42,12 @@ namespace dae
 		void Update(float deltaTime) override;
 		void Render() const override;
 
-		GameObject(const std::string& name, PlayerStates playerState, EnemyStates enemyState, EnemyType type)
+		GameObject(const std::string& name, PlayerStates playerState, EnemyStates enemyState, EnemyType type, FoodType foodType)
 			: m_Name{ name },
 			  m_EnemyState{enemyState},
 			  m_PlayerState{playerState},
-			  m_EnemyType{ type }{};
+			  m_EnemyType{ type },
+			  m_FoodType{ foodType }{};
 
 
 		virtual ~GameObject();
@@ -57,6 +64,7 @@ namespace dae
 		void SetEnemyState(EnemyStates state) { m_EnemyState = state; };
 		EnemyStates GetEnemyState() { return m_EnemyState; };
 		EnemyType GetEnemyType() { return m_EnemyType; };
+		FoodType GetFoodType() { return m_FoodType; };
 
 		template <class T>
 		bool HasComponent()
@@ -97,5 +105,6 @@ namespace dae
 		PlayerStates m_PlayerState = PlayerStates::Idle;
 		EnemyStates m_EnemyState = EnemyStates::WalkRight;
 		EnemyType m_EnemyType = EnemyType::Nothing;
+		FoodType m_FoodType = FoodType::Nothing;
 	};
 }

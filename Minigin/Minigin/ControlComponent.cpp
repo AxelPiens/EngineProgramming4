@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "RigidbodyComponent.h"
 #include "Command.h"
+
 ControlComponent::ControlComponent()
 {
 }
@@ -12,20 +13,26 @@ ControlComponent::ControlComponent()
 void ControlComponent::Update(float deltaTime)
 {
 	UNREFERENCED_PARAMETER(deltaTime);
-	dae::Vector3 velocity;
+	engine::Vector3 velocity;
 
-	auto& input = dae::InputManager::GetInstance();
-	//input.ProcessInput(m_pGameObject);
+	auto& input = engine::InputManager::GetInstance();
 	bool isReleased = false;
-	dae::Command* pCommand = input.ProcessInput(isReleased);
+	engine::Command* command = input.ProcessInput(isReleased);
 	if (!isReleased)
 	{
-		if (pCommand)
-			pCommand->Execute(m_pGameObject);
+		if (command)
+		{
+			command->Execute(m_pGameObject);
+		}
 	}
 	else
-		if (pCommand)
-			pCommand->Dexecute(m_pGameObject);
+	{
+		if (command)
+		{
+			command->Dexecute(m_pGameObject);
+		}
+
+	}
 }
 
 void ControlComponent::Render()

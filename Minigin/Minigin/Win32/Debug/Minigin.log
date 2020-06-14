@@ -1,27 +1,4 @@
-﻿  BaseComponent.cpp
-  ColliderComponent.cpp
-  Collision.cpp
-  Command.cpp
-  ControlComponent.cpp
-  Font.cpp
-  GameObject.cpp
-  InputManager.cpp
-  JumpCommand.cpp
-  MiniginPCH.cpp
-  Renderer.cpp
-  ResourceManager.cpp
-  RigidbodyComponent.cpp
-  Scene.cpp
-  SceneManager.cpp
-  ShootCommand.cpp
-  SpriteComponent.cpp
-  TextComponent.cpp
-  TextObject.cpp
-  Texture2D.cpp
-  TextureComponent.cpp
-  TransformComponent.cpp
-  WalkLeftCommand.cpp
-  WalkRightCommand.cpp
+﻿  JumpCommand.cpp
   Minigin.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Win32\Debug\Minigin.lib
   C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\3rdParty\SDL2\lib\x86\SDL2.dll
   1 File(s) copied

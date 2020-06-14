@@ -13,13 +13,19 @@ TrappedBubbleComponent::TrappedBubbleComponent(float lifeTime, int bubbleNumber)
 
 void TrappedBubbleComponent::Update(float deltaTime)
 {
+
+	if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y < 16)
+		m_pGameObject->GetComponent<TransformComponent>()->Move(0,1,0);
+
 	m_ElapsedTime += deltaTime;
 	if (m_ElapsedTime > m_LifeTime)
 	{
 		//spawn enemy again
-		auto scene = dae::SceneManager::GetInstance().GetScene("Game");
-		auto enemy = std::make_shared<dae::GameObject>("enemy" + std::to_string(m_Number+3), dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, m_pGameObject->GetEnemyType());
-		enemy->AddComponent(new TransformComponent(32, 32, 0));
+		auto scene = engine::SceneManager::GetInstance().GetScene("Game");
+		auto enemy = std::make_shared<engine::GameObject>("enemy" + std::to_string(m_Number+3),
+			engine::PlayerStates::Nothing, engine::EnemyStates::WalkRight, m_pGameObject->GetEnemyType(), engine::FoodType::Nothing);
+
+		enemy->AddComponent(new TransformComponent(25, 32, 0));
 		enemy->GetComponent<TransformComponent>()->Translate(m_pGameObject->GetComponent<TransformComponent>()->GetPosition());
 		enemy->AddComponent(new EnemyAIComponent(55, m_Number+3));
 		enemy->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 64, 0, 8, 50, true));

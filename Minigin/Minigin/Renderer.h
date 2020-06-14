@@ -5,13 +5,11 @@ struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Rect;
 //struct SDL_RendererFlip;
-namespace dae
-{
 	class Texture2D;
 	/**
 	 * Simple RAII wrapper for the SDL renderer
 	 */
-	class Renderer final : public Singleton<Renderer>
+	class Renderer final : public engine::Singleton<Renderer>
 	{
 	public:
 		void Init(SDL_Window* window);
@@ -25,5 +23,4 @@ namespace dae
 	private:
 		SDL_Renderer* m_Renderer{};
 	};
-}
 

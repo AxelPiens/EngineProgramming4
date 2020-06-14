@@ -14,9 +14,8 @@ void Parser::ReadFile(std::string path, int level)
     {
         std::cout << "FILE NOT OPEN\n";
     }
-    std::cout << "reading file\n";
 
-    file.seekg(std::streamoff(level * (100)));
+    file.seekg(std::streamoff(level * std::streamoff(100)));
 
     for (int l = level; l < level+1; l++)
     {

@@ -2,25 +2,25 @@
 #include "WalkRightCommand.h"
 #include "RigidbodyComponent.h"
 
-void dae::WalkRightCommand::Execute(dae::GameObject* object)
+void engine::WalkRightCommand::Execute(engine::GameObject* object)
 {
-	if (object->GetPlayerState() != dae::PlayerStates::Death)
+	if (object->GetPlayerState() != engine::PlayerStates::Death)
 	{
 		if (!object->GetComponent<RigidbodyComponent>()->GetIsJumping())
 			object->GetComponent<RigidbodyComponent>()->Walk(1);
 		else
 			object->GetComponent<RigidbodyComponent>()->Walk(0.25f);
-		object->SetPlayerState(dae::PlayerStates::WalkRight);
+		object->SetPlayerState(engine::PlayerStates::WalkRight);
 	}
 
 }
 
-void dae::WalkRightCommand::Dexecute(dae::GameObject* object)
+void engine::WalkRightCommand::Dexecute(engine::GameObject* object)
 {
-	if (object->GetPlayerState() != dae::PlayerStates::Death)
+	if (object->GetPlayerState() != engine::PlayerStates::Death)
 	{
 		object->GetComponent<RigidbodyComponent>()->Walk(0);
-		object->SetPlayerState(dae::PlayerStates::Idle);
+		object->SetPlayerState(engine::PlayerStates::Idle);
 	}
 
 }

@@ -12,7 +12,7 @@ LiveComponent::LiveComponent(int amountOfLives, float deathTime)
 void LiveComponent::LoseLive()
 {
 	--m_AmountOfLives;
-	m_pGameObject->SetPlayerState(dae::PlayerStates::Death);
+	m_pGameObject->SetPlayerState(engine::PlayerStates::Death);
 }
 
 void LiveComponent::Init()
@@ -22,21 +22,19 @@ void LiveComponent::Init()
 
 void LiveComponent::Update(float deltaTime)
 {
-	if (m_pGameObject->GetPlayerState() == dae::PlayerStates::Death)
+	if (m_pGameObject->GetPlayerState() == engine::PlayerStates::Death)
 	{
 		m_ElapsedTime += deltaTime;
 		if (m_ElapsedTime > m_DeathTime)
 		{
 			m_ElapsedTime = 0.0f;
-			m_pGameObject->SetPlayerState(dae::PlayerStates::Idle);
 			m_pGameObject->GetComponent<TransformComponent>()->Translate(m_SpawnPos);
+			m_pGameObject->SetPlayerState(engine::PlayerStates::Idle);
 		}
 
 	}
 	if (m_AmountOfLives == 0)
-	{
-		std::cout << "death\n";
-	}
+		m_IsDeath = true;
 }
 
 void LiveComponent::Render()

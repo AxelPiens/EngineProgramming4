@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 class ColliderComponent;
 class TransformComponent;
-namespace dae
+namespace engine
 {
 	class GameObject;
 	class Scene
@@ -15,6 +15,8 @@ namespace dae
 		std::vector < std::shared_ptr<GameObject>>& GetTriggers() { return m_Triggers; };
 		std::vector < ColliderComponent*>& GetColliders() { return m_Colliders; };
 		std::vector < std::shared_ptr<GameObject>>& GetPlayerEnemyColliders() { return m_PlayerEnemyColliders; };
+		std::vector < std::shared_ptr<GameObject>>& GetTexts() { return m_Texts; };
+
 		void Render() const;
 		const std::string& GetName() const { return m_Name; };
 
@@ -32,6 +34,7 @@ namespace dae
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};
 		std::vector < std::shared_ptr<GameObject>> m_PlayerEnemyColliders;
 		std::vector < std::shared_ptr<GameObject>> m_Triggers{};
+		std::vector < std::shared_ptr<GameObject>> m_Texts{};
 
 		std::vector < ColliderComponent*> m_Colliders;
 		static unsigned int m_IdCounter;

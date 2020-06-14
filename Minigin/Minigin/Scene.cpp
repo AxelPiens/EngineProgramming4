@@ -6,7 +6,7 @@
 #include "..\Game\EnemyAIComponent.h" 
 #include "..\Game\ProjectileComponent.h"
 #include <SDL.h>
-using namespace dae;
+using namespace engine;
 
 unsigned int Scene::m_IdCounter = 0;
 
@@ -36,9 +36,13 @@ void Scene::AddGameobject(const std::shared_ptr<GameObject>& object)
 				m_Players.push_back(object);
 		}
 	}
+	if (object->HasComponent<TextComponent>())
+	{
+		m_Texts.push_back(object);
+	}
 }
 
-void dae::Scene::RemoveGameObject(const std::string& name)
+void engine::Scene::RemoveGameObject(const std::string& name)
 {
 	for (std::shared_ptr<GameObject> obj : m_Objects)
 	{
@@ -76,6 +80,7 @@ void Scene::Update(float deltaTime)
 
 	if(m_FPSObject)
 		m_FPSObject->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));
+
 	for(auto& object : m_Objects)
 	{
 		if(object)

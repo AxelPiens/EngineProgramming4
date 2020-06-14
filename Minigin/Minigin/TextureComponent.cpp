@@ -8,12 +8,12 @@
 
 TextureComponent::TextureComponent(const std::string& fileName)
 {
-	m_Texture = dae::ResourceManager::GetInstance().LoadTexture(fileName);
+	m_Texture = engine::ResourceManager::GetInstance().LoadTexture(fileName);
 }
 
 void TextureComponent::SetTexture(const std::string& filename)
 {
-	m_Texture = dae::ResourceManager::GetInstance().LoadTexture(filename);
+	m_Texture = engine::ResourceManager::GetInstance().LoadTexture(filename);
 }
 
 
@@ -24,6 +24,6 @@ void TextureComponent::Update(float deltaTime)
 
 void TextureComponent::Render()
 {
-	dae::Vector3 pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
-	dae::Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	engine::Vector3 pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
+	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 }

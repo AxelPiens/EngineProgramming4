@@ -1,10 +1,10 @@
 #pragma once
 #include "SceneObject.h"
 #include "Vector3.h"
-namespace dae
+class Font;
+class Texture2D;
+namespace engine
 {
-	class Font;
-	class Texture2D;
 	class TextObject final : public SceneObject
 	{
 	public:

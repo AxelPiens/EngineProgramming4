@@ -6,7 +6,7 @@
 #include "Components.h"
 #include "Command.h"
 
-dae::InputManager::~InputManager()
+engine::InputManager::~InputManager()
 {
 	delete m_WKey;
 	m_WKey = nullptr;
@@ -16,9 +16,18 @@ dae::InputManager::~InputManager()
 	m_DKey = nullptr;
 	delete m_AKey;
 	m_AKey = nullptr;
+	
+	delete m_AButton;
+	m_AButton = nullptr;
+	delete m_XButton;
+	m_XButton = nullptr;
+	delete m_BButton;
+	m_BButton = nullptr;
+	delete m_YButton;
+	m_YButton = nullptr;
 }
 
-dae::Command* dae::InputManager::ProcessInput(bool& isReleased)
+engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_CurrentState);
@@ -26,9 +35,10 @@ dae::Command* dae::InputManager::ProcessInput(bool& isReleased)
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
+			m_Quit = true;
 			return nullptr;
 		}
-		if (e.key.keysym.sym == SDLK_q) {
+		if (e.key.keysym.sym == SDLK_ESCAPE) {
 			m_Quit = true;
 			return nullptr;
 		}
@@ -81,10 +91,38 @@ dae::Command* dae::InputManager::ProcessInput(bool& isReleased)
 		}
 	}
 
-	return nullptr;
+
+
+	if (IsPressed(ControllerButton::ButtonA))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_AButton;
+		return m_AButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonX))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_XButton;
+		return m_XButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonY))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_YButton;
+		return m_YButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonB))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_BButton;
+		return m_BButton;
+	}
+
+	isReleased = true;
+	return m_LastPressedButton;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool engine::InputManager::IsPressed(ControllerButton button) const
 {
 	switch (button)
 	{

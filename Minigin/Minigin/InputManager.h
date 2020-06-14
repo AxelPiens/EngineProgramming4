@@ -6,7 +6,7 @@
 #include "ShootCommand.h"
 #include "WalkRightCommand.h"
 #include "WalkLeftCommand.h"
-namespace dae
+namespace engine
 {
 	class Command;
 	class GameObject;
@@ -24,6 +24,7 @@ namespace dae
 	public:
 		~InputManager();
 		Command* ProcessInput(bool& isReleased);
+		
 		bool IsPressed(ControllerButton button) const;
 		bool IsQuitting() const { return m_Quit; };
 		void SetKeyBoardCommands(Command* aKey, Command* dKey, Command* wKey, Command* sKey)
@@ -33,14 +34,29 @@ namespace dae
 			m_WKey = wKey;
 			m_SKey = sKey;
 		}
+
+		void SetControllerCommands(Command* aButton, Command* xButton, Command* yButton, Command* bButton)
+		{
+			m_AButton = aButton;
+			m_XButton = xButton;
+			m_BButton = bButton;
+			m_YButton = yButton;
+		}
 	private:
 		XINPUT_STATE m_CurrentState{};
 
 		bool m_Quit = false;
 
-		Command* m_WKey;//change to button x or something
+		Command* m_WKey;
 		Command* m_SKey;
 		Command* m_DKey;
 		Command* m_AKey;
+
+		Command* m_AButton;
+		Command* m_XButton;
+		Command* m_BButton;
+		Command* m_YButton;
+
+		Command* m_LastPressedButton;
 	};
 }

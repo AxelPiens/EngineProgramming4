@@ -1,8 +1,6 @@
 #pragma once
 
 struct _TTF_Font;
-namespace dae
-{
 	/**
 	 * Simple RAII wrapper for an _TTF_Font
 	 */
@@ -21,4 +19,3 @@ namespace dae
 		_TTF_Font* m_Font;
 		unsigned int m_Size;
 	};
-}

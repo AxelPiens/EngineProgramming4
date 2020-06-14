@@ -1,5 +1,11 @@
-﻿  EnemyAIComponent.cpp
-  Main.cpp
-  Minigin.cpp
-  ProjectileComponent.cpp
-LINK : fatal error LNK1104: cannot open file 'SDL2_mixer.obj'
+﻿  Game.cpp
+  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Debug\Game.exe
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
+  File not found - x86*.lib
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied

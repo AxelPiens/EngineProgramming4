@@ -5,23 +5,23 @@
 #include "RigidbodyComponent.h"
 #include <SDL_mixer.h>
 
-dae::JumpCommand::JumpCommand()
+engine::JumpCommand::JumpCommand()
 	:m_pSound{}
 {
 	m_pSound = Mix_LoadWAV("../Data/Audio/Jump.wav");
 }
 
 
-void dae::JumpCommand::Execute(dae::GameObject* object)
+void engine::JumpCommand::Execute(engine::GameObject* object)
 {
-	if (object->GetPlayerState() != dae::PlayerStates::Death)
+	if (object->GetPlayerState() != engine::PlayerStates::Death)
 	{
 		if (object->GetComponent<RigidbodyComponent>()->Jump())
 			Mix_PlayChannel(-1, m_pSound, 0);
 	}
 }
 
-void dae::JumpCommand::Dexecute(GameObject* object)
+void engine::JumpCommand::Dexecute(GameObject* object)
 {
 	UNREFERENCED_PARAMETER(object);
 }

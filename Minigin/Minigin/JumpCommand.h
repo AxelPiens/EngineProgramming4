@@ -3,7 +3,7 @@
 #include <SDL_mixer.h>
 
  class TransformComponent;
-namespace dae
+namespace engine
 {
     class GameObject;
     class JumpCommand : public Command

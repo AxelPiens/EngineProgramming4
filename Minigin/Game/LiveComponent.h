@@ -1,6 +1,7 @@
 #pragma once
 #include <BaseComponent.h>
 #include "Vector3.h"
+
 class LiveComponent : public BaseComponent
 {
 public:
@@ -11,6 +12,7 @@ public:
 	LiveComponent(int amountOfLives, float deathTime);
 	void LoseLive();
 	int GetLives() const { return m_AmountOfLives; };
+	bool IsDeath() const { return m_IsDeath; };
 	void Init();
 protected:
 	void Update(float deltaTime) override;
@@ -19,6 +21,7 @@ private:
 	int m_AmountOfLives = 0;
 	float m_ElapsedTime = 0.0f;
 	float m_DeathTime = 4.0f;
-	dae::Vector3 m_SpawnPos;
+	engine::Vector3 m_SpawnPos;
+	bool m_IsDeath = false;
 };
 
