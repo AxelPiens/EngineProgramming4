@@ -3,9 +3,10 @@
 #include "TransformComponent.h"
 #include "RigidbodyComponent.h"
 
-EnemyAIComponent::EnemyAIComponent(float speed)
+EnemyAIComponent::EnemyAIComponent(float speed, int number)
 	:m_Speed{speed},
-	m_OldPos{0,0,0}
+	m_OldPos{0,0,0},
+	m_Number{number}
 {
 }
 

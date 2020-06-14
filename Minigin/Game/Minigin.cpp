@@ -16,6 +16,7 @@
 #include "EnemyAIComponent.h"
 #include "Components.h"
 #include "..\Game\TrappedBubbleComponent.h"
+#include "..\Game\LiveComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -61,14 +62,15 @@ void dae::Minigin::LoadGame(int level) const
 
 	//player
 	auto go = std::make_shared<GameObject>("player", dae::PlayerStates::Idle, dae::EnemyStates::Nothing, dae::EnemyType::Nothing);
-	go->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 0, 0, 8, 250, true));
+	go->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 0, 0, 8, 150, true));
 	go->AddComponent(new TransformComponent(30, 32, 200));
 	go->GetComponent<TransformComponent>()->Translate(240, 180, 0);
 	go->AddComponent(new ColliderComponent("player", false));
 	go->AddComponent(new ControlComponent());
 	go->AddComponent(new RigidbodyComponent(1.0f, 50.0f, -150.f, 75.0f));
+	go->AddComponent(new LiveComponent(m_Lives, 3.0f));
 	scene.AddGameobject(go);
-
+	go->GetComponent<LiveComponent>()->Init();
 	//level
 	Parser parser{};
 
@@ -98,13 +100,25 @@ void dae::Minigin::LoadGame(int level) const
 	}
 
 
-
-
 	//enemy
-	auto enemy = std::make_shared<GameObject>("enemy", dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, dae::EnemyType::Mighta);
+	for (size_t i = 0; i < 2; i++)
+	{
+		auto enemy = std::make_shared<GameObject>("enemy" + std::to_string(i), dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, dae::EnemyType::ZenChan);
+		enemy->AddComponent(new TransformComponent(32, 32, 0));
+		enemy->GetComponent<TransformComponent>()->Translate(75 + (i * 300), 30, 0);
+		enemy->AddComponent(new EnemyAIComponent(55, i));
+		enemy->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 64, 0, 8, 50, true));
+		enemy->AddComponent(new ColliderComponent("enemy", false));
+		enemy->AddComponent(new RigidbodyComponent(1.0f, 50.0f, 0.f, 0.0f));
+		enemy->GetComponent<RigidbodyComponent>()->SetOnGround(false);
+
+		scene.AddGameobject(enemy);
+	}
+
+	auto enemy = std::make_shared<GameObject>("enemy3", dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, dae::EnemyType::Mighta);
 	enemy->AddComponent(new TransformComponent(32, 32, 0));
-	enemy->GetComponent<TransformComponent>()->Translate( 75, 325, 0);
-	enemy->AddComponent(new EnemyAIComponent(55));
+	enemy->GetComponent<TransformComponent>()->Translate(200, 30, 0);
+	enemy->AddComponent(new EnemyAIComponent(55, 3));
 	enemy->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 64, 0, 8, 50, true));
 	enemy->AddComponent(new ColliderComponent("enemy", false));
 	enemy->AddComponent(new RigidbodyComponent(1.0f, 50.0f, 0.f, 0.0f));
@@ -165,6 +179,7 @@ void dae::Minigin::Run()
 			CollisionChecks();
 			auto scene = sceneManager.GetScene("Game");
 			LevelBoundaries(scene->GetPlayerEnemyColliders());
+			CheckForNextLevel(deltaTime);
 			renderer.Render();
 		}
 	}
@@ -262,13 +277,13 @@ void dae::Minigin::CollisionChecks()
 					moveColl->GetComponent<ColliderComponent>()->GetCollider())) //projecitle colliding with enemy
 				{
 					scene->RemoveGameObject("projectile" + std::to_string(trigger->GetComponent<ProjectileComponent>()->GetNumber()));
-					scene->RemoveGameObject("enemy");
+					scene->RemoveGameObject("enemy" + std::to_string(moveColl->GetComponent<EnemyAIComponent>()->GetNumber()));
 
 					if (moveColl->GetEnemyType() == dae::EnemyType::ZenChan)
 					{
 						//collider
 						auto bubble = std::make_shared<GameObject>("bubble" + std::to_string(m_BubbleAmount), 
-							dae::PlayerStates::Nothing, dae::EnemyStates::Nothing, dae::EnemyType::Nothing);
+							dae::PlayerStates::Nothing, dae::EnemyStates::Nothing, dae::EnemyType::Mighta);
 						bubble->AddComponent(new TransformComponent(16, 16, 100));
 						bubble->GetComponent<TransformComponent>()->Translate(moveColl->GetComponent<TransformComponent>()->GetPosition());
 						bubble->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 480, 0, 8, 200, true));
@@ -282,7 +297,7 @@ void dae::Minigin::CollisionChecks()
 					else if (moveColl->GetEnemyType() == dae::EnemyType::Mighta)
 					{
 						auto bubble = std::make_shared<GameObject>("bubble" + std::to_string(m_BubbleAmount),
-							dae::PlayerStates::Nothing, dae::EnemyStates::Nothing, dae::EnemyType::Nothing);
+							dae::PlayerStates::Nothing, dae::EnemyStates::Nothing, dae::EnemyType::Mighta);
 						bubble->AddComponent(new TransformComponent(16, 16, 100));
 						bubble->GetComponent<TransformComponent>()->Translate(moveColl->GetComponent<TransformComponent>()->GetPosition());
 						bubble->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 528, 0, 8, 200, true));
@@ -302,13 +317,44 @@ void dae::Minigin::CollisionChecks()
 					moveColl->GetComponent<ColliderComponent>()->GetCollider())) //bubble colliding with player
 				{
 					scene->RemoveGameObject("bubble" + std::to_string(trigger->GetComponent<TrappedBubbleComponent>()->GetNumber()));
+					--m_EnemyCounter;
 					//spawn food
-					sceneManager.RemoveScene("Game");
-					LoadGame(m_LevelNumber);
-					++m_LevelNumber;
 
 				}
 			}
+		}
+	}
+
+
+	//enemy player collision
+	for (size_t i = 1; i < playerEnemyColliders.size(); i++)
+	{
+		if (playerEnemyColliders[0]->GetPlayerState() != dae::PlayerStates::Death)
+		{
+			if (Collision::AABB(playerEnemyColliders[i]->GetComponent<ColliderComponent>()->GetCollider(),
+				playerEnemyColliders[0]->GetComponent<ColliderComponent>()->GetCollider())) //projecitle colliding with enemy
+			{
+				playerEnemyColliders[0]->GetComponent<LiveComponent>()->LoseLive();
+				m_Lives = playerEnemyColliders[0]->GetComponent<LiveComponent>()->GetLives();
+			}
+		}
+	}
+}
+
+void dae::Minigin::CheckForNextLevel(float deltaTime)
+{
+	auto& sceneManager = SceneManager::GetInstance();
+
+	if (m_EnemyCounter == 0)
+	{
+		m_ElapsedTime += deltaTime;
+		if (m_ElapsedTime > m_NextLevelTime)
+		{
+			m_ElapsedTime = 0.0f;
+			sceneManager.RemoveScene("Game");
+			LoadGame(m_LevelNumber);
+			++m_LevelNumber;
+			m_EnemyCounter = 3;
 		}
 	}
 }

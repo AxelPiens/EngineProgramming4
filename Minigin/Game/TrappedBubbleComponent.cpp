@@ -18,10 +18,10 @@ void TrappedBubbleComponent::Update(float deltaTime)
 	{
 		//spawn enemy again
 		auto scene = dae::SceneManager::GetInstance().GetScene("Game");
-		auto enemy = std::make_shared<dae::GameObject>("enemy", dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, dae::EnemyType::ZenChan);
+		auto enemy = std::make_shared<dae::GameObject>("enemy" + std::to_string(m_Number+3), dae::PlayerStates::Nothing, dae::EnemyStates::WalkRight, m_pGameObject->GetEnemyType());
 		enemy->AddComponent(new TransformComponent(32, 32, 0));
 		enemy->GetComponent<TransformComponent>()->Translate(m_pGameObject->GetComponent<TransformComponent>()->GetPosition());
-		enemy->AddComponent(new EnemyAIComponent(55));
+		enemy->AddComponent(new EnemyAIComponent(55, m_Number+3));
 		enemy->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 64, 0, 8, 50, true));
 		enemy->AddComponent(new ColliderComponent("enemy", false));
 		enemy->AddComponent(new RigidbodyComponent(50.0f, 50.0f, 0.f, 0.0f));

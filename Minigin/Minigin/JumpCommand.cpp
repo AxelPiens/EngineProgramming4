@@ -14,9 +14,11 @@ dae::JumpCommand::JumpCommand()
 
 void dae::JumpCommand::Execute(dae::GameObject* object)
 {
-	
-	if(object->GetComponent<RigidbodyComponent>()->Jump())
-		Mix_PlayChannel(-1, m_pSound, 0);
+	if (object->GetPlayerState() != dae::PlayerStates::Death)
+	{
+		if (object->GetComponent<RigidbodyComponent>()->Jump())
+			Mix_PlayChannel(-1, m_pSound, 0);
+	}
 }
 
 void dae::JumpCommand::Dexecute(GameObject* object)

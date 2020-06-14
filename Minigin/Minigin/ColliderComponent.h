@@ -17,7 +17,7 @@ public:
 	const std::string& GetTag()const { return m_Tag; };
 	const SDL_Rect& GetCollider() const { return m_Collider; };
 	bool GetIsTrigger() const { return m_IsTrigger; };
-
+	void SetIsTrigger(bool isTrigger) { m_IsTrigger = isTrigger; };
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;

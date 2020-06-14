@@ -24,9 +24,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Minigin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,8 +39,11 @@
     <ClCompile Include="TrappedBubbleComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
     <ClCompile Include="LiveComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +66,7 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LiveComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -61,9 +61,14 @@ void SpriteComponent::CheckState()
 
 	if (playerState != dae::PlayerStates::Nothing)
 	{
-		/*if (playerState == dae::PlayerStates::Idle)//change
-		m_SrcRect.y = 0;
-		else*/ if (playerState == dae::PlayerStates::WalkRight)
+		if (playerState == dae::PlayerStates::Idle)
+		{
+			if (m_pGameObject->GetComponent<TransformComponent>()->GetDirection() > 0)
+				m_SrcRect.y = 560;
+			else
+				m_SrcRect.y = 576;
+		}
+		else if (playerState == dae::PlayerStates::WalkRight)
 			m_SrcRect.y = 0;
 		else if (playerState == dae::PlayerStates::WalkLeft)
 			m_SrcRect.y = 16;
@@ -71,6 +76,8 @@ void SpriteComponent::CheckState()
 			m_SrcRect.y = 320;
 		else if (playerState == dae::PlayerStates::ShootLeft)
 			m_SrcRect.y = 352;
+		else if (playerState == dae::PlayerStates::Death)
+			m_SrcRect.y = 544;
 	}
 	else if (enemyState != dae::EnemyStates::Nothing)
 	{
@@ -84,9 +91,9 @@ void SpriteComponent::CheckState()
 		else if (m_pGameObject->GetEnemyType() == dae::EnemyType::Mighta)
 		{
 			if (enemyState == dae::EnemyStates::WalkRight)
-				m_SrcRect.y = 16*15;
+				m_SrcRect.y = 240;
 			else if (enemyState == dae::EnemyStates::WalkLeft)
-				m_SrcRect.y = 16*16;
+				m_SrcRect.y = 256;
 		}
 	}
 }

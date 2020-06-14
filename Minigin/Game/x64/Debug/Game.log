@@ -1,1 +1,15 @@
-﻿
+﻿  EnemyAIComponent.cpp
+  Game.cpp
+  LiveComponent.cpp
+  Main.cpp
+  Minigin.cpp
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(108,59): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(109,50): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Game\Minigin.cpp(220,43): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Parser.cpp
+  ProjectileComponent.cpp
+  TrappedBubbleComponent.cpp
+  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\x64\Debug\Game.exe
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied

@@ -20,9 +20,13 @@ namespace dae
 		int m_WindowHeight = 0;
 		void LevelBoundaries(std::vector<std::shared_ptr<GameObject>> players);
 		void CollisionChecks();
+		void CheckForNextLevel(float deltaTime);
 		Mix_Music* bgm;
 		int m_BubbleAmount;
 		int m_LevelNumber = 0;
-
+		int m_Lives = 3;
+		int m_EnemyCounter = 3;
+		float m_ElapsedTime = 0.0f;
+		float m_NextLevelTime = 5.0f;
 	};
 }
