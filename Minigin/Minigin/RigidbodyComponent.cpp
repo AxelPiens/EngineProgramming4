@@ -21,9 +21,15 @@ bool RigidbodyComponent::Jump()
 	return false;
 }
 
-void RigidbodyComponent::Walk(float velX)
+void RigidbodyComponent::WalkX(float velX)
 {
 	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_MoveSpeed*velX);
+}
+
+void RigidbodyComponent::WalkY(float velY)
+{
+	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_MoveSpeed * velY);
+
 }
 
 void RigidbodyComponent::Update(float deltaTime)

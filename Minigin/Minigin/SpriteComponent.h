@@ -14,6 +14,9 @@
 
 		SpriteComponent(const std::string& path, int width, int height, int bottom, int left, int nrFrames, int delay, bool animated);
 		~SpriteComponent() = default;
+		void ChangeXPos(int xPos) { m_SrcRect.x = xPos; };
+		void ChangeYPos(int yPos) { m_SrcRect.y = yPos; };
+		void ChangeAnimated(bool isAnim) { m_IsAnimated = isAnim; };
 	protected:
 		void Update(float deltaTime) override;
 		void Render() override;
@@ -27,5 +30,6 @@
 		int m_Delay = 100; //delay between frames in ms
 		bool m_IsAnimated = false;
 		void CheckState();
+
 	};
 

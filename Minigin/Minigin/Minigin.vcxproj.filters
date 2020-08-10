@@ -96,18 +96,6 @@
     <ClInclude Include="Command.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="JumpCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="WalkRightCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="WalkLeftCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Renderer.cpp">
@@ -168,18 +156,6 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="JumpCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="ShootCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="WalkRightCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="WalkLeftCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,2 +1,4 @@
 C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Win32\Debug\Minigin.pdb
 C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Minigin\Win32\Debug\Minigin.pdb
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Win32\Debug\Minigin.pdb
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Minigin\Win32\Debug\Minigin.pdb

@@ -2,10 +2,7 @@
 #include <XInput.h>
 #pragma comment(lib, "Xinput.lib")
 #include "Singleton.h"
-#include "JumpCommand.h"
-#include "ShootCommand.h"
-#include "WalkRightCommand.h"
-#include "WalkLeftCommand.h"
+
 namespace engine
 {
 	class Command;

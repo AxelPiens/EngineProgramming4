@@ -49,17 +49,17 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 				isReleased = false;
 				return m_WKey;
 			}
-			if (e.key.keysym.sym == SDLK_d)
+			else if (e.key.keysym.sym == SDLK_d)
 			{
 				isReleased = false;
 				return m_DKey;
 			}
-			if (e.key.keysym.sym == SDLK_a)
+			else if (e.key.keysym.sym == SDLK_a)
 			{
 				isReleased = false;
 				return m_AKey;
 			}
-			if (e.key.keysym.sym == SDLK_s)
+			else if (e.key.keysym.sym == SDLK_s)
 			{
 				isReleased = false;
 				return m_SKey;
@@ -73,17 +73,17 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 				isReleased = true;
 				return m_WKey;
 			}
-			if (e.key.keysym.sym == SDLK_d)
+			else if (e.key.keysym.sym == SDLK_d)
 			{
 				isReleased = true;
 				return m_DKey;
 			}
-			if (e.key.keysym.sym == SDLK_a)
+			else if (e.key.keysym.sym == SDLK_a)
 			{
 				isReleased = true;
 				return m_AKey;
 			}
-			if (e.key.keysym.sym == SDLK_s)
+			else if (e.key.keysym.sym == SDLK_s)
 			{
 				isReleased = true;
 				return m_SKey;

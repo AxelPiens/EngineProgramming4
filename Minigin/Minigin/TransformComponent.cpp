@@ -60,16 +60,12 @@ void TransformComponent::Scale(float x, float y, float z)
 
 void TransformComponent::Update(float deltaTime)
 {
-	if (m_pGameObject->GetPlayerState() != engine::PlayerStates::Death)
-	{
 		if (m_Velocity.x < 0)
 			m_Direction = -1;
 		if (m_Velocity.x > 0)
 			m_Direction = 1;
 		m_Position.x += m_Velocity.x * deltaTime;
 		m_Position.y += m_Velocity.y * deltaTime;
-	}
-
 }
 
 void TransformComponent::Render()

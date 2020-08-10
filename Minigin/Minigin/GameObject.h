@@ -4,37 +4,18 @@ class BaseComponent;
 
 namespace engine
 {
-
-	enum class PlayerStates
-	{
-		Idle,
-		WalkLeft,
-		WalkRight,
-		ShootLeft,
-		ShootRight,
-		Death,
-		Nothing
-	};
-	enum class EnemyStates
-	{
-		WalkLeft,
-		WalkRight,
-		ShootLeft,
-		ShootRight,
-		Nothing
-	};
-	enum class EnemyType
-	{
-		ZenChan,
-		Mighta,
-		Nothing
-	};
-	enum class FoodType
-	{
-		Melon,
-		Fries,
-		Nothing
-	};
+	//enum class EnemyType
+	//{
+	//	ZenChan,
+	//	Mighta,
+	//	Nothing
+	//};
+	//enum class FoodType
+	//{
+	//	Melon,
+	//	Fries,
+	//	Nothing
+	//};
 
 	class GameObject : public SceneObject 
 	{
@@ -42,12 +23,8 @@ namespace engine
 		void Update(float deltaTime) override;
 		void Render() const override;
 
-		GameObject(const std::string& name, PlayerStates playerState, EnemyStates enemyState, EnemyType type, FoodType foodType)
-			: m_Name{ name },
-			  m_EnemyState{enemyState},
-			  m_PlayerState{playerState},
-			  m_EnemyType{ type },
-			  m_FoodType{ foodType }{};
+		GameObject(const std::string& name)
+			: m_Name{ name } {};
 
 
 		virtual ~GameObject();
@@ -59,12 +36,6 @@ namespace engine
 		void AddComponent(BaseComponent* pComp);
 		void RemoveComponent(BaseComponent* pComp);
 		std::string GetName() { return m_Name; };
-		void SetPlayerState(PlayerStates state) { m_PlayerState = state; };
-		PlayerStates GetPlayerState() { return m_PlayerState; };
-		void SetEnemyState(EnemyStates state) { m_EnemyState = state; };
-		EnemyStates GetEnemyState() { return m_EnemyState; };
-		EnemyType GetEnemyType() { return m_EnemyType; };
-		FoodType GetFoodType() { return m_FoodType; };
 
 		template <class T>
 		bool HasComponent()
@@ -102,9 +73,5 @@ namespace engine
 	private:
 		std::vector<BaseComponent*> m_pComponents;
 		std::string m_Name;
-		PlayerStates m_PlayerState = PlayerStates::Idle;
-		EnemyStates m_EnemyState = EnemyStates::WalkRight;
-		EnemyType m_EnemyType = EnemyType::Nothing;
-		FoodType m_FoodType = FoodType::Nothing;
 	};
 }

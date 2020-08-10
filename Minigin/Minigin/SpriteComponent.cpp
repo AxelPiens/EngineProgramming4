@@ -19,8 +19,8 @@ SpriteComponent::SpriteComponent(const std::string& path, int width, int height,
 
 	m_SrcRect.x = left;
 	m_SrcRect.y = bottom;
-	m_SrcRect.w = m_Width/2;
-	m_SrcRect.h = m_Height/2;
+	m_SrcRect.w = m_Width;
+	m_SrcRect.h = m_Height;
 	m_Texture = engine::ResourceManager::GetInstance().LoadTexture(path);
 }
 
@@ -56,44 +56,44 @@ void SpriteComponent::Render()
 
 void SpriteComponent::CheckState()
 {
-	engine::PlayerStates playerState = m_pGameObject->GetPlayerState();
-	engine::EnemyStates enemyState = m_pGameObject->GetEnemyState();
+	//engine::PlayerStates playerState = m_pGameObject->GetPlayerState();
+	//engine::EnemyStates enemyState = m_pGameObject->GetEnemyState();
 
-	if (playerState != engine::PlayerStates::Nothing)
-	{
-		if (playerState == engine::PlayerStates::Idle)
-		{
-			if (m_pGameObject->GetComponent<TransformComponent>()->GetDirection() > 0)
-				m_SrcRect.y = 560;
-			else
-				m_SrcRect.y = 576;
-		}
-		else if (playerState == engine::PlayerStates::WalkRight)
-			m_SrcRect.y = 0;
-		else if (playerState == engine::PlayerStates::WalkLeft)
-			m_SrcRect.y = 16;
-		else if (playerState == engine::PlayerStates::ShootRight)
-			m_SrcRect.y = 320;
-		else if (playerState == engine::PlayerStates::ShootLeft)
-			m_SrcRect.y = 352;
-		else if (playerState == engine::PlayerStates::Death)
-			m_SrcRect.y = 544;
-	}
-	else if (enemyState != engine::EnemyStates::Nothing)
-	{
-		if (m_pGameObject->GetEnemyType() == engine::EnemyType::ZenChan)
-		{
-			if (enemyState == engine::EnemyStates::WalkRight)
-				m_SrcRect.y = 64;
-			else if (enemyState == engine::EnemyStates::WalkLeft)
-				m_SrcRect.y = 80;
-		}
-		else if (m_pGameObject->GetEnemyType() == engine::EnemyType::Mighta)
-		{
-			if (enemyState == engine::EnemyStates::WalkRight)
-				m_SrcRect.y = 240;
-			else if (enemyState == engine::EnemyStates::WalkLeft)
-				m_SrcRect.y = 256;
-		}
-	}
+	//if (playerState != engine::PlayerStates::Nothing)
+	//{
+	//	if (playerState == engine::PlayerStates::Idle)
+	//	{
+	//		if (m_pGameObject->GetComponent<TransformComponent>()->GetDirection() > 0)
+	//			m_SrcRect.y = 560;
+	//		else
+	//			m_SrcRect.y = 576;
+	//	}
+	//	else if (playerState == engine::PlayerStates::WalkRight)
+	//		m_SrcRect.y = 0;
+	//	else if (playerState == engine::PlayerStates::WalkLeft)
+	//		m_SrcRect.y = 16;
+	//	else if (playerState == engine::PlayerStates::ShootRight)
+	//		m_SrcRect.y = 320;
+	//	else if (playerState == engine::PlayerStates::ShootLeft)
+	//		m_SrcRect.y = 352;
+	//	else if (playerState == engine::PlayerStates::Death)
+	//		m_SrcRect.y = 544;
+	//}
+	//else if (enemyState != engine::EnemyStates::Nothing)
+	//{
+	//	if (m_pGameObject->GetEnemyType() == engine::EnemyType::ZenChan)
+	//	{
+	//		if (enemyState == engine::EnemyStates::WalkRight)
+	//			m_SrcRect.y = 64;
+	//		else if (enemyState == engine::EnemyStates::WalkLeft)
+	//			m_SrcRect.y = 80;
+	//	}
+	//	else if (m_pGameObject->GetEnemyType() == engine::EnemyType::Mighta)
+	//	{
+	//		if (enemyState == engine::EnemyStates::WalkRight)
+	//			m_SrcRect.y = 240;
+	//		else if (enemyState == engine::EnemyStates::WalkLeft)
+	//			m_SrcRect.y = 256;
+	//	}
+	//}
 }

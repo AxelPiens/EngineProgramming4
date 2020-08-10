@@ -18,7 +18,9 @@
 		void SetIsJumping(bool isJumping) { m_IsJumping = isJumping; };
 		bool GetIsJumping() const { return m_IsJumping; };
 		bool Jump();
-		void Walk(float velX);
+		void WalkX(float velX);
+		void WalkY(float velY);
+
 	protected:
 		void Update(float deltaTime) override;
 		void Render() override;

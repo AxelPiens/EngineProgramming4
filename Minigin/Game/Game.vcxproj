@@ -193,21 +193,39 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChangeSpriteComponent.cpp" />
+    <ClCompile Include="Digger.cpp" />
     <ClCompile Include="EnemyAIComponent.cpp" />
+    <ClCompile Include="JumpCommand.cpp" />
     <ClCompile Include="LiveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="ProjectileComponent.cpp" />
+    <ClCompile Include="ShootCommand.cpp" />
+    <ClCompile Include="StateComponent.cpp" />
     <ClCompile Include="TrappedBubbleComponent.cpp" />
+    <ClCompile Include="WalkDownCommand.cpp" />
+    <ClCompile Include="WalkLeftCommand.cpp" />
+    <ClCompile Include="WalkRightCommand.cpp" />
+    <ClCompile Include="WalkUpCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChangeSpriteComponent.h" />
+    <ClInclude Include="Digger.h" />
     <ClInclude Include="EnemyAIComponent.h" />
+    <ClInclude Include="JumpCommand.h" />
     <ClInclude Include="LiveComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="ProjectileComponent.h" />
+    <ClInclude Include="ShootCommand.h" />
+    <ClInclude Include="StateComponent.h" />
     <ClInclude Include="TrappedBubbleComponent.h" />
+    <ClInclude Include="WalkDownCommand.h" />
+    <ClInclude Include="WalkLeftCommand.h" />
+    <ClInclude Include="WalkRightCommand.h" />
+    <ClInclude Include="WalkUpCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minigin\Minigin.vcxproj">

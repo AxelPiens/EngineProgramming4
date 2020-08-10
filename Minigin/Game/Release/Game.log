@@ -1,15 +1,12 @@
-﻿  EnemyAIComponent.cpp
-  LiveComponent.cpp
-  Main.cpp
-  Game.cpp
-  Parser.cpp
-  ProjectileComponent.cpp
-  TrappedBubbleComponent.cpp
+﻿  ChangeSpriteComponent.cpp
+  Digger.cpp
+  StateComponent.cpp
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 890 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  16 of 694 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    27 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Release\Game.exe
+  Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Release\Game.exe
   0 File(s) copied
   Parse Error
   0 File(s) copied

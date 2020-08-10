@@ -1,5 +1,8 @@
-﻿  Game.cpp
-  Game.vcxproj -> C:\Users\Axel Piens\Desktop\Semester4\Programming 4\Exam_Assignment\Minigin\Debug\Game.exe
+﻿  Digger.cpp
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(80,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(80,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(94,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied
   0 File(s) copied
