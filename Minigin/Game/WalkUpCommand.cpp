@@ -32,7 +32,7 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 			std::cout << modulo << std::endl;
 			if (modulo >= -4 && modulo <= 4)
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkY(-1);
+				object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
 				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
 			}
 			allFailed = false;
@@ -40,7 +40,7 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 	}
 	if (allFailed)
 	{
-		object->GetComponent<RigidbodyComponent>()->WalkY(-1);
+		object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
 		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
 	}
 }

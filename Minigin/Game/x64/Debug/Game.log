@@ -1,7 +1,6 @@
-﻿  WalkRightCommand.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkRightCommand.cpp(21,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkRightCommand.cpp(22,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkRightCommand.cpp(48,77): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  MovingBagComponent.cpp
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovingBagComponent.cpp(41,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovingBagComponent.cpp(42,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied

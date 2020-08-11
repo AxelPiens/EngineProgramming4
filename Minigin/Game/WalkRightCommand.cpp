@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "ColliderComponent.h"
 #include "Collision.h"
+#include "MovingBagComponent.h"
 
 void WalkRightCommand::Execute(engine::GameObject* object)
 {
@@ -33,7 +34,7 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 			int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
 			if (modulo >= -4 && modulo <= 4)
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkX(1);
+				object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
 				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
 			}
 			allFailed = false;
@@ -41,7 +42,7 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 	}
 	if (allFailed)
 	{
-		object->GetComponent<RigidbodyComponent>()->WalkX(1);
+		object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
 		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
 	}
 
@@ -53,7 +54,8 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 		{
 			if (col->GetGameObject()->GetName() == "money")
 			{
-				col->GetGameObject()->GetComponent<TransformComponent>()->Move(27, 0, 0);
+				col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
+				col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(70.f);
 			}
 		}
 

@@ -45,5 +45,7 @@
 		float m_Speed = 5;
 		engine::Vector3 m_Velocity;
 		int m_Direction = 1;
+
+		bool m_MoveTowards = false;
 	};
 

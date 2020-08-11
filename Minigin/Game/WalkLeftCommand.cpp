@@ -7,6 +7,7 @@
 #include "SceneManager.h"
 #include "ColliderComponent.h"
 #include "Collision.h"
+#include "MovingBagComponent.h"
 
 
 void WalkLeftCommand::Execute(engine::GameObject* object)
@@ -14,7 +15,7 @@ void WalkLeftCommand::Execute(engine::GameObject* object)
 
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto triggers = scene->GetTriggers();
-	float posX = object->GetComponent<TransformComponent>()->GetPosition().x - 20;
+	float posX = object->GetComponent<TransformComponent>()->GetPosition().x - 10;
 	float posY = object->GetComponent<TransformComponent>()->GetPosition().y + 12;
 	bool allFailed = true;
 	SDL_Rect m_Collider;
@@ -33,7 +34,7 @@ void WalkLeftCommand::Execute(engine::GameObject* object)
 			int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
 			if (modulo >= -4 && modulo <= 4)
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkX(-1);
+				object->GetComponent<RigidbodyComponent>()->WalkX(-0.8f);
 				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkLeft);
 			}
 			allFailed = false;
@@ -41,7 +42,7 @@ void WalkLeftCommand::Execute(engine::GameObject* object)
 	}
 	if (allFailed)
 	{
-		object->GetComponent<RigidbodyComponent>()->WalkX(-1);
+		object->GetComponent<RigidbodyComponent>()->WalkX(-0.8f);
 		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkLeft);
 	}
 
@@ -51,7 +52,8 @@ void WalkLeftCommand::Execute(engine::GameObject* object)
 		{
 			if (col->GetGameObject()->GetName() == "money")
 			{
-				col->GetGameObject()->GetComponent<TransformComponent>()->Move(-32, 0, 0);
+				col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
+				col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(-70.f);
 			}
 		}
 	}

@@ -21,6 +21,8 @@
 #include "WalkDownCommand.h"
 #include "WalkUpCommand.h"
 #include "Collision.h"
+#include "MovingBagComponent.h"
+	
 using namespace std;
 using namespace std::chrono;
 
@@ -105,7 +107,7 @@ void Digger::LoadGame(int level) const
 	money->GetComponent<TransformComponent>()->Translate(190, 0, 0);
 	money->AddComponent(new ColliderComponent("money", false, 0, 0));
 	money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
-
+	money->AddComponent(new MovingBagComponent());
 	scene.AddGameobject(money);
 
 
@@ -113,7 +115,7 @@ void Digger::LoadGame(int level) const
 	//player
 	auto go = std::make_shared<engine::GameObject>("player");
 	go->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
-	go->AddComponent(new TransformComponent(15.f, 17.5f,200));
+	go->AddComponent(new TransformComponent(15.f, 17.5f, 0));
 	go->GetComponent<TransformComponent>()->Translate(0, 0, 0);
 	//go->GetComponent<TransformComponent>()->Translate(270, 216, 0);
 	go->AddComponent(new ColliderComponent("player", false, 2, 2));
@@ -171,6 +173,7 @@ void Digger::CollisionCheck()
 {
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto triggers = scene->GetTriggers();
+	auto colliders = scene->GetColliders();
 	auto players = scene->GetPlayers();
 	for (auto trigger : triggers)
 	{
@@ -178,6 +181,15 @@ void Digger::CollisionCheck()
 		{
 			scene->RemoveGameObject(trigger->GetName());
 			std::cout << trigger->GetName();
+		}
+	}
+
+	for (auto collider : colliders)
+	{
+		if (engine::Collision::AABB(*collider, *players[1]->GetComponent<ColliderComponent>()))
+		{
+			if (players[1]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
+				players[1]->GetComponent<TransformComponent>()->SetVelocityY(0);
 		}
 	}
 }

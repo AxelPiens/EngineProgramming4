@@ -30,7 +30,7 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 			int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().x) % 27;
 			if (modulo >= -4 && modulo <= 4)
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkY(1);
+				object->GetComponent<RigidbodyComponent>()->WalkY(0.8f);
 				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkDown);
 			}
 			allFailed = false;
@@ -38,7 +38,7 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 	}
 	if (allFailed)
 	{
-		object->GetComponent<RigidbodyComponent>()->WalkY(1);
+		object->GetComponent<RigidbodyComponent>()->WalkY(0.8f);
 		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkDown);
 	}
 }

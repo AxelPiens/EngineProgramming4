@@ -72,6 +72,9 @@
     <ClCompile Include="WalkDownCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="MovingBagComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="WalkDownCommand.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBagComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
