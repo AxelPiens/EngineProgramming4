@@ -1,10 +1,21 @@
-﻿  ColliderComponent.cpp
+﻿  BaseComponent.cpp
+  ColliderComponent.cpp
+  Collision.cpp
+  Command.cpp
   ControlComponent.cpp
+  Font.cpp
   GameObject.cpp
   InputManager.cpp
+  MiniginPCH.cpp
+  Renderer.cpp
+  ResourceManager.cpp
   RigidbodyComponent.cpp
   Scene.cpp
+  SceneManager.cpp
   SpriteComponent.cpp
+  TextComponent.cpp
+  TextObject.cpp
+  Texture2D.cpp
   TextureComponent.cpp
   TransformComponent.cpp
   Minigin.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Minigin.lib

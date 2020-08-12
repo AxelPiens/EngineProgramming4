@@ -4,6 +4,8 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Collision.h"
+#include "SpriteComponent.h"
+#include "ColliderComponent.h"
 
 MovingBagComponent::MovingBagComponent()
 {
@@ -22,6 +24,22 @@ void MovingBagComponent::Update(float deltaTime)
 
 	}
 	CheckForBlock();
+
+	if (m_CanFall)
+	{
+		m_ElapsedTime += deltaTime;
+		if (m_ElapsedTime > m_TimeToFall)
+		{
+			m_IsFalling = true;
+			m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(70.f);
+			m_ElapsedTime = 0.f;
+		}
+	}
+	else
+	{
+		m_IsFalling = false;
+		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
+	}
 
 }
 
@@ -43,14 +61,14 @@ void MovingBagComponent::CheckForBlock()
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
-	bool hasBlock = true;
+	
 	bool removeBlock = false;
 	for (auto trigger : triggers)
 
 	{
 		if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 		{
-			hasBlock = true;
+			m_CanFall = false;
 			if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y - m_OldPosY > 32)
 			{
 				std::cout << "FELL 2 BLOCKS\n";
@@ -61,21 +79,26 @@ void MovingBagComponent::CheckForBlock()
 			break;
 		}
 		else
-			hasBlock = false;
+			m_CanFall = true;
 	}
-
-	if (hasBlock)
-		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
-	else
-		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(70.f);
 
 	if (removeBlock)
 	{
-		scene->RemoveGameObject(m_pGameObject->GetName());
 		SpawnGold();
+		scene->RemoveGameObject(m_pGameObject->GetName());
 	}
 }
 
 void MovingBagComponent::SpawnGold()
 {
+	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
+	auto coins = std::make_shared<engine::GameObject>("coins");
+	coins->AddComponent(new TransformComponent(27, 15, 100));
+	coins->GetComponent<TransformComponent>()->Translate(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x, 
+		m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 13, 0);
+	coins->AddComponent(new SpriteComponent("/Digger/coins.png", 27, 15, 0, 0, 8, 50, false));
+	coins->AddComponent(new ColliderComponent("coins", true, 0, 0));
+
+	scene->AddGameobject(coins);
+
 }

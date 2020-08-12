@@ -22,7 +22,8 @@
 #include "WalkUpCommand.h"
 #include "Collision.h"
 #include "MovingBagComponent.h"
-	
+#include <fstream>
+
 using namespace std;
 using namespace std::chrono;
 
@@ -40,12 +41,12 @@ void Digger::Initialize()
 	//Mix_PlayMusic(m_BackgroundMusic, -1);
 
 
-	m_WindowHeight = 400;
+	m_WindowHeight = 300;
 	m_Window = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		600,
+		425,
 		m_WindowHeight,
 		SDL_WINDOW_OPENGL
 	);
@@ -65,51 +66,80 @@ void Digger::LoadGame(int level) const
 
 
 	//level 
+	std::string numbers;
+	std::ifstream myfile;
+	myfile.open("../Data/Digger/LevelData.txt");
+
 	int posX = 0;
 	int posY = 0;
-	int random = 0;
 	int number = 0;
 	int size = 27;
-	for (size_t i = 0; i < 49; i++)
+
+	if (myfile.is_open())
 	{
-		for (size_t j = 0; j < 74; j++)
+		while (std::getline(myfile, numbers))
 		{
-			auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
-			std::string start = "/Digger/ground0";
-			random = rand()%3;
-			level2->AddComponent(new SpriteComponent(( start + ".png"), size, size, 0, 0, 1, 150, false));
-			level2->AddComponent(new TransformComponent(size, size, 200));
-			level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
-			level2->AddComponent(new ColliderComponent("level" + number, true, 0,0));
-			scene.AddGameobject(level2);
-			posX += size;
-			++number;
+			for (size_t i = 0; i < numbers.size(); i++)
+			{
+
+				if (numbers[i] == '0') //nothing
+				{
+
+				}
+				else if(numbers[i] == '1') //ground
+				{
+					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
+					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
+					level2->AddComponent(new TransformComponent(size, size, 200));
+					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
+					scene.AddGameobject(level2);
+
+				}
+				else if (numbers[i] == '2') //diamonds
+				{
+					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
+					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
+					level2->AddComponent(new TransformComponent(size, size, 200));
+					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
+					scene.AddGameobject(level2);
+
+					auto diamond = std::make_shared<engine::GameObject>("diamond" + std::to_string(number));
+					diamond->AddComponent(new SpriteComponent(("/Digger/emerald.png"), 26, 21, 0, 0, 1, 150, false));
+					diamond->AddComponent(new TransformComponent(26, 21, 200));
+					diamond->GetComponent<TransformComponent>()->Translate(posX, posY + 5, 0);
+					diamond->AddComponent(new ColliderComponent("diamond", true, 0, 0));
+					scene.AddGameobject(diamond);
+				}
+				else if (numbers[i] == '3') //money
+				{
+					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
+					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
+					level2->AddComponent(new TransformComponent(size, size, 200));
+					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
+					scene.AddGameobject(level2);
+
+					auto money = std::make_shared<engine::GameObject>("money" + std::to_string(number));
+					money->AddComponent(new SpriteComponent(("/Digger/moneybag.png"), 26, 26, 0, 0, 1, 150, false));
+					money->AddComponent(new TransformComponent(27, 28, 200));
+					money->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					money->AddComponent(new ColliderComponent("money", false, 0, 0));
+					money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
+					money->AddComponent(new MovingBagComponent());
+					
+					scene.AddGameobject(money);
+					money->GetComponent<MovingBagComponent>()->SetOldPosY(posY);
+				}
+				++number;
+				posX += size;
+			}
+			posY += size;
+			posX = 0;
 		}
-		posY += size;
-		posX = 0;
 	}
-
-
-	////diamond test 
-	//auto diamond = std::make_shared<engine::GameObject>("diamond");
-	//std::string start = "/Digger/emerald";
-	//diamond->AddComponent(new SpriteComponent((start + ".png"), 26, 21, 0, 0, 1, 150, false));
-	//diamond->AddComponent(new TransformComponent(26, 21, 200));
-	//diamond->GetComponent<TransformComponent>()->Translate(0, 200, 0);
-	//diamond->AddComponent(new ColliderComponent("diamond", true, 0, 0));
-	//scene.AddGameobject(diamond);
-
-	//money test
-	auto money = std::make_shared<engine::GameObject>("money");
-	std::string start = "/Digger/moneybag";
-	money->AddComponent(new SpriteComponent((start + ".png"), 26, 26, 0, 0, 1, 150, false));
-	money->AddComponent(new TransformComponent(27, 28, 200));
-	money->GetComponent<TransformComponent>()->Translate(190, 0, 0);
-	money->AddComponent(new ColliderComponent("money", false, 0, 0));
-	money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
-	money->AddComponent(new MovingBagComponent());
-	scene.AddGameobject(money);
-
+	myfile.close();
 
 
 	//player
@@ -190,6 +220,8 @@ void Digger::CollisionCheck()
 		{
 			if (players[1]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
 				players[1]->GetComponent<TransformComponent>()->SetVelocityY(0);
+			else if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
+				std::cout << "isDeath\n";
 		}
 	}
 }
