@@ -75,6 +75,9 @@
     <ClCompile Include="MovingBagComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="MovementSpiderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="MovingBagComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSpiderComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

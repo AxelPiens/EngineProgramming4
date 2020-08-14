@@ -52,7 +52,7 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 	{
 		if (engine::Collision::AABB(m_Collider, col->GetCollider()))
 		{
-			if (col->GetGameObject()->GetName() == "money")
+			if (col->GetGameObject()->GetName().find("money") != std::string::npos)
 			{
 				col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
 				col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(70.f);

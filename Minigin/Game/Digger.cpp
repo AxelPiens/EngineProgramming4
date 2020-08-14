@@ -23,6 +23,7 @@
 #include "Collision.h"
 #include "MovingBagComponent.h"
 #include <fstream>
+#include "MovementSpiderComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -105,12 +106,6 @@ void Digger::LoadGame(int level) const
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
 
-					auto diamond = std::make_shared<engine::GameObject>("diamond" + std::to_string(number));
-					diamond->AddComponent(new SpriteComponent(("/Digger/emerald.png"), 26, 21, 0, 0, 1, 150, false));
-					diamond->AddComponent(new TransformComponent(26, 21, 200));
-					diamond->GetComponent<TransformComponent>()->Translate(posX, posY + 5, 0);
-					diamond->AddComponent(new ColliderComponent("diamond", true, 0, 0));
-					scene.AddGameobject(diamond);
 				}
 				else if (numbers[i] == '3') //money
 				{
@@ -121,6 +116,34 @@ void Digger::LoadGame(int level) const
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
 
+
+				}
+				++number;
+				posX += size;
+			}
+			posY += size;
+			posX = 0;
+		}
+		posY = 0;
+		posX = 0;
+		myfile.clear();
+		myfile.seekg(0);
+		while (std::getline(myfile, numbers))
+		{
+			for (size_t i = 0; i < numbers.size(); i++)
+			{
+				if (numbers[i] == '2') //diamonds
+				{
+					auto diamond = std::make_shared<engine::GameObject>("diamond" + std::to_string(number));
+					diamond->AddComponent(new SpriteComponent(("/Digger/emerald.png"), 26, 21, 0, 0, 1, 150, false));
+					diamond->AddComponent(new TransformComponent(26, 21, 200));
+					diamond->GetComponent<TransformComponent>()->Translate(posX, posY + 5, 0);
+					diamond->AddComponent(new ColliderComponent("diamond", true, 0, 0));
+					scene.AddGameobject(diamond);
+				}
+				else if (numbers[i] == '3') //money
+				{
+
 					auto money = std::make_shared<engine::GameObject>("money" + std::to_string(number));
 					money->AddComponent(new SpriteComponent(("/Digger/moneybag.png"), 26, 26, 0, 0, 1, 150, false));
 					money->AddComponent(new TransformComponent(27, 28, 200));
@@ -128,7 +151,7 @@ void Digger::LoadGame(int level) const
 					money->AddComponent(new ColliderComponent("money", false, 0, 0));
 					money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
 					money->AddComponent(new MovingBagComponent());
-					
+
 					scene.AddGameobject(money);
 					money->GetComponent<MovingBagComponent>()->SetOldPosY(posY);
 				}
@@ -138,8 +161,22 @@ void Digger::LoadGame(int level) const
 			posY += size;
 			posX = 0;
 		}
+
 	}
 	myfile.close();
+
+
+
+	//spidertest
+	auto spider = std::make_shared<engine::GameObject>("spider");
+	spider->AddComponent(new SpriteComponent(("/Digger/spiders.png"), 27, 27, 0, 0, 6, 150, true));
+	spider->AddComponent(new TransformComponent(27, 28, 200));
+	spider->GetComponent<TransformComponent>()->Translate(180, 240, 0);
+	spider->GetComponent<TransformComponent>()->SetVelocityX(-65);
+	spider->AddComponent(new MovementSpiderComponent(10));
+	scene.AddGameobject(spider);
+
+
 
 
 	//player
@@ -207,7 +244,7 @@ void Digger::CollisionCheck()
 	auto players = scene->GetPlayers();
 	for (auto trigger : triggers)
 	{
-		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[1]->GetComponent<ColliderComponent>()))
+		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[0]->GetComponent<ColliderComponent>()))
 		{
 			scene->RemoveGameObject(trigger->GetName());
 			std::cout << trigger->GetName();
@@ -216,10 +253,10 @@ void Digger::CollisionCheck()
 
 	for (auto collider : colliders)
 	{
-		if (engine::Collision::AABB(*collider, *players[1]->GetComponent<ColliderComponent>()))
+		if (engine::Collision::AABB(*collider, *players[0]->GetComponent<ColliderComponent>()))
 		{
-			if (players[1]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
-				players[1]->GetComponent<TransformComponent>()->SetVelocityY(0);
+			if (players[0]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
+				players[0]->GetComponent<TransformComponent>()->SetVelocityY(0);
 			else if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
 				std::cout << "isDeath\n";
 		}
