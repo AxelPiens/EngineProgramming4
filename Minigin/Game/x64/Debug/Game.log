@@ -1,7 +1,12 @@
 ﻿  MovementSpiderComponent.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(32,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(33,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(53,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(36,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(37,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(74,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(105,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(106,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(121,87): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(135,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(136,83): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied

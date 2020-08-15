@@ -42,12 +42,12 @@ void Digger::Initialize()
 	//Mix_PlayMusic(m_BackgroundMusic, -1);
 
 
-	m_WindowHeight = 300;
+	m_WindowHeight = 400;
 	m_Window = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		425,
+		500,
 		m_WindowHeight,
 		SDL_WINDOW_OPENGL
 	);
@@ -118,6 +118,15 @@ void Digger::LoadGame(int level) const
 
 
 				}
+				else if (numbers[i] == '4')
+				{
+					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
+					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
+					level2->AddComponent(new TransformComponent(size, size, 200));
+					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->AddComponent(new ColliderComponent("level" + number, false, 0, 0));
+					scene.AddGameobject(level2);
+				}
 				++number;
 				posX += size;
 			}
@@ -171,9 +180,9 @@ void Digger::LoadGame(int level) const
 	auto spider = std::make_shared<engine::GameObject>("spider");
 	spider->AddComponent(new SpriteComponent(("/Digger/spiders.png"), 27, 27, 0, 0, 6, 150, true));
 	spider->AddComponent(new TransformComponent(27, 28, 200));
-	spider->GetComponent<TransformComponent>()->Translate(180, 240, 0);
+	spider->GetComponent<TransformComponent>()->Translate(400,27, 0);
 	spider->GetComponent<TransformComponent>()->SetVelocityX(-65);
-	spider->AddComponent(new MovementSpiderComponent(10));
+	spider->AddComponent(new MovementSpiderComponent(65));
 	scene.AddGameobject(spider);
 
 
@@ -183,7 +192,7 @@ void Digger::LoadGame(int level) const
 	auto go = std::make_shared<engine::GameObject>("player");
 	go->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
 	go->AddComponent(new TransformComponent(15.f, 17.5f, 0));
-	go->GetComponent<TransformComponent>()->Translate(0, 0, 0);
+	go->GetComponent<TransformComponent>()->Translate(27, 27 + 0.5f * 27, 0);
 	//go->GetComponent<TransformComponent>()->Translate(270, 216, 0);
 	go->AddComponent(new ColliderComponent("player", false, 2, 2));
 	go->AddComponent(new ControlComponent());
@@ -242,9 +251,10 @@ void Digger::CollisionCheck()
 	auto triggers = scene->GetTriggers();
 	auto colliders = scene->GetColliders();
 	auto players = scene->GetPlayers();
+	int number = 1;
 	for (auto trigger : triggers)
 	{
-		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[0]->GetComponent<ColliderComponent>()))
+		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[number]->GetComponent<ColliderComponent>()))
 		{
 			scene->RemoveGameObject(trigger->GetName());
 			std::cout << trigger->GetName();
@@ -255,8 +265,8 @@ void Digger::CollisionCheck()
 	{
 		if (engine::Collision::AABB(*collider, *players[0]->GetComponent<ColliderComponent>()))
 		{
-			if (players[0]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
-				players[0]->GetComponent<TransformComponent>()->SetVelocityY(0);
+			if (players[number]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
+				players[number]->GetComponent<TransformComponent>()->SetVelocityY(0);
 			else if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
 				std::cout << "isDeath\n";
 		}

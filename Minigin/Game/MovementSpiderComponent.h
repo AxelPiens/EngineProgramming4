@@ -13,5 +13,6 @@ protected:
 	void Render() override;
 private:
 	void CheckForBlocksInFront();
+	float m_Speed = 0.0f;
 };
 
