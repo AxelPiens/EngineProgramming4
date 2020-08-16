@@ -1,12 +1,22 @@
 ﻿  MovementSpiderComponent.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(36,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(37,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(74,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(105,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(106,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(121,87): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(135,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(136,83): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(33,84): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(34,84): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(50,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(51,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(56,83): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(57,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(62,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(63,83): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(68,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(69,86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(82,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(83,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(88,82): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(89,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(94,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(95,82): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(100,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\MovementSpiderComponent.cpp(101,85): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied

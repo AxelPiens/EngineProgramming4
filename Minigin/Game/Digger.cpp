@@ -180,8 +180,9 @@ void Digger::LoadGame(int level) const
 	auto spider = std::make_shared<engine::GameObject>("spider");
 	spider->AddComponent(new SpriteComponent(("/Digger/spiders.png"), 27, 27, 0, 0, 6, 150, true));
 	spider->AddComponent(new TransformComponent(27, 28, 200));
-	spider->GetComponent<TransformComponent>()->Translate(400,27, 0);
-	spider->GetComponent<TransformComponent>()->SetVelocityX(-65);
+	//spider->GetComponent<TransformComponent>()->Translate(400,27, 0);
+	spider->GetComponent<TransformComponent>()->Translate(200, 270, 0);
+	spider->GetComponent<TransformComponent>()->SetVelocityX(65);
 	spider->AddComponent(new MovementSpiderComponent(65));
 	scene.AddGameobject(spider);
 

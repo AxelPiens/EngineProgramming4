@@ -21,168 +21,194 @@ void MovementSpiderComponent::Render()
 
 void MovementSpiderComponent::CheckForBlocksInFront()
 {
-	//first check for block in front of it or border
-	//if theres a block check 90 degrees to the right
-	//ex. <- then ^ or ^ then ->
+	//
 
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto triggers = scene->GetTriggers();
 	auto colliders = scene->GetColliders();
 
 
-	float posX = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
-	float posY = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+
 	SDL_Rect m_Collider;
-	m_Collider.x = posX;
-	m_Collider.y = posY;
+	m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 50;
+	m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 7;
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
 	float velX = m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().x;
 	float velY = m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().y;
 	bool foundBlock = false;
-	if (velX != 0)
-	{
-		if (velX > 0)//right
-		{
-			for (auto trigger : triggers)
-			{
-				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
-				{
-					std::cout << "DOWN\n";
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
-					foundBlock = true;
-					break;
-				}
-			}
-			if (!foundBlock)
-			{
-				for (auto col : colliders)
-				{
-					if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-					{
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed);
-						break;
-					}
-				}
-			}
-		}
-		else // left
-		{
-			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x - 2;
+	bool foundBlockRight = false;
+	bool foundBlockLeft = false;
+	bool foundBlockUp = false;
+	bool foundBlockDown = false;
 
-			for (auto trigger : triggers)
-			{
-				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
-				{
-					std::cout << "UP\n";
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed);
-					foundBlock = true;
-					break;
-				}
-			}
-			if (!foundBlock)
-			{
-				for (auto col : colliders)
-				{
-					if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-					{
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-						break;
-					}
-				}
-			}
-		}
-	}
-	else if (velY != 0)
+	for (auto trigger : triggers)
 	{
-		if (velY > 0)//down
+		if( trigger->GetName().find("level") != std::string::npos)
 		{
-			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-			m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
-
-			for (auto trigger : triggers)
+			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
+			m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) // right
 			{
-				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
-				{
-					std::cout << "RIGHT\n";
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
-					foundBlock = true;
-					break;
-				}
+				foundBlockRight = true;
 			}
-			if (!foundBlock)
+			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
+			m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //left
 			{
-				m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
-				for (auto col : colliders)
-				{
-					if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-					{
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
-						break;
-					}
-				}
+				foundBlockLeft = true;
 			}
-		}
-		else // up
-		{
 			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
 			m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
-			for (auto trigger : triggers)
+			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //up
 			{
-				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
-				{
-					std::cout << "LEFT\n";
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-					m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
-					foundBlock = true;
-					break;
-				}
+				foundBlockUp = true;
 			}
-			if (!foundBlock)
+			m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
+			m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
+			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //down
 			{
-				for (auto col : colliders)
-				{
-					if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-					{
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
-						m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-						break;
-					}
-				}
+				foundBlockDown = true;
 			}
 		}
 	}
+	if (foundBlockLeft)
+	{
+		std::cout << "LEFT\n";
+	}
+	for (auto collider : colliders)
+	{
+		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
+		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) // right
+		{
+			foundBlockRight = true;
+		}
+		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
+		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //left
+		{
+			foundBlockLeft = true;
+		}
+		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
+		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
+		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //up
+		{
+			foundBlockUp = true;
+		}
+		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
+		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
+		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //down
+		{
+			foundBlockDown = true;
+		}
+	}
 
+	if (velX > 0) //right
+	{
+		if (!foundBlockRight)
+		{
+			std::cout << "RIGHT\n";
+		}
+		else
+		{
+			if (!foundBlockUp)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed);
+			}
+			else if (!foundBlockDown)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
+			}
+			else if (!foundBlockLeft)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+		}
 
-	//posX = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
-	//posY = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
-	//if (posX < 0)
-	//{
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
-	//}
-	//else if (posX > 405)
-	//{
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
-	//}
-	//if (posY < 0)
-	//{
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-	//}
-	//else if (posY > 243)
-	//{
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
-	//	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
-	//}
+	}
+	else if (velX < 0)
+	{
+		if (!foundBlockLeft)
+		{
+			std::cout << "LEFT\n";
+		}
+		else
+		{
+			if (!foundBlockUp)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed);
+			}
+			else if (!foundBlockDown)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
+			}
+			else if (!foundBlockRight)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+		}
+	}
+	else if (velY > 0)
+	{
+		if (!foundBlockDown)
+		{
+			std::cout << "DOWN\n";
+		}
+		else
+		{
+
+			if (!foundBlockLeft)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+			else if (!foundBlockRight)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+			else if (!foundBlockUp)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed);
+			}
+		}
+	}
+	else if (velY < 0)
+	{
+		if (!foundBlockUp)
+		{
+			std::cout << "UP\n";
+		}
+		else
+		{
+
+			if (!foundBlockLeft)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(-m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+			else if (!foundBlockRight)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0);
+			}
+			else if (!foundBlockDown)
+			{
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(m_Speed);
+			}
+		}
+
+	}
 
 
 
