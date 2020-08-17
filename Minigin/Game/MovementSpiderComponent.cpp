@@ -73,10 +73,7 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 			}
 		}
 	}
-	if (foundBlockLeft)
-	{
-		std::cout << "LEFT\n";
-	}
+
 	for (auto collider : colliders)
 	{
 		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
@@ -109,7 +106,6 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 	{
 		if (!foundBlockRight)
 		{
-			std::cout << "RIGHT\n";
 		}
 		else
 		{
@@ -135,7 +131,6 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 	{
 		if (!foundBlockLeft)
 		{
-			std::cout << "LEFT\n";
 		}
 		else
 		{
@@ -160,7 +155,6 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 	{
 		if (!foundBlockDown)
 		{
-			std::cout << "DOWN\n";
 		}
 		else
 		{
@@ -186,7 +180,6 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 	{
 		if (!foundBlockUp)
 		{
-			std::cout << "UP\n";
 		}
 		else
 		{

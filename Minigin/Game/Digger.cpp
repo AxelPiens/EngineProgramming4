@@ -24,6 +24,7 @@
 #include "MovingBagComponent.h"
 #include <fstream>
 #include "MovementSpiderComponent.h"
+#include "LiveComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -71,8 +72,8 @@ void Digger::LoadGame(int level) const
 	std::ifstream myfile;
 	myfile.open("../Data/Digger/LevelData.txt");
 
-	int posX = 0;
-	int posY = 0;
+	int posX = 0.f;
+	int posY = 27;
 	int number = 0;
 	int size = 27;
 
@@ -131,10 +132,10 @@ void Digger::LoadGame(int level) const
 				posX += size;
 			}
 			posY += size;
-			posX = 0;
+			posX = 0.f;
 		}
-		posY = 0;
-		posX = 0;
+		posY = 27;
+		posX = 0.f;
 		myfile.clear();
 		myfile.seekg(0);
 		while (std::getline(myfile, numbers))
@@ -168,7 +169,7 @@ void Digger::LoadGame(int level) const
 				posX += size;
 			}
 			posY += size;
-			posX = 0;
+			posX = 0.f;
 		}
 
 	}
@@ -184,6 +185,7 @@ void Digger::LoadGame(int level) const
 	spider->GetComponent<TransformComponent>()->Translate(200, 270, 0);
 	spider->GetComponent<TransformComponent>()->SetVelocityX(65);
 	spider->AddComponent(new MovementSpiderComponent(65));
+	spider->AddComponent(new ColliderComponent("spider", true, 0, 0));
 	scene.AddGameobject(spider);
 
 
@@ -193,14 +195,16 @@ void Digger::LoadGame(int level) const
 	auto go = std::make_shared<engine::GameObject>("player");
 	go->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
 	go->AddComponent(new TransformComponent(15.f, 17.5f, 0));
-	go->GetComponent<TransformComponent>()->Translate(27, 27 + 0.5f * 27, 0);
+	go->GetComponent<TransformComponent>()->Translate(27, 27 + 1.5f * 27, 0);
 	//go->GetComponent<TransformComponent>()->Translate(270, 216, 0);
 	go->AddComponent(new ColliderComponent("player", false, 2, 2));
 	go->AddComponent(new ControlComponent());
 	go->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
 	go->AddComponent(new ChangeSpriteComponent());
 	go->AddComponent(new StateComponent());
+	go->AddComponent(new LiveComponent(3, 3.0f));
 	scene.AddGameobject(go);
+	go->GetComponent<LiveComponent>()->Init();
 }
 
 
@@ -252,24 +256,43 @@ void Digger::CollisionCheck()
 	auto triggers = scene->GetTriggers();
 	auto colliders = scene->GetColliders();
 	auto players = scene->GetPlayers();
+
 	int number = 1;
 	for (auto trigger : triggers)
 	{
 		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[number]->GetComponent<ColliderComponent>()))
 		{
-			scene->RemoveGameObject(trigger->GetName());
-			std::cout << trigger->GetName();
+			if (trigger->GetName().find("spider") != std::string::npos)
+			{
+				
+				players[number]->GetComponent<LiveComponent>()->LoseLive();
+				players[number]->GetComponent<StateComponent>()->ChangeState(PlayerState::Death);
+				break;
+			}
+			else
+			{
+				scene->RemoveGameObject(trigger->GetName());
+				std::cout << trigger->GetName();
+				break;
+			}
 		}
+
 	}
 
 	for (auto collider : colliders)
 	{
-		if (engine::Collision::AABB(*collider, *players[0]->GetComponent<ColliderComponent>()))
+		if (engine::Collision::AABB(*collider, *players[number]->GetComponent<ColliderComponent>()))
 		{
-			if (players[number]->GetComponent<StateComponent>()->GetState() == PlayerState::WalkUp)
-				players[number]->GetComponent<TransformComponent>()->SetVelocityY(0);
-			else if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
-				std::cout << "isDeath\n";
+			if (collider->GetGameObject()->GetComponent<MovingBagComponent>())
+			{
+				if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
+				{
+					players[number]->GetComponent<LiveComponent>()->LoseLive();
+					players[number]->GetComponent<StateComponent>()->ChangeState(PlayerState::Death);
+				}
+			}
 		}
 	}
+
+	
 }

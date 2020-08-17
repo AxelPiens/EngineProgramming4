@@ -40,6 +40,12 @@ void ChangeSpriteComponent::Update(float deltaTime)
 		m_pGameObject->GetComponent<SpriteComponent>()->ChangeXPos(0);
 		m_pGameObject->GetComponent<SpriteComponent>()->ChangeAnimated(true);
 	}
+	else if (currentState == PlayerState::Death && currentState != m_LastState)
+	{
+		m_pGameObject->GetComponent<SpriteComponent>()->ChangeYPos(108);
+		m_pGameObject->GetComponent<SpriteComponent>()->ChangeXPos(0);
+		m_pGameObject->GetComponent<SpriteComponent>()->ChangeAnimated(true);
+	}
 	m_LastState = currentState;
 }
 

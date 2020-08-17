@@ -13,6 +13,7 @@ public:
 	void LoseLive();
 	int GetLives() const { return m_AmountOfLives; };
 	bool IsDeath() const { return m_IsDeath; };
+	bool HasLostLive() const { return m_HasLostLive; };
 	void Init();
 protected:
 	void Update(float deltaTime) override;
@@ -23,5 +24,6 @@ private:
 	float m_DeathTime = 4.0f;
 	engine::Vector3 m_SpawnPos;
 	bool m_IsDeath = false;
+	bool m_HasLostLive = false;
 };
 

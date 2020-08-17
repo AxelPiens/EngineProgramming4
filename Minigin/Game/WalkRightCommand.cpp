@@ -8,7 +8,7 @@
 #include "ColliderComponent.h"
 #include "Collision.h"
 #include "MovingBagComponent.h"
-
+#include "LiveComponent.h"
 void WalkRightCommand::Execute(engine::GameObject* object)
 {
 
@@ -24,41 +24,43 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
-
-	for (auto trigger : triggers)
-
+	if (!object->GetComponent<LiveComponent>()->HasLostLive())
 	{
-		if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
+		for (auto trigger : triggers)
+
 		{
-
-			int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
-			if (modulo >= -4 && modulo <= 4)
+			if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
-				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
-			}
-			allFailed = false;
-		}
-	}
-	if (allFailed)
-	{
-		object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
-		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
-	}
 
-	m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 21;
-
-	for (auto col : colliders)
-	{
-		if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-		{
-			if (col->GetGameObject()->GetName().find("money") != std::string::npos)
-			{
-				col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
-				col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(70.f);
+				int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
+				if (modulo >= -4 && modulo <= 4)
+				{
+					object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
+					object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
+				}
+				allFailed = false;
 			}
 		}
+		if (allFailed)
+		{
+			object->GetComponent<RigidbodyComponent>()->WalkX(0.8f);
+			object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkRight);
+		}
 
+		m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 21;
+
+		for (auto col : colliders)
+		{
+			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
+			{
+				if (col->GetGameObject()->GetName().find("money") != std::string::npos)
+				{
+					col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
+					col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(70.f);
+				}
+			}
+
+		}
 	}
 }
 

@@ -7,12 +7,13 @@
 #include "SceneManager.h"
 #include "ColliderComponent.h"
 #include "Collision.h"
-
+#include "LiveComponent.h"
 void WalkUpCommand::Execute(engine::GameObject* object)
 {
 
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto triggers = scene->GetTriggers();
+	auto colliders = scene->GetColliders();
 	float posX = object->GetComponent<TransformComponent>()->GetPosition().x + 10;
 	float posY = object->GetComponent<TransformComponent>()->GetPosition().y - 10;
 	bool allFailed = true;
@@ -22,26 +23,43 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
-
-	for (auto trigger : triggers)
-
+	if (!object->GetComponent<LiveComponent>()->HasLostLive())
 	{
-		if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
+		for (auto trigger : triggers)
+
 		{
-			int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().x) % 27;
-			std::cout << modulo << std::endl;
-			if (modulo >= -4 && modulo <= 4)
+			if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 			{
-				object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
-				object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+				int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().x) % 27;
+				std::cout << modulo << std::endl;
+				if (modulo >= -4 && modulo <= 4)
+				{
+					object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
+					object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+				}
+				allFailed = false;
 			}
-			allFailed = false;
 		}
-	}
-	if (allFailed)
-	{
-		object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
-		object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+		if (allFailed)
+		{
+			object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
+			object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+		}
+		m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
+		m_Collider.y = object->GetComponent<TransformComponent>()->GetPosition().y - 5;
+
+		for (auto col : colliders)
+		{
+			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
+			{
+				if (col->GetGameObject()->GetName().find("money") != std::string::npos)
+				{
+					object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
+					break;
+				}
+			}
+
+		}
 	}
 }
 

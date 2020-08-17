@@ -1,12 +1,3 @@
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\vc142.pdb
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\vc142.idb
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\trappedbubblecomponent.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\projectilecomponent.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\parser.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\game.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\main.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\livecomponent.obj
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\debug\enemyaicomponent.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\vc142.pdb
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\vc142.idb
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\walkupcommand.obj
@@ -18,28 +9,21 @@ c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\s
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\shootcommand.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\projectilecomponent.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\parser.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\movingbagcomponent.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\main.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\livecomponent.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\jumpcommand.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\enemyaicomponent.obj
-c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\digger.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\changespritecomponent.obj
-c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\movingbagcomponent.obj
-c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\debug\game.lib
-c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\debug\game.exp
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\debug\game.exe
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\debug\game.ilk
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\debug\game.pdb
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\digger.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\movementspidercomponent.obj
 c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\debug\game.exe
 c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\debug\game.ilk
 c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\debug\game.pdb
-c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\minigin.obj
-c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.pch
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\cl.command.1.tlog
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\cl.read.1.tlog
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\cl.write.1.tlog
-c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\game.write.1u.tlog
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\link.command.1.tlog
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\link.read.1.tlog
 c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\debug\game.tlog\link.write.1.tlog
