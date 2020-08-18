@@ -25,6 +25,8 @@
 #include <fstream>
 #include "MovementSpiderComponent.h"
 #include "LiveComponent.h"
+#include "ScoreComponent.h"
+#include "ShootComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -70,7 +72,7 @@ void Digger::LoadGame(int level) const
 	//level 
 	std::string numbers;
 	std::ifstream myfile;
-	myfile.open("../Data/Digger/LevelData.txt");
+	myfile.open("../Data/Digger/LevelData" + std::to_string(m_LevelNumber) + ".txt");
 
 	int posX = 0.f;
 	int posY = 27;
@@ -106,7 +108,6 @@ void Digger::LoadGame(int level) const
 					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
-
 				}
 				else if (numbers[i] == '3') //money
 				{
@@ -149,7 +150,9 @@ void Digger::LoadGame(int level) const
 					diamond->AddComponent(new TransformComponent(26, 21, 200));
 					diamond->GetComponent<TransformComponent>()->Translate(posX, posY + 5, 0);
 					diamond->AddComponent(new ColliderComponent("diamond", true, 0, 0));
+					diamond->AddComponent(new StateComponent());
 					scene.AddGameobject(diamond);
+					diamond->GetComponent<StateComponent>()->ChangeScoresState(Scores::Emeralds);
 				}
 				else if (numbers[i] == '3') //money
 				{
@@ -161,8 +164,8 @@ void Digger::LoadGame(int level) const
 					money->AddComponent(new ColliderComponent("money", false, 0, 0));
 					money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
 					money->AddComponent(new MovingBagComponent());
-
 					scene.AddGameobject(money);
+
 					money->GetComponent<MovingBagComponent>()->SetOldPosY(posY);
 				}
 				++number;
@@ -174,8 +177,6 @@ void Digger::LoadGame(int level) const
 
 	}
 	myfile.close();
-
-
 
 	//spidertest
 	auto spider = std::make_shared<engine::GameObject>("spider");
@@ -192,19 +193,21 @@ void Digger::LoadGame(int level) const
 
 
 	//player
-	auto go = std::make_shared<engine::GameObject>("player");
-	go->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
-	go->AddComponent(new TransformComponent(15.f, 17.5f, 0));
-	go->GetComponent<TransformComponent>()->Translate(27, 27 + 1.5f * 27, 0);
+	auto player = std::make_shared<engine::GameObject>("player");
+	player->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
+	player->AddComponent(new TransformComponent(15.f, 17.5f, 0));
+	player->GetComponent<TransformComponent>()->Translate(27, 27 + 1.5f * 27, 0);
 	//go->GetComponent<TransformComponent>()->Translate(270, 216, 0);
-	go->AddComponent(new ColliderComponent("player", false, 2, 2));
-	go->AddComponent(new ControlComponent());
-	go->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
-	go->AddComponent(new ChangeSpriteComponent());
-	go->AddComponent(new StateComponent());
-	go->AddComponent(new LiveComponent(3, 3.0f));
-	scene.AddGameobject(go);
-	go->GetComponent<LiveComponent>()->Init();
+	player->AddComponent(new ColliderComponent("player", false, 2, 2));
+	player->AddComponent(new ControlComponent());
+	player->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
+	player->AddComponent(new ChangeSpriteComponent());
+	player->AddComponent(new StateComponent());
+	player->AddComponent(new LiveComponent(3, 3.0f));
+	player->AddComponent(new ScoreComponent());
+	player->AddComponent(new ShootComponent(4.0f));
+	scene.AddGameobject(player);
+	player->GetComponent<LiveComponent>()->Init();
 }
 
 
@@ -231,7 +234,14 @@ void Digger::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = engine::SceneManager::GetInstance();
 		auto& input = engine::InputManager::GetInstance();
-		input.SetKeyBoardCommands(new WalkLeftCommand(), new WalkRightCommand(), new WalkUpCommand(), new WalkDownCommand());
+		input.SetAKey(new WalkLeftCommand());
+		input.SetSKey(new WalkDownCommand());
+		input.SetDKey(new WalkRightCommand());
+		input.SetWKey(new WalkUpCommand());
+		input.SetSpaceBarKey(new ShootCommand());
+
+
+
 		input.SetControllerCommands(new WalkDownCommand(), new WalkLeftCommand(), new WalkUpCommand(), new WalkRightCommand());
 
 		auto lastTime = std::chrono::high_resolution_clock::now();
@@ -246,7 +256,7 @@ void Digger::Run()
 			renderer.Render();
 		}
 	}
-
+	HighScoreCheck();
 	Cleanup();
 }
 
@@ -262,17 +272,22 @@ void Digger::CollisionCheck()
 	{
 		if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[number]->GetComponent<ColliderComponent>()))
 		{
-			if (trigger->GetName().find("spider") != std::string::npos)
+			if (trigger->GetName().find("spider") != std::string::npos && players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death)
 			{
 				
 				players[number]->GetComponent<LiveComponent>()->LoseLive();
-				players[number]->GetComponent<StateComponent>()->ChangeState(PlayerState::Death);
+				players[number]->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Death);
+				players[number]->GetComponent<TransformComponent>()->SetVelocity(engine::Vector3(0, 0, 0));
 				break;
 			}
-			else
+			else if(players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death 
+				&& players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Idle)
 			{
+				if(trigger->GetComponent<StateComponent>())
+					players[number]->GetComponent<ScoreComponent>()->AddScore(trigger);
+
 				scene->RemoveGameObject(trigger->GetName());
-				std::cout << trigger->GetName();
+				std::cout << trigger->GetName() << std::endl;
 				break;
 			}
 		}
@@ -288,11 +303,69 @@ void Digger::CollisionCheck()
 				if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
 				{
 					players[number]->GetComponent<LiveComponent>()->LoseLive();
-					players[number]->GetComponent<StateComponent>()->ChangeState(PlayerState::Death);
+					players[number]->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Death);
+					players[number]->GetComponent<TransformComponent>()->SetVelocity(engine::Vector3(0, 0, 0));
 				}
 			}
 		}
 	}
 
 	
+}
+
+void Digger::HighScoreCheck()
+{
+	//initials
+	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
+	auto players = scene->GetPlayers();
+	
+	int score = players[1]->GetComponent<ScoreComponent>()->GetScore();
+
+	std::vector<int> highScores;
+	std::ifstream inFile;
+	bool createNewFile = true;
+	inFile.open("../Data/Digger/highscores.txt");
+	if (!inFile.is_open())
+	{
+		std::cout << "Unable to read file\n";
+	}
+	std::string scores;
+	while (std::getline(inFile, scores))
+	{
+		highScores.push_back(std::stoi(scores));
+		createNewFile = false;
+	}
+	if (createNewFile)
+	{
+		std::ofstream outFile("../Data/Digger/highscores.txt", ios::out);
+		for (size_t i = 0; i < 10; i++)
+		{
+			outFile << 0 << std::endl;
+			highScores.push_back(0);
+		}
+
+		inFile.open("../Data/Digger/highscores.txt");
+		if (!inFile.is_open())
+		{
+			std::cout << "Unable to read file\n";
+		}
+	}
+
+	for (size_t i = 0; i < highScores.size(); i++)
+	{
+		if (highScores[i] < score)
+		{
+			highScores.insert(highScores.begin() + i, score);
+			highScores.pop_back();
+			break;
+		}
+	}
+	std::ofstream outFile;
+	outFile.open("../Data/Digger/highscores.txt");
+	for (size_t i = 0; i < highScores.size(); i++)
+	{
+		outFile << highScores[i] << std::endl;
+
+	}
+
 }

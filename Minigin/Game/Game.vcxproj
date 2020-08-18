@@ -204,7 +204,9 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClCompile Include="MovingBagComponent.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="ProjectileComponent.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
+    <ClCompile Include="ShootComponent.cpp" />
     <ClCompile Include="StateComponent.cpp" />
     <ClCompile Include="TrappedBubbleComponent.cpp" />
     <ClCompile Include="WalkDownCommand.cpp" />
@@ -223,7 +225,9 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClInclude Include="MovingBagComponent.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="ProjectileComponent.h" />
+    <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ShootCommand.h" />
+    <ClInclude Include="ShootComponent.h" />
     <ClInclude Include="StateComponent.h" />
     <ClInclude Include="TrappedBubbleComponent.h" />
     <ClInclude Include="WalkDownCommand.h" />

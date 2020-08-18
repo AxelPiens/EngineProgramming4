@@ -31,7 +31,7 @@ void LiveComponent::Update(float deltaTime)
 			std::cout << "RESPAWN\n";
 			m_ElapsedTime = 0.0f;
 			m_pGameObject->GetComponent<TransformComponent>()->Translate(m_SpawnPos);
-			m_pGameObject->GetComponent<StateComponent>()->ChangeState(PlayerState::Idle);
+			m_pGameObject->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Idle);
 			m_HasLostLive = false;
 
 		}

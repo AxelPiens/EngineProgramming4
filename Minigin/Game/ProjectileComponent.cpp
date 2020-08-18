@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "Collision.h"
 ProjectileComponent::ProjectileComponent(float range, float speed, float liveTime, int direction, bool goingUp)
 	:m_Range{range*1000}
 	, m_Speed{speed}
@@ -40,8 +41,38 @@ void ProjectileComponent::Update(float deltaTime)
 			scene->RemoveGameObject("boulder" + std::to_string(m_Number));
 		}
 	}
+	CheckForBlock();
 }
 
 void ProjectileComponent::Render()
 {
+}
+
+void ProjectileComponent::CheckForBlock()
+{
+	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
+	auto triggers = scene->GetTriggers();
+	auto colliders = scene->GetColliders();
+	for (auto trigger : triggers)
+	{
+		if (trigger->GetName().find("level") != std::string::npos)
+		{
+			if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *m_pGameObject->GetComponent<ColliderComponent>()))
+			{
+				scene->RemoveGameObject(m_pGameObject->GetName());
+				break;
+			}
+		}
+	}
+	for (auto col : colliders)
+	{
+		if (col->GetGameObject()->GetName().find("level") != std::string::npos)
+		{
+			if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
+			{
+				scene->RemoveGameObject(m_pGameObject->GetName());
+				break;
+			}
+		}
+	}
 }

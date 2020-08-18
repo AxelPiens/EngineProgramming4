@@ -22,14 +22,13 @@ private:
 	int m_WindowHeight = 0;
 	Mix_Music* m_BackgroundMusic = nullptr;
 	int m_BubbleAmount = 0;
-	int m_LevelNumber = 0;
-	int m_FoodNumber = 0;
-	int m_Lives = 4;
-	int m_EnemyCounter = 3;
+	int m_LevelNumber = 1;
 	float m_ElapsedTime = 0.0f;
-	float m_NextLevelTime = 7.0f;
-	int m_MaxLevel = 2;
+	int m_MaxLevel = 3;
 	int m_Score = 0;
 	bool m_Continue = true;
+	
 	void CollisionCheck();
+	void HighScoreCheck();
+
 };

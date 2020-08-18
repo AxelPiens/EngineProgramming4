@@ -1,23 +1,27 @@
-﻿  Digger.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(75,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(96,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(96,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(106,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(106,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(116,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(116,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(127,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(127,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(135,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(138,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(150,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(150,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(160,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(160,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(166,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(172,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(197,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(197,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  ChangeSpriteComponent.cpp
+  Digger.cpp
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(77,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(98,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(98,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(108,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(108,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(117,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(117,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(128,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(128,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(136,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(139,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(151,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(151,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(163,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(163,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(169,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(175,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(198,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(198,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ShootCommand.cpp
+  ShootComponent.cpp
+  Generating Code...
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied

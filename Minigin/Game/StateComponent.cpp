@@ -3,7 +3,7 @@
 
 StateComponent::StateComponent()
 {
-	m_pState = PlayerState::Idle;
+	m_PlayerState = PlayerState::Idle;
 }
 
 void StateComponent::Update(float deltaTime)

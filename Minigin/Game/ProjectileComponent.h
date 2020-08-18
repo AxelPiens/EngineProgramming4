@@ -10,6 +10,7 @@ public:
 	ProjectileComponent(float range, float speed, float liveTime, int direction, bool goingUp);
 	void SetNumber(int number) { m_Number = number; };
 	int GetNumber() { return m_Number; };
+
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;
@@ -22,5 +23,6 @@ private:
 	int m_Number;
 	int m_Direction;
 	bool m_IsGoingUp;
+	void CheckForBlock();
 };
 

@@ -35,7 +35,7 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 				if (modulo >= -4 && modulo <= 4)
 				{
 					object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
-					object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+					object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkUp);
 				}
 				allFailed = false;
 			}
@@ -43,7 +43,7 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 		if (allFailed)
 		{
 			object->GetComponent<RigidbodyComponent>()->WalkY(-0.8f);
-			object->GetComponent<StateComponent>()->ChangeState(PlayerState::WalkUp);
+			object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkUp);
 		}
 		m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
 		m_Collider.y = object->GetComponent<TransformComponent>()->GetPosition().y - 5;
@@ -65,6 +65,9 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 
 void WalkUpCommand::Dexecute(engine::GameObject* object)
 {
-	object->GetComponent<RigidbodyComponent>()->WalkY(0);
-	object->GetComponent<StateComponent>()->ChangeState(PlayerState::Idle);
+	if (!object->GetComponent<LiveComponent>()->HasLostLive())
+	{
+		object->GetComponent<RigidbodyComponent>()->WalkY(0);
+		object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Idle);
+	}
 }
