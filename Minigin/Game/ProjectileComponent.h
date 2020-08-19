@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include "Vector3.h"
 class ProjectileComponent : public BaseComponent
 {
 public:
@@ -7,7 +8,7 @@ public:
 	ProjectileComponent(ProjectileComponent&& other) noexcept = delete;
 	ProjectileComponent& operator=(const ProjectileComponent& other) = delete;
 	ProjectileComponent& operator=(ProjectileComponent&& other) noexcept = delete;
-	ProjectileComponent(float range, float speed, float liveTime, int direction, bool goingUp);
+	ProjectileComponent(float range, float speed, float liveTime, engine::Vector3 direction, bool goingUp);
 	void SetNumber(int number) { m_Number = number; };
 	int GetNumber() { return m_Number; };
 
@@ -21,7 +22,7 @@ private:
 	float m_ElapsedTime;
 	float m_DeathTime;
 	int m_Number;
-	int m_Direction;
+	engine::Vector3 m_Direction;
 	bool m_IsGoingUp;
 	void CheckForBlock();
 };

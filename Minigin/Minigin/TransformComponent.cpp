@@ -61,10 +61,26 @@ void TransformComponent::Scale(float x, float y, float z)
 
 void TransformComponent::Update(float deltaTime)
 {
-	if (m_Velocity.x < 0)
-		m_Direction = -1;
 	if (m_Velocity.x > 0)
-		m_Direction = 1;
+	{
+		m_Direction.x = 1;
+		m_Direction.y = 0;
+	}
+	if (m_Velocity.x < 0)
+	{
+		m_Direction.x = -1;
+		m_Direction.y = 0;
+	}
+	if (m_Velocity.y > 0)
+	{
+		m_Direction.x = 0;
+		m_Direction.y = 1;
+	}
+	if (m_Velocity.y < 0)
+	{
+		m_Direction.x = 0;
+		m_Direction.y = -1;
+	}
 	m_Position.x += m_Velocity.x * deltaTime;
 	m_Position.y += m_Velocity.y * deltaTime;
 }

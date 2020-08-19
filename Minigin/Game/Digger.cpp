@@ -27,6 +27,7 @@
 #include "LiveComponent.h"
 #include "ScoreComponent.h"
 #include "ShootComponent.h"
+#include "TurnHobbinComponent.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -183,11 +184,15 @@ void Digger::LoadGame(int level) const
 	spider->AddComponent(new SpriteComponent(("/Digger/spiders.png"), 27, 27, 0, 0, 6, 150, true));
 	spider->AddComponent(new TransformComponent(27, 28, 200));
 	//spider->GetComponent<TransformComponent>()->Translate(400,27, 0);
-	spider->GetComponent<TransformComponent>()->Translate(200, 270, 0);
+	spider->GetComponent<TransformComponent>()->Translate(200, 297, 0);
 	spider->GetComponent<TransformComponent>()->SetVelocityX(65);
 	spider->AddComponent(new MovementSpiderComponent(65));
 	spider->AddComponent(new ColliderComponent("spider", true, 0, 0));
+	spider->AddComponent(new ChangeSpriteComponent());
+	spider->AddComponent(new TurnHobbinComponent(4.0f, 3.0f));
+	spider->AddComponent(new StateComponent());
 	scene.AddGameobject(spider);
+	spider->GetComponent<StateComponent>()->ChangeScoresState(Scores::Nobbins);
 
 
 
@@ -280,13 +285,13 @@ void Digger::CollisionCheck()
 				players[number]->GetComponent<TransformComponent>()->SetVelocity(engine::Vector3(0, 0, 0));
 				break;
 			}
-			else if(players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death 
+			else if(players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death
 				&& players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Idle)
 			{
 				if(trigger->GetComponent<StateComponent>())
 					players[number]->GetComponent<ScoreComponent>()->AddScore(trigger);
-
-				scene->RemoveGameObject(trigger->GetName());
+				if(trigger->GetName().find("projectile") == std::string::npos)
+					scene->RemoveGameObject(trigger->GetName());
 				std::cout << trigger->GetName() << std::endl;
 				break;
 			}

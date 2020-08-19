@@ -42,7 +42,7 @@ void EnemyAIComponent::Shoot()
 	projectile->AddComponent(new TransformComponent(16, 16, 100));
 	projectile->GetComponent<TransformComponent>()->Translate(m_pGameObject->GetComponent<TransformComponent>()->GetPosition());
 	projectile->AddComponent(new SpriteComponent("spritesSmall.png", 32, 32, 512, 0, 8, 150, true));
-	int dir = m_pGameObject->GetComponent<TransformComponent>()->GetDirection();
+	engine::Vector3 dir = m_pGameObject->GetComponent<TransformComponent>()->GetDirection();
 	projectile->AddComponent(new ProjectileComponent(20, 150, 3, dir, false));
 	projectile->GetComponent<ProjectileComponent>()->SetNumber(m_Number);
 	projectile->AddComponent(new ColliderComponent("boulder" + std::to_string(m_Number), true, 0, 0));

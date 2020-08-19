@@ -5,7 +5,9 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Collision.h"
-ProjectileComponent::ProjectileComponent(float range, float speed, float liveTime, int direction, bool goingUp)
+#include "ScoreComponent.h"
+
+ProjectileComponent::ProjectileComponent(float range, float speed, float liveTime, engine::Vector3 direction, bool goingUp)
 	:m_Range{range*1000}
 	, m_Speed{speed}
 	, m_DistanceTraveled{0}
@@ -19,28 +21,12 @@ ProjectileComponent::ProjectileComponent(float range, float speed, float liveTim
 
 void ProjectileComponent::Update(float deltaTime)
 {
-	m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(m_Speed * m_Direction);
-	m_DistanceTraveled += m_Speed;
-	if (m_DistanceTraveled > m_Range)
-	{
-		//go up
-		if (m_IsGoingUp)
-		{
-			m_pGameObject->GetComponent<TransformComponent>()->SetVelocityX(0);
-			m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(-m_Speed / 3);
-			m_ElapsedTime += deltaTime;
-			if (m_ElapsedTime > m_DeathTime)
-			{
-				auto scene = engine::SceneManager::GetInstance().GetScene("Game");
-				scene->RemoveGameObject("projectile" + std::to_string(m_Number));
-			}
-		}
-		else
-		{
-			auto scene = engine::SceneManager::GetInstance().GetScene("Game");
-			scene->RemoveGameObject("boulder" + std::to_string(m_Number));
-		}
-	}
+
+
+
+	m_pGameObject->GetComponent<TransformComponent>()->SetVelocity(engine::Vector3( m_Direction * m_Speed));
+
+	std::cout << m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().x << " " << m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().y << std::endl;
 	CheckForBlock();
 }
 
@@ -53,6 +39,8 @@ void ProjectileComponent::CheckForBlock()
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto triggers = scene->GetTriggers();
 	auto colliders = scene->GetColliders();
+	auto players = scene->GetPlayers();
+
 	for (auto trigger : triggers)
 	{
 		if (trigger->GetName().find("level") != std::string::npos)
@@ -63,15 +51,28 @@ void ProjectileComponent::CheckForBlock()
 				break;
 			}
 		}
+		else if (trigger->GetName().find("spider") != std::string::npos)
+		{
+			if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *m_pGameObject->GetComponent<ColliderComponent>()))
+			{
+				players[1]->GetComponent<ScoreComponent>()->AddScore(trigger);
+				scene->RemoveGameObject(trigger->GetName());
+				scene->RemoveGameObject(m_pGameObject->GetName());
+				break;
+			}
+		}
 	}
 	for (auto col : colliders)
 	{
-		if (col->GetGameObject()->GetName().find("level") != std::string::npos)
+		if (!col->GetIsTrigger())
 		{
-			if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
+			if (col->GetGameObject()->GetName().find("level") != std::string::npos)
 			{
-				scene->RemoveGameObject(m_pGameObject->GetName());
-				break;
+				if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
+				{
+					scene->RemoveGameObject(m_pGameObject->GetName());
+					break;
+				}
 			}
 		}
 	}

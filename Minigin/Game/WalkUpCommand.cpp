@@ -50,9 +50,12 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 
 		for (auto col : colliders)
 		{
+			m_Collider.w = 1;
+			m_Collider.h = 1;
+			m_Collider.y = object->GetComponent<TransformComponent>()->GetPosition().y - 5;
 			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
 			{
-				if (col->GetGameObject()->GetName().find("money") != std::string::npos)
+				if (col->GetGameObject()->GetName().find("money") != std::string::npos || col->GetGameObject()->GetName().find("level") != std::string::npos)
 				{
 					object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
 					break;

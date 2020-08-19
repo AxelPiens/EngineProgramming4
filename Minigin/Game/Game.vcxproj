@@ -209,6 +209,7 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClCompile Include="ShootComponent.cpp" />
     <ClCompile Include="StateComponent.cpp" />
     <ClCompile Include="TrappedBubbleComponent.cpp" />
+    <ClCompile Include="TurnHobbinComponent.cpp" />
     <ClCompile Include="WalkDownCommand.cpp" />
     <ClCompile Include="WalkLeftCommand.cpp" />
     <ClCompile Include="WalkRightCommand.cpp" />
@@ -230,6 +231,7 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClInclude Include="ShootComponent.h" />
     <ClInclude Include="StateComponent.h" />
     <ClInclude Include="TrappedBubbleComponent.h" />
+    <ClInclude Include="TurnHobbinComponent.h" />
     <ClInclude Include="WalkDownCommand.h" />
     <ClInclude Include="WalkLeftCommand.h" />
     <ClInclude Include="WalkRightCommand.h" />

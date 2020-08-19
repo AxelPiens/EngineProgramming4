@@ -59,6 +59,14 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 					col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(70.f);
 				}
 			}
+			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
+			{
+				if (col->GetGameObject()->GetName().find("level") != std::string::npos)
+				{
+					object->GetComponent<TransformComponent>()->SetVelocityX(0.f);
+					break;
+				}
+			}
 
 		}
 	}

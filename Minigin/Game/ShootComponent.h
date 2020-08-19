@@ -17,5 +17,6 @@ private:
 	float m_ElapsedTime = 0.f;
 	float m_TimeToShoot = 0.f;
 	bool m_CanShoot = false;
+
 };
 

@@ -84,6 +84,9 @@
     <ClCompile Include="ShootComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="TurnHobbinComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -141,6 +144,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="ShootComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TurnHobbinComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

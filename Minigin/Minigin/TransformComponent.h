@@ -27,7 +27,7 @@
 		const engine::Vector3& GetForward() const { return m_Forward; }
 		const engine::Vector3& GetUp() const { return m_Up; }
 		const engine::Vector3& GetRight() const { return m_Right; }
-		int GetDirection() const { return m_Direction; };
+		engine::Vector3 GetDirection() const { return m_Direction; };
 	protected:
 		void Update(float deltaTime) override;
 		void Render() override;
@@ -44,7 +44,7 @@
 		int m_Width = 0;
 		float m_Speed = 5;
 		engine::Vector3 m_Velocity;
-		int m_Direction = 1;
+		engine::Vector3 m_Direction;
 
 		bool m_MoveTowards = false;
 	};
