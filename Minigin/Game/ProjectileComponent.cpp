@@ -55,7 +55,7 @@ void ProjectileComponent::CheckForBlock()
 		{
 			if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *m_pGameObject->GetComponent<ColliderComponent>()))
 			{
-				players[1]->GetComponent<ScoreComponent>()->AddScore(trigger);
+				players[0]->GetComponent<ScoreComponent>()->AddScore(trigger);
 				scene->RemoveGameObject(trigger->GetName());
 				scene->RemoveGameObject(m_pGameObject->GetName());
 				break;

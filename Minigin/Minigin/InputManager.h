@@ -50,7 +50,7 @@ namespace engine
 		void SetYKey(Command* command) { m_YKey = command; };
 		void SetZKey(Command* command) { m_ZKey = command; };
 		void SetSpaceBarKey(Command* command) { m_SpaceBarKey = command; };
-
+		void SetEnterKey(Command* command) { m_EnterKey = command; };
 		void SetControllerCommands(Command* aButton, Command* xButton, Command* yButton, Command* bButton)
 		{
 			m_AButton = aButton;
@@ -90,7 +90,7 @@ namespace engine
 		Command* m_YKey;
 		Command* m_ZKey;
 		Command* m_SpaceBarKey;
-		
+		Command* m_EnterKey;
 
 		Command* m_AButton;
 		Command* m_XButton;

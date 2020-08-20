@@ -11,6 +11,7 @@ namespace engine
 class Digger
 {
 public:
+	Digger(bool firstLoad);
 	void Initialize();
 	void LoadGame(int level) const;
 	void Cleanup();
@@ -21,14 +22,14 @@ private:
 	const float m_MsPerUpdate = 0.1f;
 	int m_WindowHeight = 0;
 	Mix_Music* m_BackgroundMusic = nullptr;
-	int m_BubbleAmount = 0;
 	int m_LevelNumber = 1;
 	float m_ElapsedTime = 0.0f;
 	int m_MaxLevel = 3;
 	int m_Score = 0;
 	bool m_Continue = true;
-	
+	bool m_IsFirstLoad = false;
 	void CollisionCheck();
 	void HighScoreCheck();
+	void LevelCheck();
 
 };

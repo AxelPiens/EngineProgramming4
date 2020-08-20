@@ -56,16 +56,12 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 					object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
 					break;
 				}
-			}
-			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
-			{
 				if (col->GetGameObject()->GetName().find("level") != std::string::npos)
 				{
 					object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
 					break;
 				}
 			}
-
 		}
 	}
 }

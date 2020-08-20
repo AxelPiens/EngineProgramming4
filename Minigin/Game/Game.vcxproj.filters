@@ -87,6 +87,21 @@
     <ClCompile Include="TurnHobbinComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="WinComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpiderSpawnComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="HighScoreScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchingScenesComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -147,6 +162,21 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TurnHobbinComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="WinComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SpiderSpawnComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchingScenesComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

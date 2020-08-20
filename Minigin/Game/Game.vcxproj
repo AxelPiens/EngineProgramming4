@@ -196,6 +196,8 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClCompile Include="ChangeSpriteComponent.cpp" />
     <ClCompile Include="Digger.cpp" />
     <ClCompile Include="EnemyAIComponent.cpp" />
+    <ClCompile Include="EnterCommand.cpp" />
+    <ClCompile Include="HighScoreScene.cpp" />
     <ClCompile Include="JumpCommand.cpp" />
     <ClCompile Include="LiveComponent.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -207,18 +209,23 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ShootCommand.cpp" />
     <ClCompile Include="ShootComponent.cpp" />
+    <ClCompile Include="SpiderSpawnComponent.cpp" />
     <ClCompile Include="StateComponent.cpp" />
+    <ClCompile Include="SwitchingScenesComponent.cpp" />
     <ClCompile Include="TrappedBubbleComponent.cpp" />
     <ClCompile Include="TurnHobbinComponent.cpp" />
     <ClCompile Include="WalkDownCommand.cpp" />
     <ClCompile Include="WalkLeftCommand.cpp" />
     <ClCompile Include="WalkRightCommand.cpp" />
     <ClCompile Include="WalkUpCommand.cpp" />
+    <ClCompile Include="WinComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChangeSpriteComponent.h" />
     <ClInclude Include="Digger.h" />
     <ClInclude Include="EnemyAIComponent.h" />
+    <ClInclude Include="EnterCommand.h" />
+    <ClInclude Include="HighScoreScene.h" />
     <ClInclude Include="JumpCommand.h" />
     <ClInclude Include="LiveComponent.h" />
     <ClInclude Include="Game.h" />
@@ -229,13 +236,16 @@ xcopy "$(SolutionDir)3rdParty\vld\lib\x64\*.dll" "$(OutDir)" /y /D</Command>
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ShootCommand.h" />
     <ClInclude Include="ShootComponent.h" />
+    <ClInclude Include="SpiderSpawnComponent.h" />
     <ClInclude Include="StateComponent.h" />
+    <ClInclude Include="SwitchingScenesComponent.h" />
     <ClInclude Include="TrappedBubbleComponent.h" />
     <ClInclude Include="TurnHobbinComponent.h" />
     <ClInclude Include="WalkDownCommand.h" />
     <ClInclude Include="WalkLeftCommand.h" />
     <ClInclude Include="WalkRightCommand.h" />
     <ClInclude Include="WalkUpCommand.h" />
+    <ClInclude Include="WinComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Minigin\Minigin.vcxproj">

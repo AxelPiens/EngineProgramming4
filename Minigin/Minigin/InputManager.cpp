@@ -60,6 +60,8 @@ engine::InputManager::~InputManager()
 	m_ZKey = nullptr;
 	delete m_SpaceBarKey;
 	m_SpaceBarKey = nullptr;
+	delete m_EnterKey;
+	m_EnterKey = nullptr;
 
 	delete m_AButton;
 	m_AButton = nullptr;
@@ -223,6 +225,11 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 				isReleased = false;
 				return m_SpaceBarKey;
 			}
+			else if (e.key.keysym.sym == SDLK_RETURN)
+			{
+				isReleased = false;
+				return m_EnterKey;
+			}
  
 
 		}
@@ -363,6 +370,11 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 			{
 				isReleased = true;
 				return m_SpaceBarKey;
+			}
+			else if (e.key.keysym.sym == SDLK_RETURN)
+			{
+			isReleased = true;
+			return m_EnterKey;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "ShootCommand.h"
 #include "Components.h"
-#include "..\Game\ProjectileComponent.h" //change
+#include "ProjectileComponent.h"
 #include "SceneManager.h"
 #include "Scene.h"
 #include "ShootComponent.h"

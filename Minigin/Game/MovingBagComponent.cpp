@@ -66,19 +66,21 @@ void MovingBagComponent::CheckForBlock()
 
 	bool removeBlock = false;
 	for (auto trigger : triggers)
-
 	{
 		if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 		{
-			m_CanFall = false;
-			if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y - m_OldPosY > 32)
+			if (trigger->GetName().find("level") != std::string::npos)
 			{
-				std::cout << "FELL 2 BLOCKS\n";
-				removeBlock = true;
-			}
+				m_CanFall = false;
+				if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y - m_OldPosY > 32)
+				{
+					std::cout << "FELL 2 BLOCKS\n";
+					removeBlock = true;
+				}
 
-			m_OldPosY = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
-			break;
+				m_OldPosY = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
+				break;
+			}
 		}
 		else
 			m_CanFall = true;
@@ -103,6 +105,7 @@ void MovingBagComponent::CheckForBlock()
 			else
 				m_CanFall = true;
 		}
+
 	}
 
 	if (removeBlock)

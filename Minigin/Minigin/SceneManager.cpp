@@ -43,6 +43,7 @@ void engine::SceneManager::RemoveScene(const std::string& name)
 			auto iterator = std::find(m_Scenes.begin(), m_Scenes.end(), scene);
 			if (iterator != m_Scenes.end())
 				m_Scenes.erase(iterator);
+			break;
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace engine
 	public:
 		void AddGameobject(const std::shared_ptr<GameObject>& object);
 		void RemoveGameObject(const std::string& name);
+		void RemoveAllGameObjects();
 		void Update(float deltaTime);
 		std::vector < std::shared_ptr<GameObject>>& GetTriggers() { return m_Triggers; };
 		std::vector < ColliderComponent*>& GetColliders() { return m_Colliders; };

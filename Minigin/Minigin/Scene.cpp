@@ -21,20 +21,16 @@ void Scene::AddGameobject(const std::shared_ptr<GameObject>& object)
 		m_FPSObject = object;
 	if (object->HasComponent<ColliderComponent>())
 	{
-		if(object->GetComponent<ColliderComponent>()->GetTag() != "player" && object->GetComponent<ColliderComponent>()->GetTag() != "enemy")
+		if (object->GetComponent<ColliderComponent>()->GetTag() == "player")
 		{
-			if (object->GetComponent<ColliderComponent>()->GetIsTrigger())
-				m_Triggers.push_back(object);
-			else
-				m_Colliders.push_back(object->GetComponent<ColliderComponent>());
-
+			m_Players.push_back(object);
+			return;
 		}
+		if (object->GetComponent<ColliderComponent>()->GetIsTrigger())
+			m_Triggers.push_back(object);
 		else
-		{
-			m_PlayerEnemyColliders.push_back(object);
-			if (object->GetComponent<ColliderComponent>()->GetTag() == "player")
-				m_Players.push_back(object);
-		}
+			m_Colliders.push_back(object->GetComponent<ColliderComponent>());
+
 	}
 	if (object->HasComponent<TextComponent>())
 	{
@@ -65,6 +61,11 @@ void engine::Scene::RemoveGameObject(const std::string& name)
 	}
 
 }
+void engine::Scene::RemoveAllGameObjects()
+{
+	m_Objects.clear();
+	m_Texts.clear();
+}
 
 
 void Scene::Update(float deltaTime)
@@ -81,10 +82,10 @@ void Scene::Update(float deltaTime)
 	if(m_FPSObject)
 		m_FPSObject->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));
 
-	for(auto& object : m_Objects)
+	for (size_t i = 0; i < m_Objects.size(); i++)
 	{
-		if(object)
-			object->Update(deltaTime);
+		if(m_Objects[i])
+			m_Objects[i]->Update(deltaTime);
 	}
 
 }
