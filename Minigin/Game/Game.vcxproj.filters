@@ -22,6 +22,9 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{0e98c397-7cfb-4e4f-958b-ccf724fb3db6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TypeCommands">
+      <UniqueIdentifier>{0cc222f1-87f7-48cb-9f66-fc56b16ca532}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Parser.cpp">
@@ -96,11 +99,89 @@
     <ClCompile Include="HighScoreScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnterCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
     <ClCompile Include="SwitchingScenesComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnterCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ACommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="BCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="CCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="DCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ECommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="FCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="GCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="JCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="KCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="LCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="MCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="NCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="OCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="PCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="QCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="RCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="SCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="UCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="VCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="WCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="XCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="YCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="ZCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="HCommand.cpp">
+      <Filter>TypeCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="TCommand.cpp">
+      <Filter>TypeCommands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,11 +254,92 @@
     <ClInclude Include="HighScoreScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnterCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
     <ClInclude Include="SwitchingScenesComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnterCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ACommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="BCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="CCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="DCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ECommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="FCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="GCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="HCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="JCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="KCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="LCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="MCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="NCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="OCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="PCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="QCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="RCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="UCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="VCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="WCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="XCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="YCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ZCommand.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeCommands.h">
+      <Filter>TypeCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="TCommand.h">
+      <Filter>TypeCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

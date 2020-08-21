@@ -189,9 +189,15 @@ void Digger::LoadGame(int level) const
 	myfile.close();
 
 
-	auto spawnSpider = std::make_shared<engine::GameObject>("player");
+	auto spawnSpider = std::make_shared<engine::GameObject>("spawner");
 	spawnSpider->AddComponent(new SpiderSpawnComponent(5, 4.0f));
 	scene.AddGameobject(spawnSpider);
+
+
+
+
+
+
 
 
 	//player
@@ -211,6 +217,24 @@ void Digger::LoadGame(int level) const
 	player->AddComponent(new WinComponent(amountOfEmeralds));
 	scene.AddGameobject(player);
 	player->GetComponent<LiveComponent>()->Init();
+	player->GetComponent<ScoreComponent>()->SetScore(m_HighScore);
+
+	auto font = engine::ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
+	auto scoreText = std::make_shared<engine::GameObject>("scoretext");
+	scoreText->AddComponent(new TextComponent());
+	scoreText->GetComponent<TextComponent>()->SetFont(font);
+	scoreText->GetComponent<TextComponent>()->SetPosition(0, 0);
+	scoreText->GetComponent<TextComponent>()->SetText(std::to_string(player->GetComponent<ScoreComponent>()->GetScore()));
+	scoreText->GetComponent<TextComponent>()->SetColor({ 255, 0, 0 });
+	scene.AddGameobject(scoreText);
+
+
+	auto lives = std::make_shared<engine::GameObject>("lives");
+	lives->AddComponent(new SpriteComponent("Digger/lives.png", 21 * player->GetComponent<LiveComponent>()->GetLives() , 27, 0, 0, 0, 0, false));
+	lives->AddComponent(new TransformComponent(0));
+	lives->GetComponent<TransformComponent>()->Translate(150,0, 0);
+	scene.AddGameobject(lives);
+	
 }
 
 
@@ -247,6 +271,7 @@ void Digger::Run()
 	input.SetDKey(new WalkRightCommand());
 	input.SetWKey(new WalkUpCommand());
 	input.SetSpaceBarKey(new ShootCommand());
+
 	auto scene = sceneManager.GetScene("Game");
 
 	auto players = scene->GetPlayers();
@@ -266,8 +291,11 @@ void Digger::Run()
 			m_Continue = !player->GetComponent<LiveComponent>()->IsDeath();
 		sceneManager.Update(deltaTime);
 		CollisionCheck();
-		LevelCheck();
+		if (m_Continue)
+			m_Continue = !LevelCheck();
 		renderer.Render();
+
+		m_HighScore = players[0]->GetComponent<ScoreComponent>()->GetScore();
 	}
 
 	HighScoreCheck();
@@ -295,7 +323,8 @@ void Digger::CollisionCheck()
 	{
 		if (trigger->GetName().find("spider") == std::string::npos)
 		{
-			if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *players[number]->GetComponent<ColliderComponent>()))
+			if (engine::Collision::AABB(
+				*trigger->GetComponent<ColliderComponent>(), *players[number]->GetComponent<ColliderComponent>()))
 			{
 				if (players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death
 					&& players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Idle)
@@ -320,7 +349,8 @@ void Digger::CollisionCheck()
 		{
 			if (collider->GetGameObject()->GetComponent<MovingBagComponent>())
 			{
-				if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling())
+				if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling() && 
+					players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death)
 				{
 					players[number]->GetComponent<LiveComponent>()->LoseLive();
 					players[number]->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Death);
@@ -336,10 +366,7 @@ void Digger::CollisionCheck()
 void Digger::HighScoreCheck()
 {
 	//initials
-	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
-	auto players = scene->GetPlayers();
 	
-	int score = players[0]->GetComponent<ScoreComponent>()->GetScore();
 
 	std::vector<int> highScores;
 	std::ifstream inFile;
@@ -373,9 +400,9 @@ void Digger::HighScoreCheck()
 
 	for (size_t i = 0; i < highScores.size(); i++)
 	{
-		if (highScores[i] < score)
+		if (highScores[i] < m_HighScore)
 		{
-			highScores.insert(highScores.begin() + i, score);
+			highScores.insert(highScores.begin() + i, m_HighScore);
 			highScores.pop_back();
 			break;
 		}
@@ -390,7 +417,7 @@ void Digger::HighScoreCheck()
 
 }
 
-void Digger::LevelCheck()
+bool Digger::LevelCheck()
 {
 	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 	auto players = scene->GetPlayers();
@@ -400,7 +427,14 @@ void Digger::LevelCheck()
 		auto& sceneManager = engine::SceneManager::GetInstance();
 		sceneManager.RemoveScene("Game");
 		++m_LevelNumber;
+		if (m_LevelNumber > 3)
+		{
+			return true;
+		}
 		LoadGame(m_LevelNumber);
+		return false;
 	}
+	return false;
+
 }
 

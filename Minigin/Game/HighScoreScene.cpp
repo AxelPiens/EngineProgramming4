@@ -17,7 +17,7 @@
 #include "SwitchingScenesComponent.h"
 #include "EnterCommand.h"
 #include "Digger.h"
-
+#include "TypeCommands.h"
 HighScoreScene::HighScoreScene(bool firstLoad)
 	:m_IsFirstLoad{firstLoad}
 {
@@ -37,12 +37,12 @@ void HighScoreScene::Initialize()
 	//Mix_PlayMusic(m_BackgroundMusic, -1);
 
 
-	m_WindowHeight = 400;
+	m_WindowHeight = 330;
 	m_Window = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		500,
+		450,
 		m_WindowHeight,
 		SDL_WINDOW_OPENGL
 	);
@@ -90,7 +90,7 @@ void HighScoreScene::LoadGame() const
 		}
 	}
 
-	auto font = engine::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	auto font = engine::ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
 
 	int posY = 0;
 	for (size_t i = 0; i < highScores.size(); i++)
@@ -100,19 +100,29 @@ void HighScoreScene::LoadGame() const
 		highScore->GetComponent<TextComponent>()->SetFont(font);
 		highScore->GetComponent<TextComponent>()->SetPosition(50, posY);
 		highScore->GetComponent<TextComponent>()->SetText(std::to_string(highScores[i]));
+		highScore->GetComponent<TextComponent>()->SetColor({ 255, 0, 0 });
 
 		scene.AddGameobject(highScore);
-		posY += 36;
+		posY += 27;
 
 	}
 
+
+	auto initials = std::make_shared<engine::GameObject>("init");
+	initials->AddComponent(new TextComponent());
+	initials->GetComponent<TextComponent>()->SetFont(font);
+	initials->GetComponent<TextComponent>()->SetPosition(200, 200);
+	initials->GetComponent<TextComponent>()->SetText(" ");
+	initials->GetComponent<TextComponent>()->SetColor({ 255, 255, 255 });
+	scene.AddGameobject(initials);
 
 	auto font2 = engine::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 	auto enterStart = std::make_shared<engine::GameObject>("enterStart");
 	enterStart->AddComponent(new TextComponent());
 	enterStart->GetComponent<TextComponent>()->SetFont(font2);
-	enterStart->GetComponent<TextComponent>()->SetPosition(150, 375);
+	enterStart->GetComponent<TextComponent>()->SetPosition(125, 310);
 	enterStart->GetComponent<TextComponent>()->SetText("PRESS ENTER TO START");
+	enterStart->GetComponent<TextComponent>()->SetColor({ 255, 255, 255 });
 	enterStart->AddComponent(new ControlComponent());
 	enterStart->AddComponent(new SwitchingScenesComponent());
 	scene.AddGameobject(enterStart);
@@ -140,7 +150,9 @@ void HighScoreScene::Run()
 	auto& sceneManager = engine::SceneManager::GetInstance();
 	auto& input = engine::InputManager::GetInstance();
 	auto lastTime = std::chrono::high_resolution_clock::now();
-	input.SetEnterKey(new EnterCommand());
+	Inputs();
+
+
 	auto scene = sceneManager.GetScene("HighScore");
 	auto& texts = scene->GetTexts();
 	auto& lastText = texts[texts.size() - 1];
@@ -161,10 +173,43 @@ void HighScoreScene::Run()
 		//HighScoreScene engine;
 		lastText->GetComponent<SwitchingScenesComponent>()->ChangeSwitch(true);
 		scene->RemoveAllGameObjects();
+		input.~InputManager();
 		engine.Run();
 
 	}
 	scene->RemoveAllGameObjects();
 	Cleanup();
 
+}
+
+void HighScoreScene::Inputs()
+{
+	auto& input = engine::InputManager::GetInstance();
+	input.SetEnterKey(new EnterCommand());
+	input.SetAKey(new ACommand());
+	input.SetBKey(new BCommand());
+	input.SetCKey(new CCommand());
+	input.SetDKey(new DCommand());
+	input.SetEKey(new ECommand());
+	input.SetFKey(new FCommand());
+	input.SetGKey(new GCommand());
+	input.SetHKey(new HCommand());
+	input.SetIKey(new ICommand());
+	input.SetJKey(new JCommand());
+	input.SetKKey(new KCommand());
+	input.SetLKey(new LCommand());
+	input.SetMKey(new MCommand());
+	input.SetNKey(new NCommand());
+	input.SetOKey(new OCommand());
+	input.SetPKey(new PCommand());
+	input.SetQKey(new QCommand());
+	input.SetRKey(new RCommand());
+	input.SetSKey(new SCommand());
+	input.SetTKey(new TCommand());
+	input.SetUKey(new UCommand());
+	input.SetVKey(new VCommand());
+	input.SetWKey(new WCommand());
+	input.SetXKey(new XCommand());
+	input.SetYKey(new YCommand());
+	input.SetZKey(new ZCommand());
 }

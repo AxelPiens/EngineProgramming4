@@ -11,6 +11,7 @@ public:
 	ScoreComponent();
 	void AddScore(std::shared_ptr<engine::GameObject> pGameObject);
 	int GetScore() { return m_TotalScore; };
+	void SetScore(int score) { m_TotalScore = score; };
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;

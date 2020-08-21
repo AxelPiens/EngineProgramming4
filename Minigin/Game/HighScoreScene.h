@@ -18,6 +18,7 @@ private:
 	int m_WindowHeight = 0;
 	bool m_Continue = true;
 	bool m_IsFirstLoad = false;
+	void Inputs();
 
 };
 

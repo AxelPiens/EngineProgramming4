@@ -50,6 +50,8 @@ engine::InputManager::~InputManager()
 	m_TKey = nullptr;
 	delete m_UKey;
 	m_UKey = nullptr;
+	delete m_VKey;
+	m_VKey = nullptr;
 	delete m_WKey;
 	m_WKey = nullptr;
 	delete m_XKey;

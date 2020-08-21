@@ -24,7 +24,13 @@ namespace engine
 		
 		bool IsPressed(ControllerButton button) const;
 		bool IsQuitting() const { return m_Quit; };
-		void SetAKey(Command* command) { m_AKey = command; };
+		void SetAKey(Command* command) {
+			if (m_AKey)
+			{
+				//delete m_AKey;
+				m_AKey = nullptr;
+			}
+			m_AKey = command; };
 		void SetBKey(Command* command) { m_BKey = command; };
 		void SetCKey(Command* command) { m_CKey = command; };
 		void SetDKey(Command* command) { m_DKey = command; };
@@ -33,6 +39,7 @@ namespace engine
 		void SetGKey(Command* command) { m_GKey = command; };
 		void SetHKey(Command* command) { m_HKey = command; };
 		void SetIKey(Command* command) { m_IKey = command; };
+		void SetJKey(Command* command) { m_JKey = command; };
 		void SetKKey(Command* command) { m_KKey = command; };
 		void SetLKey(Command* command) { m_LKey = command; };
 		void SetMKey(Command* command) { m_MKey = command; };

@@ -17,6 +17,12 @@ void TextComponent::SetText(const std::string& text)
 	m_NeedsUpdate = true;
 }
 
+void TextComponent::AddToText(const std::string& text)
+{
+	m_Text += text;
+	m_NeedsUpdate = true;
+}
+
 void TextComponent::SetPosition(float x, float y)
 {
 	m_Position.x = x;
@@ -29,6 +35,14 @@ void TextComponent::SetFont(const std::shared_ptr<Font>& font)
 {
 	m_Font = font;
 	m_NeedsUpdate = true;
+}
+
+void TextComponent::SetColor(std::vector<int> color)
+{
+	m_Color[0] = color[0];
+	m_Color[1] = color[1];
+	m_Color[2] = color[2];
+
 }
 
 void TextComponent::Render()
@@ -46,7 +60,7 @@ void TextComponent::Update(float deltaTime)
 	UNREFERENCED_PARAMETER(deltaTime);
 	if (m_NeedsUpdate)
 	{
-		const SDL_Color color = { 255,255,255 }; // only white text is supported now
+		const SDL_Color color = { Uint8(m_Color[0]), Uint8(m_Color[1]),Uint8(m_Color[2])}; // only white text is supported now
 		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), color);
 		if (surf == nullptr)
 		{

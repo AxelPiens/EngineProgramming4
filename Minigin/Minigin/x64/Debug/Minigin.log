@@ -1,4 +1,5 @@
-﻿  Scene.cpp
+﻿  ControlComponent.cpp
+  InputManager.cpp
   Minigin.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Minigin.lib
   C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

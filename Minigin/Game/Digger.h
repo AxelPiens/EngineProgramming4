@@ -25,11 +25,11 @@ private:
 	int m_LevelNumber = 1;
 	float m_ElapsedTime = 0.0f;
 	int m_MaxLevel = 3;
-	int m_Score = 0;
+	int m_HighScore = 0;
 	bool m_Continue = true;
 	bool m_IsFirstLoad = false;
 	void CollisionCheck();
 	void HighScoreCheck();
-	void LevelCheck();
+	bool LevelCheck();
 
 };

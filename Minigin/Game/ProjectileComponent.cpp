@@ -64,14 +64,17 @@ void ProjectileComponent::CheckForBlock()
 	}
 	for (auto col : colliders)
 	{
-		if (!col->GetIsTrigger())
+		if (col)
 		{
-			if (col->GetGameObject()->GetName().find("level") != std::string::npos)
+			if (!col->GetIsTrigger())
 			{
-				if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
+				if (col->GetGameObject()->GetName().find("level") != std::string::npos)
 				{
-					scene->RemoveGameObject(m_pGameObject->GetName());
-					break;
+					if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
+					{
+						scene->RemoveGameObject(m_pGameObject->GetName());
+						break;
+					}
 				}
 			}
 		}

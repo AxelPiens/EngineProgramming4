@@ -1,6 +1,10 @@
 #include "MiniginPCH.h"
 #include "ScoreComponent.h"
 #include "StateComponent.h"
+#include "SceneManager.h"
+#include "Scene.h"
+#include "TextComponent.h"
+
 ScoreComponent::ScoreComponent()
 {
 }
@@ -33,6 +37,10 @@ void ScoreComponent::AddScore(std::shared_ptr<engine::GameObject> pGameObject)
 		m_TotalScore += 250;
 		m_EmeraldsInARow = 0;
 	}
+
+	auto scene = engine::SceneManager::GetInstance().GetScene("Game");
+	auto texts = scene->GetTexts();
+	texts[0]->GetComponent<TextComponent>()->SetText(std::to_string(m_TotalScore));
 }
 
 void ScoreComponent::Update(float deltaTime)

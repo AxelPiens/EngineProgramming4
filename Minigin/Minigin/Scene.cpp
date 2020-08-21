@@ -38,6 +38,7 @@ void Scene::AddGameobject(const std::shared_ptr<GameObject>& object)
 	}
 }
 
+
 void engine::Scene::RemoveGameObject(const std::string& name)
 {
 	for (std::shared_ptr<GameObject> obj : m_Objects)
@@ -47,7 +48,7 @@ void engine::Scene::RemoveGameObject(const std::string& name)
 			if (obj->GetName() == name)
 			{
 				auto iterator = std::find(m_Objects.begin(), m_Objects.end(), obj);
-				if(iterator != m_Objects.end())
+				if (iterator != m_Objects.end())
 					m_Objects.erase(iterator);
 				iterator = std::find(m_Triggers.begin(), m_Triggers.end(), obj);
 				if (iterator != m_Triggers.end())
@@ -59,7 +60,6 @@ void engine::Scene::RemoveGameObject(const std::string& name)
 			}
 		}
 	}
-
 }
 void engine::Scene::RemoveAllGameObjects()
 {

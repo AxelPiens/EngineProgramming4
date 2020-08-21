@@ -16,6 +16,10 @@
 		~SpriteComponent() = default;
 		void ChangeXPos(int xPos) { m_SrcRect.x = xPos; };
 		void ChangeYPos(int yPos) { m_SrcRect.y = yPos; };
+		void ChangeWidth(int width) { 
+			m_SrcRect.w = width;
+			m_Width = width; };
+		void ChangeHeight(int height) { m_SrcRect.h = height; };
 		void ChangeAnimated(bool isAnim) { m_IsAnimated = isAnim; };
 	protected:
 		void Update(float deltaTime) override;

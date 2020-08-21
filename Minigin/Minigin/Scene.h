@@ -11,13 +11,14 @@ namespace engine
 	public:
 		void AddGameobject(const std::shared_ptr<GameObject>& object);
 		void RemoveGameObject(const std::string& name);
+
 		void RemoveAllGameObjects();
 		void Update(float deltaTime);
 		std::vector < std::shared_ptr<GameObject>>& GetTriggers() { return m_Triggers; };
 		std::vector < ColliderComponent*>& GetColliders() { return m_Colliders; };
 		std::vector < std::shared_ptr<GameObject>>& GetPlayerEnemyColliders() { return m_PlayerEnemyColliders; };
 		std::vector < std::shared_ptr<GameObject>>& GetTexts() { return m_Texts; };
-
+		std::vector < std::shared_ptr<GameObject>>& GetObjects() { return m_Objects; };
 		void Render() const;
 		const std::string& GetName() const { return m_Name; };
 
