@@ -39,7 +39,8 @@ void MovingBagComponent::Update(float deltaTime)
 	else
 	{
 		m_IsFalling = false;
-		m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
+		if(m_pGameObject)
+			m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
 	}
 
 }
@@ -107,6 +108,7 @@ void MovingBagComponent::CheckForBlock()
 		}
 
 	}
+
 
 	if (removeBlock)
 	{

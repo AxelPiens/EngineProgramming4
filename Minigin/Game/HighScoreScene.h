@@ -18,7 +18,11 @@ private:
 	int m_WindowHeight = 0;
 	bool m_Continue = true;
 	bool m_IsFirstLoad = false;
+	int m_InitialsSize = 0;
+	bool m_HasEnteredInitials = false;
+	Mix_Chunk* m_BackgroundMusic = nullptr;
 	void Inputs();
+	bool CheckInitials();
 
 };
 

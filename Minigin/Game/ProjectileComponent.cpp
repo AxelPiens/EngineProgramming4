@@ -53,7 +53,12 @@ void ProjectileComponent::CheckForBlock()
 		}
 		else if (trigger->GetName().find("spider") != std::string::npos)
 		{
-			if (engine::Collision::AABB(*trigger->GetComponent<ColliderComponent>(), *m_pGameObject->GetComponent<ColliderComponent>()))
+			SDL_Rect m_SmallColl;
+			m_SmallColl.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 6;
+			m_SmallColl.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 6;
+			m_SmallColl.w = 8;
+			m_SmallColl.h = 8;
+			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_SmallColl))
 			{
 				players[0]->GetComponent<ScoreComponent>()->AddScore(trigger);
 				scene->RemoveGameObject(trigger->GetName());
@@ -66,16 +71,10 @@ void ProjectileComponent::CheckForBlock()
 	{
 		if (col)
 		{
-			if (!col->GetIsTrigger())
+			if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
 			{
-				if (col->GetGameObject()->GetName().find("level") != std::string::npos)
-				{
-					if (engine::Collision::AABB(*col, *m_pGameObject->GetComponent<ColliderComponent>()))
-					{
-						scene->RemoveGameObject(m_pGameObject->GetName());
-						break;
-					}
-				}
+				scene->RemoveGameObject(m_pGameObject->GetName());
+				break;
 			}
 		}
 	}

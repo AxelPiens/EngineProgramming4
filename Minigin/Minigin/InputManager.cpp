@@ -64,6 +64,14 @@ engine::InputManager::~InputManager()
 	m_SpaceBarKey = nullptr;
 	delete m_EnterKey;
 	m_EnterKey = nullptr;
+	delete m_ArrowUpKey;
+	m_ArrowUpKey = nullptr;
+	delete m_ArrowDownKey;
+	m_ArrowDownKey = nullptr;
+	delete m_ArrowRightKey;
+	m_ArrowRightKey = nullptr;
+	delete m_ArrowLeftKey;
+	m_ArrowLeftKey = nullptr;
 
 	delete m_AButton;
 	m_AButton = nullptr;
@@ -73,6 +81,18 @@ engine::InputManager::~InputManager()
 	m_BButton = nullptr;
 	delete m_YButton;
 	m_YButton = nullptr;
+	delete m_UpButton;
+	m_UpButton = nullptr;
+	delete m_DownButton;
+	m_DownButton = nullptr;
+	delete m_RightButton;
+	m_RightButton = nullptr;
+	delete m_LeftButton;
+	m_LeftButton = nullptr;
+	delete m_LeftTrigger;
+	m_LeftTrigger = nullptr;
+	delete m_RightTrigger;
+	m_RightTrigger = nullptr;
 }
 
 engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
@@ -232,8 +252,26 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 				isReleased = false;
 				return m_EnterKey;
 			}
- 
-
+			else if (e.key.keysym.sym == SDLK_UP)
+			{
+				isReleased = false;
+				return m_ArrowUpKey;
+			}
+			else if (e.key.keysym.sym == SDLK_DOWN)
+			{
+				isReleased = false;
+				return m_ArrowDownKey;
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT)
+			{
+				isReleased = false;
+				return m_ArrowRightKey;
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT)
+			{
+				isReleased = false;
+				return m_ArrowLeftKey;
+			}
 		}
 		if (e.type == SDL_KEYUP)
 		{
@@ -375,8 +413,28 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN)
 			{
-			isReleased = true;
-			return m_EnterKey;
+				isReleased = true;
+				return m_EnterKey;
+			}
+			else if (e.key.keysym.sym == SDLK_UP)
+			{
+				isReleased = false;
+				return m_ArrowUpKey;
+			}
+			else if (e.key.keysym.sym == SDLK_DOWN)
+			{
+				isReleased = true;
+				return m_ArrowDownKey;
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT)
+			{
+				isReleased = true;
+				return m_ArrowRightKey;
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT)
+			{
+				isReleased = true;
+				return m_ArrowLeftKey;
 			}
 		}
 	}
@@ -407,7 +465,42 @@ engine::Command* engine::InputManager::ProcessInput(bool& isReleased)
 		m_LastPressedButton = m_BButton;
 		return m_BButton;
 	}
-
+	else if (IsPressed(ControllerButton::ButtonUp))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_UpButton;
+		return m_UpButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonDown))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_DownButton;
+		return m_DownButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonRight))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_RightButton;
+		return m_RightButton;
+	}
+	else if (IsPressed(ControllerButton::ButtonLeft))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_LeftButton;
+		return m_LeftButton;
+	}
+	else if (IsPressed(ControllerButton::RightTrigger))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_RightTrigger;
+		return m_RightTrigger;
+	}
+	else if (IsPressed(ControllerButton::LeftTrigger))
+	{
+		isReleased = false;
+		m_LastPressedButton = m_LeftTrigger;
+		return m_LeftTrigger;
+	}
 	isReleased = true;
 	return m_LastPressedButton;
 }
@@ -424,6 +517,21 @@ bool engine::InputManager::IsPressed(ControllerButton button) const
 		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
 	case ControllerButton::ButtonY:
 		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
+	case ControllerButton::ButtonUp:
+		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP;
+	case ControllerButton::ButtonDown:
+		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN;
+	case ControllerButton::ButtonRight:
+		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
+	case ControllerButton::ButtonLeft:
+		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT;
+	case ControllerButton::RightTrigger:
+		if (m_CurrentState.Gamepad.bRightTrigger > 100)
+			return true;
+	case ControllerButton::LeftTrigger:
+		if (m_CurrentState.Gamepad.bLeftTrigger > 100)
+			return true;
+
 	default: return false;
 	}
 }

@@ -17,6 +17,7 @@
 		void SetPosition(float x, float y);
 		void SetFont(const std::shared_ptr<Font>& font);
 		void SetColor(std::vector<int> color);
+		std::string GetText() { return m_Text; };
 	protected:
 		void Update(float deltaTime) override;
 		void Render() override;

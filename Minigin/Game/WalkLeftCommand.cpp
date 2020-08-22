@@ -25,41 +25,50 @@ void WalkLeftCommand::Execute(engine::GameObject* object)
 	m_Collider.h = 1;
 	auto colliders = scene->GetColliders();
 
-	if (!object->GetComponent<LiveComponent>()->HasLostLive())
+	if (object->GetComponent<TransformComponent>()->GetVelocity().y == 0.0f)
 	{
-		for (auto trigger : triggers)
-
+		if (!object->GetComponent<LiveComponent>()->HasLostLive())
 		{
-			if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
+			for (auto trigger : triggers)
+
 			{
-				int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
-				if (modulo >= -4 && modulo <= 4)
+				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 				{
-					object->GetComponent<RigidbodyComponent>()->WalkX(-0.8f);
-					object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkLeft);
+					int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().y) % 27;
+					if (modulo >= -4 && modulo <= 4)
+					{
+						object->GetComponent<RigidbodyComponent>()->WalkX(-0.5f);
+						object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkLeft);
+					}
+					allFailed = false;
 				}
-				allFailed = false;
 			}
-		}
-		if (allFailed)
-		{
-			object->GetComponent<RigidbodyComponent>()->WalkX(-0.8f);
-			object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkLeft);
-		}
-
-		for (auto col : colliders)
-		{
-			if (engine::Collision::AABB(m_Collider, col->GetCollider()))
+			if (allFailed)
 			{
-				if (col->GetGameObject()->GetName().find("money") != std::string::npos)
+				object->GetComponent<RigidbodyComponent>()->WalkX(-0.5f);
+				object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkLeft);
+			}
+
+			for (auto col : colliders)
+			{
+				SDL_Rect m_SmallColl;
+				m_SmallColl.x = object->GetComponent<TransformComponent>()->GetPosition().x;
+				m_SmallColl.y = object->GetComponent<TransformComponent>()->GetPosition().y + 5;
+				m_SmallColl.w = 17;
+				m_SmallColl.h = 17;
+				if (engine::Collision::AABB(m_SmallColl, col->GetCollider()))
 				{
-					col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
-					col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(-70.f);
-				}
-				if (col->GetGameObject()->GetName().find("level") != std::string::npos)
-				{
-					object->GetComponent<TransformComponent>()->SetVelocityX(0.f);
-					break;
+					if (col->GetGameObject()->GetName().find("money") != std::string::npos)
+					{
+						col->GetGameObject()->GetComponent<MovingBagComponent>()->SetIsMoving(true);
+						col->GetGameObject()->GetComponent<TransformComponent>()->SetVelocityX(-70.f);
+					}
+					if (col->GetGameObject()->GetName().find("level") != std::string::npos)
+					{
+						object->GetComponent<TransformComponent>()->SetVelocityX(0.f);
+						object->GetComponent<TransformComponent>()->Translate(col->GetCollider().x + 27, object->GetComponent<TransformComponent>()->GetPosition().y, 0);
+						break;
+					}
 				}
 			}
 		}

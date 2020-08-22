@@ -6,9 +6,11 @@
 #include "Scene.h"
 #include "ShootComponent.h"
 #include "ChangeSpriteComponent.h"
+#include "StateComponent.h"
 void ShootCommand::Execute(engine::GameObject* object)
 {
-	if (object->GetComponent<ShootComponent>()->CanShoot() && m_CanShoot)
+	if (object->GetComponent<ShootComponent>()->CanShoot() && m_CanShoot
+		&& object->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death)
 	{
 		auto scene = engine::SceneManager::GetInstance().GetScene("Game");
 		auto projectile = std::make_shared<engine::GameObject>("projectile" + std::to_string(m_Number));
@@ -17,7 +19,7 @@ void ShootCommand::Execute(engine::GameObject* object)
 		projectile->GetComponent<TransformComponent>()->Move(5, 5, 0);
 		projectile->AddComponent(new SpriteComponent("Digger/bullet.png", 14, 14, 0, 0, 4, 50, true));
 		engine::Vector3 dir = object->GetComponent<TransformComponent>()->GetDirection();
-		projectile->AddComponent(new ProjectileComponent(0.f, 50.0f, 0.0f, dir, false));
+		projectile->AddComponent(new ProjectileComponent(0.f, 65.0f, 0.0f, dir, false));
 		projectile->AddComponent(new ColliderComponent("projectile" + std::to_string(m_Number), true, 0,0));
 
 		scene->AddGameobject(projectile);

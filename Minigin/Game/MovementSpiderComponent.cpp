@@ -77,6 +77,15 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 					foundBlockDown = true;
 				}
 			}
+			else if (trigger->GetName().find("coins") != std::string::npos)
+			{
+				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(),
+					m_pGameObject->GetComponent<ColliderComponent>()->GetCollider()))
+				{
+					scene->RemoveGameObject(trigger->GetName());
+					break;
+				}
+			}
 		}
 	}
 	else
@@ -96,6 +105,15 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 					break;
 				}
 
+			}
+			else if (trigger->GetName().find("coins") != std::string::npos)
+			{
+				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(),
+					m_pGameObject->GetComponent<ColliderComponent>()->GetCollider()))
+				{
+					scene->RemoveGameObject(trigger->GetName());
+					break;
+				}
 			}
 		}
 

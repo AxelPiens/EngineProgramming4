@@ -13,7 +13,13 @@ namespace engine
 		ButtonA,
 		ButtonB,
 		ButtonX,
-		ButtonY
+		ButtonY,
+		ButtonUp,
+		ButtonDown,
+		ButtonLeft,
+		ButtonRight,
+		RightTrigger,
+		LeftTrigger
 	};
 
 	class InputManager final : public Singleton<InputManager>
@@ -58,13 +64,23 @@ namespace engine
 		void SetZKey(Command* command) { m_ZKey = command; };
 		void SetSpaceBarKey(Command* command) { m_SpaceBarKey = command; };
 		void SetEnterKey(Command* command) { m_EnterKey = command; };
-		void SetControllerCommands(Command* aButton, Command* xButton, Command* yButton, Command* bButton)
-		{
-			m_AButton = aButton;
-			m_XButton = xButton;
-			m_BButton = bButton;
-			m_YButton = yButton;
-		}
+		void SetArrowUpKey(Command* command) { m_ArrowUpKey = command; };
+		void SetArrowDownKey(Command* command) { m_ArrowDownKey = command; };
+		void SetArrowLeftKey(Command* command) { m_ArrowLeftKey = command; };
+		void SetArrowRightKey(Command* command) { m_ArrowRightKey = command; };
+
+		void SetAButton(Command* command) { m_AButton = command; };
+		void SetXButton(Command* command) { m_XButton = command; };
+		void SetYButton(Command* command) { m_YButton = command; };
+		void SetBButton(Command* command) { m_BButton = command; };
+		void SetUpButton(Command* command) { m_UpButton = command; };
+		void SetRightButton(Command* command) { m_RightButton = command; };	
+		void SetLeftButton(Command* command) { m_LeftButton = command; };
+		void SetDownButton(Command* command) { m_DownButton = command; };
+		void SetRightTrigger(Command* command) { m_RightTrigger = command; };
+		void SetLeftTrigger(Command* command) { m_LeftTrigger = command; };
+
+
 	private:
 		XINPUT_STATE m_CurrentState{};
 
@@ -98,11 +114,23 @@ namespace engine
 		Command* m_ZKey;
 		Command* m_SpaceBarKey;
 		Command* m_EnterKey;
+		Command* m_ArrowUpKey;
+		Command* m_ArrowDownKey;
+		Command* m_ArrowLeftKey;
+		Command* m_ArrowRightKey;
 
 		Command* m_AButton;
 		Command* m_XButton;
 		Command* m_BButton;
 		Command* m_YButton;
+		Command* m_UpButton;
+		Command* m_DownButton;
+		Command* m_RightButton;
+		Command* m_LeftButton;
+		Command* m_LeftTrigger;
+		Command* m_RightTrigger;
+
+
 
 		Command* m_LastPressedButton;
 	};

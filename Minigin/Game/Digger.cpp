@@ -38,6 +38,7 @@ using namespace std::chrono;
 Digger::Digger(bool firstLoad)
 	:m_IsFirstLoad{firstLoad}
 {
+	m_PickUpSound = Mix_LoadWAV("../Data/Digger/pickup.wav");
 }
 
 void Digger::Initialize()
@@ -50,8 +51,7 @@ void Digger::Initialize()
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		throw std::runtime_error(std::string("SDL_Audio Error: ") + Mix_GetError());
 
-	m_BackgroundMusic = Mix_LoadMUS("../Data/Audio/BackgroundMusic.mp3");
-	//Mix_PlayMusic(m_BackgroundMusic, -1);
+
 
 
 	m_WindowHeight = 400;
@@ -211,7 +211,7 @@ void Digger::LoadGame(int level) const
 	player->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
 	player->AddComponent(new ChangeSpriteComponent());
 	player->AddComponent(new StateComponent());
-	player->AddComponent(new LiveComponent(3, 3.0f));
+	player->AddComponent(new LiveComponent(m_Lives, 3.0f));
 	player->AddComponent(new ScoreComponent());
 	player->AddComponent(new ShootComponent(4.0f));
 	player->AddComponent(new WinComponent(amountOfEmeralds));
@@ -237,21 +237,17 @@ void Digger::LoadGame(int level) const
 	
 }
 
-
 void Digger::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	Mix_FreeMusic(m_BackgroundMusic);
+	Mix_FreeChunk(m_PickUpSound);
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();
 }
 
-
 void Digger::Run()
 {
-
-
 	if(m_IsFirstLoad)
 		Initialize();
 
@@ -266,19 +262,13 @@ void Digger::Run()
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = engine::SceneManager::GetInstance();
 	auto& input = engine::InputManager::GetInstance();
-	input.SetAKey(new WalkLeftCommand());
-	input.SetSKey(new WalkDownCommand());
-	input.SetDKey(new WalkRightCommand());
-	input.SetWKey(new WalkUpCommand());
-	input.SetSpaceBarKey(new ShootCommand());
 
 	auto scene = sceneManager.GetScene("Game");
 
 	auto players = scene->GetPlayers();
 	auto player = players[players.size()-1];
 
-	input.SetControllerCommands(new WalkDownCommand(), new WalkLeftCommand(), new WalkUpCommand(), new WalkRightCommand());
-
+	Inputs();
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	while (m_Continue)
 	{
@@ -334,7 +324,18 @@ void Digger::CollisionCheck()
 					if (trigger->GetName().find("projectile") == std::string::npos)
 						scene->RemoveGameObject(trigger->GetName());
 					if (trigger->GetName().find("emerald") != std::string::npos)
+					{
 						players[number]->GetComponent<WinComponent>()->RemoveEmerald();
+						int channel;
+
+						channel = Mix_PlayChannel(0, m_PickUpSound, 0);
+					}
+					if (trigger->GetName().find("coins") != std::string::npos)
+					{
+						int channel;
+
+						channel = Mix_PlayChannel(0, m_PickUpSound, 0);
+					}
 					std::cout << trigger->GetName() << std::endl;
 					break;
 				}
@@ -369,6 +370,7 @@ void Digger::HighScoreCheck()
 	
 
 	std::vector<int> highScores;
+	std::vector<std::string> initials;
 	std::ifstream inFile;
 	bool createNewFile = true;
 	inFile.open("../Data/Digger/highscores.txt");
@@ -379,29 +381,22 @@ void Digger::HighScoreCheck()
 	std::string scores;
 	while (std::getline(inFile, scores))
 	{
-		highScores.push_back(std::stoi(scores));
+		size_t find = scores.find(' ');
+		std::string score;
+		if (find != std::string::npos)
+			score = scores.substr(find + 1);
+		std::string initial = scores.substr(0, scores.find(' '));
+		initials.push_back(initial);
+		if (!score.empty())
+			highScores.push_back(std::stoi(score));
 		createNewFile = false;
-	}
-	if (createNewFile)
-	{
-		std::ofstream outFile("../Data/Digger/highscores.txt", ios::out);
-		for (size_t i = 0; i < 10; i++)
-		{
-			outFile << 0 << std::endl;
-			highScores.push_back(0);
-		}
-
-		inFile.open("../Data/Digger/highscores.txt");
-		if (!inFile.is_open())
-		{
-			std::cout << "Unable to read file\n";
-		}
 	}
 
 	for (size_t i = 0; i < highScores.size(); i++)
 	{
 		if (highScores[i] < m_HighScore)
 		{
+			initials.insert(initials.begin() + i, initials[initials.size()-1]);
 			highScores.insert(highScores.begin() + i, m_HighScore);
 			highScores.pop_back();
 			break;
@@ -411,8 +406,7 @@ void Digger::HighScoreCheck()
 	outFile.open("../Data/Digger/highscores.txt");
 	for (size_t i = 0; i < highScores.size(); i++)
 	{
-		outFile << highScores[i] << std::endl;
-
+		outFile << initials[i] << " " << highScores[i] << std::endl;
 	}
 
 }
@@ -431,10 +425,29 @@ bool Digger::LevelCheck()
 		{
 			return true;
 		}
+		m_Lives = players[0]->GetComponent<LiveComponent>()->GetLives();
 		LoadGame(m_LevelNumber);
 		return false;
 	}
 	return false;
+
+}
+
+void Digger::Inputs()
+{
+	auto& input = engine::InputManager::GetInstance();
+	input.SetAKey(new WalkLeftCommand());
+	input.SetSKey(new WalkDownCommand());
+	input.SetDKey(new WalkRightCommand());
+	input.SetWKey(new WalkUpCommand());
+	input.SetSpaceBarKey(new ShootCommand());
+
+	input.SetRightTrigger(new ShootCommand());
+	input.SetRightButton(new WalkRightCommand());
+	input.SetDownButton(new WalkDownCommand());
+	input.SetLeftButton(new WalkLeftCommand());
+	input.SetUpButton(new WalkUpCommand());
+
 
 }
 

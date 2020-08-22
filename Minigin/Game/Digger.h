@@ -21,15 +21,16 @@ private:
 	SDL_Window* m_Window{};
 	const float m_MsPerUpdate = 0.1f;
 	int m_WindowHeight = 0;
-	Mix_Music* m_BackgroundMusic = nullptr;
+	Mix_Chunk* m_PickUpSound = nullptr;
 	int m_LevelNumber = 1;
 	float m_ElapsedTime = 0.0f;
 	int m_MaxLevel = 3;
 	int m_HighScore = 0;
+	int m_Lives = 3;
 	bool m_Continue = true;
 	bool m_IsFirstLoad = false;
 	void CollisionCheck();
 	void HighScoreCheck();
 	bool LevelCheck();
-
+	void Inputs();
 };

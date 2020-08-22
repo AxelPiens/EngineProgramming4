@@ -19,6 +19,11 @@ C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(
 C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(185,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(206,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(206,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  HighScoreScene.cpp
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\HighScoreScene.cpp(113,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\HighScoreScene.cpp(171,91): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Main.cpp
+  Generating Code...
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied
