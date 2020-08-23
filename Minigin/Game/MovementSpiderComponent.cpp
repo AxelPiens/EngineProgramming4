@@ -33,8 +33,8 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 
 
 	SDL_Rect m_Collider;
-	m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 50;
-	m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 7;
+	m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 50;
+	m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 7;
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
@@ -52,26 +52,26 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 		{
 			if (trigger->GetName().find("level") != std::string::npos)
 			{
-				m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
-				m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+				m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 27;
+				m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) // right
 				{
 					foundBlockRight = true;
 				}
-				m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
-				m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+				m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x);
+				m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //left
 				{
 					foundBlockLeft = true;
 				}
-				m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
+				m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y);
 				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //up
 				{
 					foundBlockUp = true;
 				}
-				m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
+				m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 27;
 				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_Collider)) //down
 				{
 					foundBlockDown = true;
@@ -95,8 +95,8 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 			if (trigger->GetName().find("level") != std::string::npos)
 			{
 				SDL_Rect m_SmallCollider;
-				m_SmallCollider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_SmallCollider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+				m_SmallCollider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_SmallCollider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 				m_SmallCollider.w = 5;
 				m_SmallCollider.h = 5;
 				if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_SmallCollider))
@@ -121,34 +121,34 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 
 	for (auto collider : colliders)
 	{
-		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 27;
-		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+		m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 27;
+		m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) // right
 		{
 			foundBlockRight = true;
 		}
-		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
-		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 5;
+		m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x);
+		m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //left
 		{
 			foundBlockLeft = true;
 		}
-		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y;
+		m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+		m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y);
 		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //up
 		{
 			foundBlockUp = true;
 		}
-		m_Collider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 5;
-		m_Collider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 27;
+		m_Collider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+		m_Collider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 27;
 		if (engine::Collision::AABB(collider->GetCollider(), m_Collider)) //down
 		{
 			foundBlockDown = true;
 		}
 
 		SDL_Rect m_SmallCollider;
-		m_SmallCollider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
-		m_SmallCollider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 13;
+		m_SmallCollider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x);
+		m_SmallCollider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 13;
 		m_SmallCollider.w = 27;
 		m_SmallCollider.h = 14;
 		if (engine::Collision::AABB(collider->GetCollider(), m_SmallCollider))
@@ -167,8 +167,8 @@ void MovementSpiderComponent::CheckForBlocksInFront()
 	for (auto player : players)
 	{
 		SDL_Rect m_SmallCollider;
-		m_SmallCollider.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x;
-		m_SmallCollider.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 13;
+		m_SmallCollider.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x);
+		m_SmallCollider.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 13;
 		m_SmallCollider.w = 27;
 		m_SmallCollider.h = 14;
 		if (player->GetName().find("player") != std::string::npos)

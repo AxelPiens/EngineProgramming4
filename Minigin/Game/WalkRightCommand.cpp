@@ -19,8 +19,8 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 	float posY = object->GetComponent<TransformComponent>()->GetPosition().y+12;
 	bool allFailed = true;
 	SDL_Rect m_Collider;
-	m_Collider.x = posX;
-	m_Collider.y = posY;
+	m_Collider.x = static_cast<int>(posX);
+	m_Collider.y = static_cast<int>(posY);
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
@@ -49,13 +49,13 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 				object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkRight);
 			}
 
-			m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 21;
+			m_Collider.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 21;
 
 			for (auto col : colliders)
 			{
 				SDL_Rect m_SmallColl;
-				m_SmallColl.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_SmallColl.y = object->GetComponent<TransformComponent>()->GetPosition().y + 5;
+				m_SmallColl.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_SmallColl.y = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().y) + 5;
 				m_SmallColl.w = 16;
 				m_SmallColl.h = 17;
 				if (engine::Collision::AABB(m_SmallColl, col->GetCollider()))
@@ -68,7 +68,7 @@ void WalkRightCommand::Execute(engine::GameObject* object)
 					if (col->GetGameObject()->GetName().find("level") != std::string::npos)
 					{
 						object->GetComponent<TransformComponent>()->SetVelocityX(0.f);
-						object->GetComponent<TransformComponent>()->Translate(col->GetCollider().x - 21, object->GetComponent<TransformComponent>()->GetPosition().y, 0);
+						object->GetComponent<TransformComponent>()->Translate(static_cast<float>(col->GetCollider().x) - 21, object->GetComponent<TransformComponent>()->GetPosition().y, 0);
 						break;
 					}
 				}

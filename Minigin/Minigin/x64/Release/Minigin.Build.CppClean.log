@@ -23,11 +23,37 @@ c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\mini
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\walkleftcommand.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\transformcomponent.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\texturecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.pdb
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\transformcomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\texturecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\texture2d.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\textobject.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\textcomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\spritecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\scenemanager.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\scene.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\rigidbodycomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\resourcemanager.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\renderer.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\miniginpch.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\inputmanager.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\gameobject.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\font.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\controlcomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\command.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\collision.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\collidercomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\basecomponent.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\release\minigin.lib
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.pch
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\cl.command.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\cl.read.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\cl.write.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\lib-link.read.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\lib-link.write.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\minigin\x64\release\minigin.tlog\lib.command.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\minigin.lib
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\jumpcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\shootcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\walkleftcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\walkrightcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.pch
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\cl.command.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\cl.read.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\cl.write.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\lib-link.read.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\lib-link.write.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\minigin\x64\release\minigin.tlog\lib.command.1.tlog

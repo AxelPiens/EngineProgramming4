@@ -27,7 +27,6 @@ void LiveComponent::Init()
 
 void LiveComponent::Update(float deltaTime)
 {
-	std::cout << m_AmountOfLives << std::endl;
 	if (m_HasLostLive)
 	{
 		auto scene = engine::SceneManager::GetInstance().GetScene("Game");
@@ -44,7 +43,6 @@ void LiveComponent::Update(float deltaTime)
 		m_ElapsedTime += deltaTime;
 		if (m_ElapsedTime > m_DeathTime)
 		{
-			std::cout << "RESPAWN\n";
 			m_ElapsedTime = 0.0f;
 			m_pGameObject->GetComponent<TransformComponent>()->Translate(m_SpawnPos);
 			m_pGameObject->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::Idle);

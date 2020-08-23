@@ -26,7 +26,6 @@ void ProjectileComponent::Update(float deltaTime)
 
 	m_pGameObject->GetComponent<TransformComponent>()->SetVelocity(engine::Vector3( m_Direction * m_Speed));
 
-	std::cout << m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().x << " " << m_pGameObject->GetComponent<TransformComponent>()->GetVelocity().y << std::endl;
 	CheckForBlock();
 }
 
@@ -54,8 +53,8 @@ void ProjectileComponent::CheckForBlock()
 		else if (trigger->GetName().find("spider") != std::string::npos)
 		{
 			SDL_Rect m_SmallColl;
-			m_SmallColl.x = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x + 6;
-			m_SmallColl.y = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 6;
+			m_SmallColl.x = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().x) + 6;
+			m_SmallColl.y = static_cast<int>(m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y) + 6;
 			m_SmallColl.w = 8;
 			m_SmallColl.h = 8;
 			if (engine::Collision::AABB(trigger->GetComponent<ColliderComponent>()->GetCollider(), m_SmallColl))

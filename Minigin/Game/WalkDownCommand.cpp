@@ -19,8 +19,8 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 	float posY = object->GetComponent<TransformComponent>()->GetPosition().y + 32;
 	bool allFailed = true;
 	SDL_Rect m_Collider;
-	m_Collider.x = posX;
-	m_Collider.y = posY;
+	m_Collider.x = static_cast<int>(posX);
+	m_Collider.y = static_cast<int>(posY);
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
@@ -47,14 +47,14 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 				object->GetComponent<RigidbodyComponent>()->WalkY(0.5f);
 				object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkDown);
 			}
-			m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
-			m_Collider.y = object->GetComponent<TransformComponent>()->GetPosition().y + 30;
+			m_Collider.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+			m_Collider.y = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().y) + 30;
 
 			for (auto col : colliders)
 			{
 				SDL_Rect m_SmallColl;
-				m_SmallColl.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_SmallColl.y = object->GetComponent<TransformComponent>()->GetPosition().y +5;
+				m_SmallColl.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_SmallColl.y = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().y) +5;
 				m_SmallColl.w = 11;
 				m_SmallColl.h = 22;
 				if (engine::Collision::AABB(m_SmallColl, col->GetCollider()))
@@ -67,7 +67,7 @@ void WalkDownCommand::Execute(engine::GameObject* object)
 					if (col->GetGameObject()->GetName().find("level") != std::string::npos)
 					{
 						object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
-						object->GetComponent<TransformComponent>()->Translate(object->GetComponent<TransformComponent>()->GetPosition().x, col->GetCollider().y-27, 0);
+						object->GetComponent<TransformComponent>()->Translate(object->GetComponent<TransformComponent>()->GetPosition().x, static_cast<float>(col->GetCollider().y)-27, 0);
 						break;
 					}
 				}

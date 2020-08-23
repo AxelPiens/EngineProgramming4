@@ -18,8 +18,8 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 	float posY = object->GetComponent<TransformComponent>()->GetPosition().y - 10;
 	bool allFailed = true;
 	SDL_Rect m_Collider;
-	m_Collider.x = posX;
-	m_Collider.y = posY;
+	m_Collider.x = static_cast<int>(posX);
+	m_Collider.y = static_cast<int>(posY);
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
@@ -33,7 +33,6 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 				if (engine::Collision::AABB(m_Collider, trigger->GetComponent<ColliderComponent>()->GetCollider()))
 				{
 					int modulo = int(object->GetComponent<TransformComponent>()->GetPosition().x) % 27;
-					std::cout << modulo << std::endl;
 					if (modulo >= -4 && modulo <= 4)
 					{
 						object->GetComponent<RigidbodyComponent>()->WalkY(-0.5f);
@@ -47,14 +46,14 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 				object->GetComponent<RigidbodyComponent>()->WalkY(-0.5f);
 				object->GetComponent<StateComponent>()->ChangePlayerState(PlayerState::WalkUp);
 			}
-			m_Collider.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
-			m_Collider.y = object->GetComponent<TransformComponent>()->GetPosition().y - 5;
+			m_Collider.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+			m_Collider.y = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().y) - 5;
 
 			for (auto col : colliders)
 			{
 				SDL_Rect m_SmallColl;
-				m_SmallColl.x = object->GetComponent<TransformComponent>()->GetPosition().x + 5;
-				m_SmallColl.y = object->GetComponent<TransformComponent>()->GetPosition().y;
+				m_SmallColl.x = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().x) + 5;
+				m_SmallColl.y = static_cast<int>(object->GetComponent<TransformComponent>()->GetPosition().y);
 				m_SmallColl.w = 11;
 				m_SmallColl.h = 17;
 				if (engine::Collision::AABB(m_SmallColl, col->GetCollider()))
@@ -63,7 +62,7 @@ void WalkUpCommand::Execute(engine::GameObject* object)
 					{
 						object->GetComponent<TransformComponent>()->SetVelocityY(0.f);
 						object->GetComponent<TransformComponent>()->Translate(object->GetComponent<TransformComponent>()->GetPosition().x,
-							col->GetCollider().y + 27, 0);
+							static_cast<float>(col->GetCollider().y) + 27, 0);
 						break;
 					}
 				}

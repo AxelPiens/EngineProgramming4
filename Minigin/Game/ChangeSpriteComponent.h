@@ -11,7 +11,7 @@ public:
 	ChangeSpriteComponent& operator=(ChangeSpriteComponent&& other) noexcept = delete;
 	ChangeSpriteComponent();
 	void SetLastState(PlayerState state) { m_LastState = state; };
-	void SetY(float y) { m_pGameObject->GetComponent<SpriteComponent>()->ChangeYPos(y); };
+	void SetY(int y) { m_pGameObject->GetComponent<SpriteComponent>()->ChangeYPos(y); };
 protected:
 	void Update(float deltaTime) override;
 	void Render() override;

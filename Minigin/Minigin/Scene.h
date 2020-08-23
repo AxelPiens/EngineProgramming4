@@ -38,7 +38,7 @@ namespace engine
 		std::vector < std::shared_ptr<GameObject>> m_Triggers{};
 		std::vector < std::shared_ptr<GameObject>> m_Texts{};
 
-		std::vector < ColliderComponent*> m_Colliders;
+		std::vector <ColliderComponent*> m_Colliders;
 		static unsigned int m_IdCounter;
 		float m_FpsTimer = 0.0f;
 		float m_ElapsedGameTIme = 0.0f;

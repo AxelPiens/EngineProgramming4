@@ -1,10 +1,60 @@
-﻿  ChangeSpriteComponent.cpp
+﻿  ACommand.cpp
+  BCommand.cpp
+  CCommand.cpp
+  ChangeSpriteComponent.cpp
+  DCommand.cpp
   Digger.cpp
+  ECommand.cpp
+  EnemyAIComponent.cpp
+  EnterCommand.cpp
+  FCommand.cpp
+  GCommand.cpp
+  HCommand.cpp
+  HighScoreScene.cpp
+  ICommand.cpp
+  JCommand.cpp
+  JumpCommand.cpp
+  KCommand.cpp
+  LCommand.cpp
+  LiveComponent.cpp
+  Main.cpp
+  Compiling...
+  Game.cpp
+  MCommand.cpp
+  MovementSpiderComponent.cpp
+  MovingBagComponent.cpp
+  NCommand.cpp
+  OCommand.cpp
+  Parser.cpp
+  PCommand.cpp
+  ProjectileComponent.cpp
+  QCommand.cpp
+  RCommand.cpp
+  SCommand.cpp
+  ScoreComponent.cpp
+  ShootCommand.cpp
+  ShootComponent.cpp
+  SpiderSpawnComponent.cpp
   StateComponent.cpp
+  SwitchingScenesComponent.cpp
+  TCommand.cpp
+  TrappedBubbleComponent.cpp
+  Compiling...
+  TurnHobbinComponent.cpp
+  UCommand.cpp
+  VCommand.cpp
+  WalkDownCommand.cpp
+  WalkLeftCommand.cpp
+  WalkRightCommand.cpp
+  WalkUpCommand.cpp
+  WCommand.cpp
+  WinComponent.cpp
+  XCommand.cpp
+  YCommand.cpp
+  ZCommand.cpp
   Generating code
-  16 of 694 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    27 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 1302 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Release\Game.exe
   0 File(s) copied

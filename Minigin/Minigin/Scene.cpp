@@ -53,6 +53,13 @@ void engine::Scene::RemoveGameObject(const std::string& name)
 				iterator = std::find(m_Triggers.begin(), m_Triggers.end(), obj);
 				if (iterator != m_Triggers.end())
 					m_Triggers.erase(iterator);
+				for (size_t i = 0; i < m_Colliders.size(); i++)
+				{
+					if (m_Colliders[i]->GetGameObject()->GetName() == name)
+					{
+						m_Colliders.erase(m_Colliders.begin() + i);
+					}
+				}
 				iterator = std::find(m_PlayerEnemyColliders.begin(), m_PlayerEnemyColliders.end(), obj);
 				if (iterator != m_PlayerEnemyColliders.end())
 					m_PlayerEnemyColliders.erase(iterator);
@@ -83,7 +90,7 @@ void Scene::Update(float deltaTime)
 		m_FPSObject->GetComponent<TextComponent>()->SetText(std::to_string(m_FPS));
 
 	for (size_t i = 0; i < m_Objects.size(); i++)
-	{
+	{	
 		if(m_Objects[i])
 			m_Objects[i]->Update(deltaTime);
 	}

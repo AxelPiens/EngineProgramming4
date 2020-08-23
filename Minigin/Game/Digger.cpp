@@ -83,7 +83,7 @@ void Digger::LoadGame(int level) const
 	std::ifstream myfile;
 	myfile.open("../Data/Digger/LevelData" + std::to_string(m_LevelNumber) + ".txt");
 
-	int posX = 0.f;
+	int posX = 0;
 	int posY = 27;
 	int number = 0;
 	int size = 27;
@@ -104,7 +104,7 @@ void Digger::LoadGame(int level) const
 					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
 					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
 					level2->AddComponent(new TransformComponent(size, size, 200));
-					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY), 0);
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
 
@@ -114,7 +114,7 @@ void Digger::LoadGame(int level) const
 					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
 					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
 					level2->AddComponent(new TransformComponent(size, size, 200));
-					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY), 0);
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
 				}
@@ -123,7 +123,7 @@ void Digger::LoadGame(int level) const
 					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
 					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
 					level2->AddComponent(new TransformComponent(size, size, 200));
-					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY), 0);
 					level2->AddComponent(new ColliderComponent("level" + number, true, 0, 0));
 					scene.AddGameobject(level2);
 
@@ -134,7 +134,7 @@ void Digger::LoadGame(int level) const
 					auto level2 = std::make_shared<engine::GameObject>("level" + std::to_string(number));
 					level2->AddComponent(new SpriteComponent(("/Digger/ground0.png"), size, size, 0, 0, 1, 150, false));
 					level2->AddComponent(new TransformComponent(size, size, 200));
-					level2->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					level2->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY), 0);
 					level2->AddComponent(new ColliderComponent("level" + number, false, 0, 0));
 					scene.AddGameobject(level2);
 				}
@@ -142,10 +142,10 @@ void Digger::LoadGame(int level) const
 				posX += size;
 			}
 			posY += size;
-			posX = 0.f;
+			posX = 0;
 		}
 		posY = 27;
-		posX = 0.f;
+		posX = 0;
 		myfile.clear();
 		myfile.seekg(0);
 		while (std::getline(myfile, numbers))
@@ -157,7 +157,7 @@ void Digger::LoadGame(int level) const
 					auto diamond = std::make_shared<engine::GameObject>("emerald" + std::to_string(number));
 					diamond->AddComponent(new SpriteComponent(("/Digger/emerald.png"), 26, 21, 0, 0, 1, 150, false));
 					diamond->AddComponent(new TransformComponent(26, 21, 200));
-					diamond->GetComponent<TransformComponent>()->Translate(posX, posY + 5, 0);
+					diamond->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY) + 5, 0);
 					diamond->AddComponent(new ColliderComponent("emerald", true, 0, 0));
 					diamond->AddComponent(new StateComponent());
 					scene.AddGameobject(diamond);
@@ -170,40 +170,32 @@ void Digger::LoadGame(int level) const
 					auto money = std::make_shared<engine::GameObject>("money" + std::to_string(number));
 					money->AddComponent(new SpriteComponent(("/Digger/moneybag.png"), 26, 26, 0, 0, 1, 150, false));
 					money->AddComponent(new TransformComponent(27, 28, 200));
-					money->GetComponent<TransformComponent>()->Translate(posX, posY, 0);
+					money->GetComponent<TransformComponent>()->Translate(static_cast<float>(posX), static_cast<float>(posY), 0);
 					money->AddComponent(new ColliderComponent("money", false, 0, 0));
 					money->AddComponent(new RigidbodyComponent(0.0f, 50.0f, -155.f, 75.0f));
 					money->AddComponent(new MovingBagComponent());
 					scene.AddGameobject(money);
 
-					money->GetComponent<MovingBagComponent>()->SetOldPosY(posY);
+					money->GetComponent<MovingBagComponent>()->SetOldPosY(static_cast<float>(posY));
 				}
 				++number;
 				posX += size;
 			}
 			posY += size;
-			posX = 0.f;
+			posX = 0;
 		}
 
 	}
 	myfile.close();
 
-
 	auto spawnSpider = std::make_shared<engine::GameObject>("spawner");
 	spawnSpider->AddComponent(new SpiderSpawnComponent(5, 4.0f));
 	scene.AddGameobject(spawnSpider);
 
-
-
-
-
-
-
-
 	//player
 	auto player = std::make_shared<engine::GameObject>("player");
 	player->AddComponent(new SpriteComponent("/Digger/miner.png", 21, 27, 0, 0, 3, 150, true));
-	player->AddComponent(new TransformComponent(15.f, 17.5f, 0));
+	player->AddComponent(new TransformComponent(15, 17, 0));
 	player->GetComponent<TransformComponent>()->Translate(200, 297, 0);
 	//go->GetComponent<TransformComponent>()->Translate(270, 216, 0);
 	player->AddComponent(new ColliderComponent("player", false, 2, 2));
@@ -267,7 +259,7 @@ void Digger::Run()
 
 	auto players = scene->GetPlayers();
 	auto player = players[players.size()-1];
-
+	auto objects = scene->GetObjects();
 	Inputs();
 	auto lastTime = std::chrono::high_resolution_clock::now();
 	while (m_Continue)
@@ -307,7 +299,7 @@ void Digger::CollisionCheck()
 	auto triggers = scene->GetTriggers();
 	auto colliders = scene->GetColliders();
 	auto players = scene->GetPlayers();
-
+	auto objects = scene->GetObjects();
 	int number = 0;
 	for (auto trigger : triggers)
 	{
@@ -336,7 +328,6 @@ void Digger::CollisionCheck()
 
 						channel = Mix_PlayChannel(0, m_PickUpSound, 0);
 					}
-					std::cout << trigger->GetName() << std::endl;
 					break;
 				}
 			}
@@ -348,7 +339,7 @@ void Digger::CollisionCheck()
 	{
 		if (engine::Collision::AABB(*collider, *players[number]->GetComponent<ColliderComponent>()))
 		{
-			if (collider->GetGameObject()->GetComponent<MovingBagComponent>())
+			if (collider->GetGameObject()->HasComponent<MovingBagComponent>())
 			{
 				if (collider->GetGameObject()->GetComponent<MovingBagComponent>()->GetIsFalling() && 
 					players[number]->GetComponent<StateComponent>()->GetPlayerState() != PlayerState::Death)

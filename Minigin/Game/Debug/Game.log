@@ -1,7 +1,55 @@
-﻿  Digger.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(80,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(80,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(94,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  ACommand.cpp
+  BCommand.cpp
+  CCommand.cpp
+  ChangeSpriteComponent.cpp
+  DCommand.cpp
+  Digger.cpp
+  ECommand.cpp
+  EnemyAIComponent.cpp
+  EnterCommand.cpp
+  FCommand.cpp
+  GCommand.cpp
+  HCommand.cpp
+  HighScoreScene.cpp
+  ICommand.cpp
+  JCommand.cpp
+  JumpCommand.cpp
+  KCommand.cpp
+  LCommand.cpp
+  LiveComponent.cpp
+  Main.cpp
+  Game.cpp
+  MCommand.cpp
+  MovementSpiderComponent.cpp
+  MovingBagComponent.cpp
+  NCommand.cpp
+  OCommand.cpp
+  Parser.cpp
+  PCommand.cpp
+  ProjectileComponent.cpp
+  QCommand.cpp
+  RCommand.cpp
+  SCommand.cpp
+  ScoreComponent.cpp
+  ShootCommand.cpp
+  ShootComponent.cpp
+  SpiderSpawnComponent.cpp
+  StateComponent.cpp
+  SwitchingScenesComponent.cpp
+  TCommand.cpp
+  TrappedBubbleComponent.cpp
+  TurnHobbinComponent.cpp
+  UCommand.cpp
+  VCommand.cpp
+  WalkDownCommand.cpp
+  WalkLeftCommand.cpp
+  WalkRightCommand.cpp
+  WalkUpCommand.cpp
+  WCommand.cpp
+  WinComponent.cpp
+  XCommand.cpp
+  YCommand.cpp
+  ZCommand.cpp
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Debug\Game.exe
   0 File(s) copied
   0 File(s) copied

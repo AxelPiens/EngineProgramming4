@@ -9,6 +9,7 @@
 #include "StateComponent.h"
 
 MovingBagComponent::MovingBagComponent()
+	:m_OldPosY{}
 {
 }
 
@@ -39,8 +40,11 @@ void MovingBagComponent::Update(float deltaTime)
 	else
 	{
 		m_IsFalling = false;
-		if(m_pGameObject)
-			m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
+		if (m_pGameObject)
+		{
+			if (m_pGameObject->HasComponent<TransformComponent>())
+				m_pGameObject->GetComponent<TransformComponent>()->SetVelocityY(0.f);
+		}
 	}
 
 }
@@ -59,8 +63,8 @@ void MovingBagComponent::CheckForBlock()
 	float posY = m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y + 30;
 	bool allFailed = true;
 	SDL_Rect m_Collider;
-	m_Collider.x = posX;
-	m_Collider.y = posY;
+	m_Collider.x = static_cast<int>(posX);
+	m_Collider.y = static_cast<int>(posY);
 	m_Collider.w = 1;
 	m_Collider.h = 1;
 
@@ -75,7 +79,6 @@ void MovingBagComponent::CheckForBlock()
 				m_CanFall = false;
 				if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y - m_OldPosY > 32)
 				{
-					std::cout << "FELL 2 BLOCKS\n";
 					removeBlock = true;
 				}
 
@@ -96,7 +99,6 @@ void MovingBagComponent::CheckForBlock()
 				m_CanFall = false;
 				if (m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y - m_OldPosY > 32)
 				{
-					std::cout << "FELL 2 BLOCKS\n";
 					removeBlock = true;
 				}
 
@@ -113,7 +115,9 @@ void MovingBagComponent::CheckForBlock()
 	if (removeBlock)
 	{
 		SpawnGold();
-		scene->RemoveGameObject(m_pGameObject->GetName());
+ 		scene->RemoveGameObject(m_pGameObject->GetName());
+		//m_pGameObject->GetComponent<ColliderComponent>()->SetSizeY(0);
+
 	}
 }
 

@@ -6,15 +6,75 @@ c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\main.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\livecomponent.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\enemyaicomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\vc142.pdb
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\main.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\livecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\lcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\kcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\jumpcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\jcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\icommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\highscorescene.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\hcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\gcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\fcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\entercommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\enemyaicomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ecommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\digger.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\dcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\changespritecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ccommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\bcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\acommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\trappedbubblecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\tcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\switchingscenescomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\statecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\spiderspawncomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\shootcomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\shootcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\scorecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\scommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\rcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\qcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\projectilecomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\pcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\parser.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ocommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ncommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\movingbagcomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\movementspidercomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\mcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\zcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ycommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\xcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\wincomponent.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\wcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\walkupcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\walkrightcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\walkleftcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\walkdowncommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\vcommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\ucommand.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\turnhobbincomponent.obj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\release\game.ipdb
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\release\game.iobj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.lib
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.exp
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.ipdb
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.iobj
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\release\game.exe
 c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\x64\release\game.pdb
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.pch
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\cl.command.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\cl.read.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\cl.write.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\game.write.1u.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\link.command.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\link.read.1.tlog
-c:\users\axel piens\desktop\semester4\programming 4\exam_assignment\minigin\game\x64\release\game.tlog\link.write.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.exe
+c:\users\axel piens\documents\github\engineprogramming4\minigin\x64\release\game.pdb
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\minigin.obj
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.pch
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\cl.command.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\cl.read.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\cl.write.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\game.write.1u.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\link.command.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\link.read.1.tlog
+c:\users\axel piens\documents\github\engineprogramming4\minigin\game\x64\release\game.tlog\link.write.1.tlog

@@ -1,39 +1,60 @@
-﻿  Digger.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\ChangeSpriteComponent.h(14,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(86,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(107,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(107,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(117,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(117,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(126,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(126,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(137,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(137,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(145,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(148,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(160,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(160,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(173,65): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(173,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(179,60): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(185,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(206,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\Digger.cpp(206,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  ACommand.cpp
+  BCommand.cpp
+  CCommand.cpp
+  ChangeSpriteComponent.cpp
+  DCommand.cpp
+  Digger.cpp
+  ECommand.cpp
+  EnemyAIComponent.cpp
+  EnterCommand.cpp
+  FCommand.cpp
+  GCommand.cpp
+  HCommand.cpp
+  HighScoreScene.cpp
+  ICommand.cpp
+  JCommand.cpp
+  JumpCommand.cpp
+  KCommand.cpp
+  LCommand.cpp
+  LiveComponent.cpp
+  Main.cpp
+  Compiling...
+  Game.cpp
+  MCommand.cpp
+  MovementSpiderComponent.cpp
+  MovingBagComponent.cpp
+  NCommand.cpp
+  OCommand.cpp
+  Parser.cpp
+  PCommand.cpp
+  ProjectileComponent.cpp
+  QCommand.cpp
+  RCommand.cpp
+  SCommand.cpp
+  ScoreComponent.cpp
   ShootCommand.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\ChangeSpriteComponent.h(14,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ShootComponent.cpp
   SpiderSpawnComponent.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\ChangeSpriteComponent.h(14,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  StateComponent.cpp
+  SwitchingScenesComponent.cpp
+  TCommand.cpp
+  TrappedBubbleComponent.cpp
+  Compiling...
+  TurnHobbinComponent.cpp
+  UCommand.cpp
+  VCommand.cpp
+  WalkDownCommand.cpp
   WalkLeftCommand.cpp
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(22,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(23,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(55,81): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(56,81): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(69,106): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\Game\WalkLeftCommand.cpp(69,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  WalkRightCommand.cpp
+  WalkUpCommand.cpp
+  WCommand.cpp
+  WinComponent.cpp
+  XCommand.cpp
+  YCommand.cpp
+  ZCommand.cpp
   Generating code
-  3 of 1288 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    53 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+  All 1304 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Game.vcxproj -> C:\Users\Axel Piens\Documents\GitHub\EngineProgramming4\Minigin\x64\Release\Game.exe
   0 File(s) copied

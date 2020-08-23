@@ -110,7 +110,7 @@ void HighScoreScene::LoadGame() const
 		auto highScore = std::make_shared<engine::GameObject>("highScore" + std::to_string(i));
 		highScore->AddComponent(new TextComponent());
 		highScore->GetComponent<TextComponent>()->SetFont(font);
-		highScore->GetComponent<TextComponent>()->SetPosition(10, posY);
+		highScore->GetComponent<TextComponent>()->SetPosition(10, static_cast<float>(posY));
 		highScore->GetComponent<TextComponent>()->SetText(initials[i] + ": " + std::to_string(highScores[i]));
 		highScore->GetComponent<TextComponent>()->SetColor({ 255, 0, 0 });
 
